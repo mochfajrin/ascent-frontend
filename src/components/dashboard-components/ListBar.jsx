@@ -28,6 +28,7 @@ const ListBar = ({ closeDropDown }) => {
         <li>
           <Link
             onClick={closeDropDown}
+            to={"/dashboard/member-management"}
             href="#"
             className="block py-2   max-md:rounded px-3 hover:bg-[#489CFF] "
           >
