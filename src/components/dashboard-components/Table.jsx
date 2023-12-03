@@ -1,6 +1,11 @@
 import { IoSearchSharp } from "react-icons/io5";
+import { BiMoneyWithdraw } from "react-icons/bi";
+
 import SearchInput from "./SearchInput";
 import { useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import TableFilter from "./TableFilter";
 
 const Table = () => {
@@ -8,22 +13,25 @@ const Table = () => {
 
   const searchInputShow = () => {
     setSearchInput(true);
+    AOS.init({
+      once: true,
+      duration: 300,
+    });
     if (searchInput) {
       setSearchInput(false);
     }
   };
   return (
-    <div className="relative overflow-x-auto max-md:ml-8">
-      <div className="flex flex-col space-y-5 ">
-        <div>
-          <p className="font-bold md:text-2xl text-xl">Status pembayaran</p>
-        </div>
-        <div className="flex flex-row items-center space-x-2">
+    <div className="relative overflow-x-auto mt-5 ">
+      <div className="flex flex-col space-y-5 max-md:w-96 lg:flex-row lg:items-center justify-end">
+        <div className="flex flex-row items-center space-x-3">
           <div>
             <TableFilter hideSearchInput={() => setSearchInput(false)} />
           </div>
           {searchInput ? (
-            <SearchInput />
+            <div data-aos="fade-left">
+              <SearchInput />
+            </div>
           ) : (
             <button
               className="p-1 text-[#6148FF] text-2xl"
