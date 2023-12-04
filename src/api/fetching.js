@@ -10,4 +10,13 @@ const getMemberData = async () => {
   return res.data.data.allUser;
 };
 
-export { getCourseData, getMemberData };
+const loginUser = async (email, password, user) => {
+  const res = await api.post(`/auth/${user}/login`, {
+    email: email,
+    password: password,
+  });
+
+  return localStorage.setItem("accessToken", res.data.data);
+};
+
+export { getCourseData, getMemberData, loginUser };
