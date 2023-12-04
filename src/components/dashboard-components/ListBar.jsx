@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { FaHome } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
-import { PiUsersLight } from "react-icons/pi";
+import { FaUserGroup } from "react-icons/fa6";
 
 const ListBar = ({ closeDropDown }) => {
   return (
@@ -44,7 +44,7 @@ const ListBar = ({ closeDropDown }) => {
           >
             <div className="flex items-center gap-2">
               Kelola pengguna
-              <PiUsersLight />
+              <FaUserGroup />
             </div>
           </Link>
         </li>
