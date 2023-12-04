@@ -105,7 +105,6 @@ const Login = () => {
           >
             Masuk
           </button>
-          {/* dbawhbdawda */}
         </div>
         {alertMessage && (
           <div className="flex justify-center items-center mx-auto  mt-10 text-sm  text-white bg-[#FF0000] rounded-lg py-3 w-1/4 font-montserrat">
