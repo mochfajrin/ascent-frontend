@@ -13,8 +13,24 @@ const Login = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
+  const setTimeOutMessage = (time) => {
+    return setTimeout(() => {
+      setAlertMessage("");
+    }, time);
+  };
+
   const handleLogin = async () => {
     try {
+      if (!password && !email) {
+        setAlertMessage("Harap masukkan email dan password");
+        setTimeOutMessage(2000);
+        return;
+      }
+      if (!email.includes("@")) {
+        setAlertMessage("Harap sertakan @ pada email anda");
+        setTimeOutMessage(2000);
+        return;
+      }
       const response = await axios.post(
         `https://backend-production-f9e7.up.railway.app/api/v1/auth/admin/login`,
         {
@@ -27,13 +43,12 @@ const Login = () => {
 
       localStorage.setItem("token", token);
       window.location.href = "/dashboard";
-      console.log(token);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setAlertMessage(err.response.data.message);
+        setTimeOutMessage(2000);
         return;
       }
-      setAlertMessage(err.message);
     }
   };
 
@@ -55,11 +70,13 @@ const Login = () => {
               Email
             </label>
             <input
-              type="text"
+              type="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 w-full px-4 mt-1 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-700 shadow-sm appearance-none font-montserrat rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               placeholder="Contoh:jhoneDoe@gmail.com"
+              required
             />
           </div>
           <div className="relative">

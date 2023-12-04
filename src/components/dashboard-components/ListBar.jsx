@@ -38,24 +38,26 @@ const ListBar = ({ closeDropDown }) => {
       </ul>
 
       <div className="md:flex md:flex-row md:justify-center">
-        <button
-          type="button"
-          className="flex flex-row items-center space-x-2 text-xs md:text-sm lg:text-md xl:text-lg md:w-32 lg:w-40 xl:w-48 p-2.5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-2 focus:ring-red-300 font-medium rounded-lg me-2 mb-2 "
-        >
-          <svg
-            className=" h-5 text-white dark:text-dark"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 16 16"
+        <Link to={"/login"}>
+          <button
+            type="button"
+            className="flex flex-row items-center space-x-2 text-xs md:text-sm lg:text-md xl:text-lg md:w-32 lg:w-40 xl:w-48 p-2.5 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-2 focus:ring-red-300 font-medium rounded-lg me-2 mb-2 "
           >
-            <path
-              stroke="currentColor"
-              d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"
-            />
-          </svg>
-          <div className=" text-white">Keluar</div>
-        </button>
+            <svg
+              className=" h-5 text-white dark:text-dark"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 16 16"
+            >
+              <path
+                stroke="currentColor"
+                d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"
+              />
+            </svg>
+            <div className=" text-white">Keluar</div>
+          </button>
+        </Link>
       </div>
     </div>
   );
