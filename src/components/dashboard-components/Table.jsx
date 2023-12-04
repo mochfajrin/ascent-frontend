@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { IoSearchSharp } from "react-icons/io5";
-import { BiMoneyWithdraw } from "react-icons/bi";
 
 import SearchInput from "./SearchInput";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import "aos/dist/aos.css";
 
 import TableFilter from "./TableFilter";
 
-const Table = () => {
+const Table = ({ colom }) => {
   const [searchInput, setSearchInput] = useState(false);
 
   const searchInputShow = () => {
@@ -22,10 +22,10 @@ const Table = () => {
     }
   };
   return (
-    <div className="relative overflow-x-auto mt-5 ">
+    <div className="relative overflow-x-auto">
       <div className="flex flex-col space-y-5 max-md:w-96 lg:flex-row lg:items-center justify-end">
         <div className="flex flex-row items-center space-x-3">
-          <div>
+          <div className="p-1">
             <TableFilter hideSearchInput={() => setSearchInput(false)} />
           </div>
           {searchInput ? (
@@ -45,24 +45,11 @@ const Table = () => {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 mt-3">
         <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">
           <tr>
-            <th scope="col" className="px-6 py-3">
-              ID
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Kategori
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Kelas Premium
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Status
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Metode Pembayaran
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Tanggal Bayar
-            </th>
+            {colom.map((colName, i) => (
+              <th key={i} scope="col" className="px-6 py-3">
+                {colName.col}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>

@@ -4,6 +4,15 @@ import CardStatistic from "../../../components/dashboard-components/CardStatisti
 import Table from "../../../components/dashboard-components/Table";
 
 const Home = () => {
+  const tableColumns = [
+    { col: "ID" },
+    { col: "KATEGORI" },
+    { col: "KELAS PREMIUM" },
+    { col: "STATUS" },
+    { col: "METODE PEMBAYARAN" },
+    { col: "TANGGAL BAYAR" },
+  ];
+
   return (
     <>
       <CardStatistic />
@@ -12,7 +21,7 @@ const Home = () => {
           <p className="font-bold md:text-2xl text-xl ">Status pembayaran</p>
           <BiMoneyWithdraw className="text-4xl text-green-500" />
         </div>
-        <Table />
+        <Table colom={tableColumns} />
       </div>
     </>
   );

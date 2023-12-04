@@ -1,7 +1,10 @@
+import { useEffect } from "react";
+
 import { PiUsersLight } from "react-icons/pi";
 import { MdOutlineClass, MdClass } from "react-icons/md";
 
 const CardStatistic = () => {
+  useEffect(() => {});
   return (
     <div className="flex flex-col place-items-center max-md:space-y-7 md:flex-row md:space-x-2 lg:space-x-6 xl:space-x-10 ">
       <div className="flex flex-row items-center space-x-5 md:space-x-3 xl:space-x-6 bg-[#489CFF] p-6 md:p-3 w-5/6 lg:w-4/6 xl:min-w-3/5 lg:p-4 xl:p-6  rounded-xl">
