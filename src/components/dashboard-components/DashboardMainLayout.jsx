@@ -10,7 +10,7 @@ const DashboardMainLayout = () => {
       <div className="max-md:hidden ">
         <SideBar />
       </div>
-      <div className="pt-24  md:ml-44">
+      <div className="pt-24 xl:pt-36  md:ml-44 md:mr-4 lg:ml-52 lg:mr-6 xl:ml-64 xl:mr-8 ">
         <Outlet />
       </div>
     </div>

@@ -21,12 +21,12 @@ const NavbarDasboard = () => {
   };
 
   return (
-    <nav className="w-screen fixed z-10 bg-[#EBF3FC] shadow-md flex flex-wrap items-center justify-between mx-auto p-4 md:p-3">
+    <nav className="w-screen fixed z-10 bg-[#EBF3FC] shadow-md flex flex-wrap items-center justify-between mx-auto p-4 max-md:p-3 xl:p-6">
       <a
         href="#"
-        className="md:ml-40 flex items-center space-x-3 rtl:space-x-reverse text-[#6148FF]"
+        className="md:ml-40 lg:ml-48 xl:ml-56 flex items-center space-x-3 rtl:space-x-reverse text-[#6148FF]"
       >
-        <span className="self-center text-2xl md:text-xl whitespace-nowrap font-semibold ">
+        <span className="self-center text-2xl max-md:text-xl whitespace-nowrap font-semibold ">
           Hi, Admin
         </span>
         <MdWavingHand className="text-3xl text-[#CC9667]" />
@@ -54,6 +54,9 @@ const NavbarDasboard = () => {
             d="M1 1h15M1 7h15M1 13h15"
           />
         </svg>
+      </div>
+      <div className="max-md:hidden">
+        <SearchInput />
       </div>
       {dropDown && (
         <div data-aos="fade-right" className=" w-full mt-6 px-3">

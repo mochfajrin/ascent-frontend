@@ -1,7 +1,7 @@
 const SearchInput = () => {
   return (
-    <div className="relative  md:block">
-      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+    <div className="relative  w-full">
+      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none w-full ">
         <svg
           className="w-4 h-4 text-[#6148FF] dark:text-gray-400"
           aria-hidden="true"
@@ -22,7 +22,7 @@ const SearchInput = () => {
       <input
         type="text"
         id="search-navbar"
-        className="block max-w-xs p-2 ps-10 text-sm text-gray-900 border border-[#6148FF] rounded-lg bg-gray-50 focus:ring-[#6148FF] focus:border-[#6148FF]"
+        className="  p-2 ps-10 text-sm text-gray-900 border w-full border-[#6148FF] rounded-lg bg-gray-50 focus:ring-[#6148FF] focus:border-[#6148FF]"
         placeholder="Search..."
       />
     </div>

@@ -1,29 +1,38 @@
+/* eslint-disable react/prop-types */
 import { IoSearchSharp } from "react-icons/io5";
+
 import SearchInput from "./SearchInput";
 import { useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import TableFilter from "./TableFilter";
 
-const Table = () => {
+const Table = ({ colom, dataTable }) => {
   const [searchInput, setSearchInput] = useState(false);
 
   const searchInputShow = () => {
     setSearchInput(true);
+    AOS.init({
+      once: true,
+      duration: 300,
+    });
     if (searchInput) {
       setSearchInput(false);
     }
   };
+
   return (
-    <div className="relative overflow-x-auto max-md:ml-8">
-      <div className="flex flex-col space-y-5 ">
-        <div>
-          <p className="font-bold md:text-2xl text-xl">Status pembayaran</p>
-        </div>
-        <div className="flex flex-row items-center space-x-2">
-          <div>
+    <div className="relative overflow-x-auto">
+      <div className="flex flex-col space-y-5 max-md:w-96 lg:flex-row lg:items-center justify-end">
+        <div className="flex flex-row items-center space-x-3">
+          <div className="p-1">
             <TableFilter hideSearchInput={() => setSearchInput(false)} />
           </div>
           {searchInput ? (
-            <SearchInput />
+            <div data-aos="fade-left">
+              <SearchInput />
+            </div>
           ) : (
             <button
               className="p-1 text-[#6148FF] text-2xl"
@@ -37,39 +46,37 @@ const Table = () => {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 mt-3">
         <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">
           <tr>
-            <th scope="col" className="px-6 py-3">
-              ID
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Kategori
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Kelas Premium
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Status
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Metode Pembayaran
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Tanggal Bayar
-            </th>
+            {colom.map((data, i) => (
+              <th key={i} scope="col" className="px-6 py-3">
+                {data.col}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          {dataTable.map((data, i) => (
+            <tr
+              key={i}
+              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
             >
-              Apple MacBook Pro 17
-            </th>
-            <td className="px-6 py-4">Silver</td>
-            <td className="px-6 py-4">Laptop</td>
-            <td className="px-6 py-4">$2999</td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {data.courseCode ?? "-"}
+              </th>
+              <td className="px-6 py-4">{data.courseCategory ?? "-"}</td>
+              <td className="px-6 py-4">{data.courseName ?? "-"}</td>
+              <td className="px-6 py-4">{data.courseType ?? "-"}</td>
+              <td className="px-6 py-4">{data.courseLevel ?? "-"}</td>
+              <td className="px-6 py-4">{data.coursePrice ?? "-"}</td>
+              <td className="px-6 py-4 space-x-3">
+                <button>ubah</button>
+                <button>hapus</button>
+              </td>
+            </tr>
+          ))}
+          {/* <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -90,7 +97,7 @@ const Table = () => {
             <td className="px-6 py-4">Black</td>
             <td className="px-6 py-4">Accessories</td>
             <td className="px-6 py-4">$99</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>
