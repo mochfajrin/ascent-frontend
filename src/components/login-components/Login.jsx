@@ -103,12 +103,12 @@ const Login = () => {
             />
             <div className="absolute inset-y-0 right-0 flex items-center pt-5 pr-4 ">
               {showPassword ? (
-                <FiEyeOff
+                <FiEye
                   onClick={togglePasswordVisibility}
                   className="text-gray-700"
                 />
               ) : (
-                <FiEye
+                <FiEyeOff
                   onClick={togglePasswordVisibility}
                   className="text-gray-700"
                 />
