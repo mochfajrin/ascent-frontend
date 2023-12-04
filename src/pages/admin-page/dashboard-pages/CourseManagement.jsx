@@ -38,7 +38,7 @@ const CourseManagement = () => {
     <>
       <CardStatistic />
       <div className="mt-16 md:mt-12 xl:mt-24 max-md:ml-8 ">
-        <p className="font-bold md:text-2xl text-xl pb-0 ">Kelola Kelas</p>
+        <p className="pb-0 text-xl font-bold md:text-2xl ">Kelola Kelas</p>
         <Table colom={tableColumns} dataTable={courseData} />
       </div>
     </>

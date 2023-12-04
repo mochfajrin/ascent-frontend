@@ -24,7 +24,7 @@ const Table = ({ colom, dataTable }) => {
 
   return (
     <div className="relative overflow-x-auto">
-      <div className="flex flex-col space-y-5 max-md:w-96 lg:flex-row lg:items-center justify-end">
+      <div className="flex flex-col justify-end space-y-5 max-md:w-96 lg:flex-row lg:items-center">
         <div className="flex flex-row items-center space-x-3">
           <div className="p-1">
             <TableFilter hideSearchInput={() => setSearchInput(false)} />
@@ -43,7 +43,7 @@ const Table = ({ colom, dataTable }) => {
           )}
         </div>
       </div>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 mt-3">
+      <table className="w-full mt-3 text-sm text-left text-gray-500 rtl:text-right">
         <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">
           <tr>
             {colom.map((data, i) => (
