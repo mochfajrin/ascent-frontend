@@ -1,10 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { PiUsersLight } from "react-icons/pi";
 import { MdOutlineClass, MdClass } from "react-icons/md";
 
+import { getCourseData } from "../../api/fetching";
+
 const CardStatistic = () => {
-  useEffect(() => {});
+  const [courseData, setCourseData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getCourseData();
+        setCourseData(res);
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="flex flex-col place-items-center max-md:space-y-7 md:flex-row md:space-x-2 lg:space-x-6 xl:space-x-10 ">
       <div className="flex flex-row items-center space-x-5 md:space-x-3 xl:space-x-6 bg-[#489CFF] p-6 md:p-3 w-5/6 lg:w-4/6 xl:min-w-3/5 lg:p-4 xl:p-6  rounded-xl">
@@ -23,7 +39,9 @@ const CardStatistic = () => {
         </div>
 
         <div className="text-lg md:text-sm lg:text-lg xl:text-xl  text-white">
-          <p>450</p>
+          <p>
+            {courseData.length === 0 ? "Belum ada kelas" : courseData.length}
+          </p>
           <p className="font-bold">Active Class</p>
         </div>
       </div>
@@ -33,7 +51,13 @@ const CardStatistic = () => {
         </div>
 
         <div className="text-lg md:text-sm lg:text-lg xl:text-xl  text-white">
-          <p>450</p>
+          <p>
+            {courseData.filter((course) => course.courseType === "premium")
+              .length === 0
+              ? "Belum ada kelas"
+              : courseData.filter((course) => course.courseType === "premium")
+                  .length}
+          </p>
           <p className="font-bold">Premium Class</p>
         </div>
       </div>
