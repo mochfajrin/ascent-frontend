@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
-import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useState } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
+
+import { loginUser } from "../../api/fetching";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -31,18 +36,8 @@ const Login = () => {
         setTimeOutMessage(2000);
         return;
       }
-      const response = await axios.post(
-        `https://backend-production-f9e7.up.railway.app/api/v1/auth/admin/login`,
-        {
-          email,
-          password,
-        }
-      );
-      const { data } = response;
-      const token = data.data;
-
-      localStorage.setItem("token", token);
-      window.location.href = "/dashboard";
+      await loginUser(email, password, "admin");
+      navigate("/dashboard");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setAlertMessage(err.response.data.message);
