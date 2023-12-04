@@ -3,16 +3,19 @@ import { useEffect, useState } from "react";
 import { PiUsersLight } from "react-icons/pi";
 import { MdOutlineClass, MdClass } from "react-icons/md";
 
-import { getCourseData } from "../../api/fetching";
+import { getCourseData, getMemberData } from "../../api/fetching";
 
 const CardStatistic = () => {
   const [courseData, setCourseData] = useState([]);
+  const [memberData, setMemberData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await getCourseData();
-        setCourseData(res);
+        const resCourse = await getCourseData();
+        const resMember = await getMemberData();
+        setCourseData(resCourse);
+        setMemberData(resMember);
       } catch (err) {
         throw new Error(err.message);
       }
@@ -20,6 +23,8 @@ const CardStatistic = () => {
 
     fetchData();
   }, []);
+
+  console.log(memberData);
 
   return (
     <div className="flex flex-col place-items-center max-md:space-y-7 md:flex-row md:space-x-2 lg:space-x-6 xl:space-x-10 ">
@@ -29,7 +34,12 @@ const CardStatistic = () => {
         </div>
 
         <div className="text-lg text-white md:text-sm lg:text-lg xl:text-xl">
-          <p>450</p>
+          <p>
+            {memberData.filter((member) => member.role === "member").length ===
+            0
+              ? "Belum ada user"
+              : memberData.filter((member) => member.role === "member").length}
+          </p>
           <p className="font-bold md:font-semibold">Active Users</p>
         </div>
       </div>

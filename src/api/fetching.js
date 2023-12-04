@@ -5,4 +5,9 @@ const getCourseData = async () => {
   return res.data.data;
 };
 
-export { getCourseData };
+const getMemberData = async () => {
+  const res = await api.get("/user");
+  return res.data.data.allUser;
+};
+
+export { getCourseData, getMemberData };

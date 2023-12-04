@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
+import { FaHome } from "react-icons/fa";
+import { SiGoogleclassroom } from "react-icons/si";
+import { PiUsersLight } from "react-icons/pi";
+
 const ListBar = ({ closeDropDown }) => {
   return (
     <div className="flex-auto flex flex-col justify-between h-52 rounded-lg font-bold mt-2 text-[#3C3C3C]  md:text-white ">
@@ -12,7 +16,10 @@ const ListBar = ({ closeDropDown }) => {
             href="#"
             className="block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] w-full  "
           >
-            Beranda
+            <div className="flex items-center gap-2">
+              Beranda
+              <FaHome />
+            </div>
           </Link>
         </li>
         <li>
@@ -22,7 +29,10 @@ const ListBar = ({ closeDropDown }) => {
             href="#"
             className="block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF]"
           >
-            Kelola Kelas
+            <div className="flex items-center gap-2">
+              Kelola kelas
+              <SiGoogleclassroom />
+            </div>
           </Link>
         </li>
         <li>
@@ -32,7 +42,10 @@ const ListBar = ({ closeDropDown }) => {
             href="#"
             className="block py-2   max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] "
           >
-            Kelola Pengguna
+            <div className="flex items-center gap-2">
+              Kelola pengguna
+              <PiUsersLight />
+            </div>
           </Link>
         </li>
       </ul>
