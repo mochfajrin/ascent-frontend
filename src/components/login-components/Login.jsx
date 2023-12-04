@@ -27,14 +27,18 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       if (!password && !email) {
-        setAlertMessage("Harap masukkan email dan password");
         setTimeOutMessage(2000);
-        return;
-      }
-      if (!email.includes("@")) {
-        setAlertMessage("Harap sertakan @ pada email anda");
+        return setAlertMessage("Harap masukkan email dan password");
+      } else if (!email.includes("@")) {
         setTimeOutMessage(2000);
-        return;
+        return setAlertMessage("Harap sertakan @ pada email anda");
+      } else if (!email) {
+        setTimeOutMessage(2000);
+        return setAlertMessage("Harap masukkan email");
+      } else if (!password) {
+        setTimeOutMessage(2000);
+
+        return setAlertMessage("Harap masukkan password");
       }
       await loginUser(email, password, "admin");
       navigate("/dashboard");
