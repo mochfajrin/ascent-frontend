@@ -45,7 +45,7 @@ const Login = () => {
       <div className="absolute px-20 -mt-5 md:-mt-20 md:px-44 lg:hidden">
         <img src="/logo-course.svg" alt="icon" className="" />
       </div>
-      <div className="w-full h-screen px-20 py-48 bg-indigo-700 lg:w-4/6 md:px-44 md:py-60 lg:py-44 lg:px-36 xl:px-64 xl:py-64 md:bg-indigo-700 lg:bg-white">
+      <div className="w-full h-screen px-10 py-48 bg-indigo-700 lg:w-4/6 md:px-44 md:py-60 lg:py-44 lg:px-36 xl:px-64 xl:py-64 md:bg-indigo-700 lg:bg-white">
         <h1 className="flex justify-center text-2xl font-extrabold text-white lg:text-indigo-700 lg:mb-4 md:text-white font-montserrat">
           Login
         </h1>
@@ -107,7 +107,7 @@ const Login = () => {
           </button>
         </div>
         {alertMessage && (
-          <div className="flex justify-center items-center mx-auto  mt-10 text-sm  text-white bg-[#FF0000] rounded-lg py-3 w-1/4 font-montserrat">
+          <div className="flex justify-center items-center w-3/4 md:w-1/2  mx-auto  mt-10 text-sm  text-white bg-[#FF0000] rounded-lg py-3  font-montserrat">
             <span className="inline-block">{alertMessage}</span>
           </div>
         )}
