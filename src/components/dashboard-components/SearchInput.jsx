@@ -1,4 +1,5 @@
-const SearchInput = () => {
+/* eslint-disable react/prop-types */
+const SearchInput = ({ setSearch }) => {
   return (
     <div className="relative  w-full">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none w-full ">
@@ -20,10 +21,11 @@ const SearchInput = () => {
         <span className="sr-only">Search icon</span>
       </div>
       <input
+        onChange={setSearch}
         type="text"
         id="search-navbar"
         className="  p-2 ps-10 text-sm text-gray-900 border w-full border-[#6148FF] rounded-lg bg-gray-50 focus:ring-[#6148FF] focus:border-[#6148FF]"
-        placeholder="Search..."
+        placeholder="Cari kelas...."
       />
     </div>
   );

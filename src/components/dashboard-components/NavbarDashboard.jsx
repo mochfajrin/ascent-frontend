@@ -19,6 +19,12 @@ const NavbarDasboard = () => {
     }
   };
 
+  const dropDownHide = () => {
+    setTimeout(() => {
+      setDropDown(false);
+    }, 0.5);
+  };
+
   return (
     <nav className="w-screen fixed z-10 bg-[#EBF3FC] shadow-md flex flex-wrap items-center justify-between mx-auto p-4 max-md:p-3 xl:p-6">
       <a
@@ -57,7 +63,7 @@ const NavbarDasboard = () => {
 
       {dropDown && (
         <div data-aos="fade-right" className=" w-full mt-6 px-3">
-          <ListBar closeDropDown={() => setDropDown(false)} />
+          <ListBar closeDropDown={dropDownHide} />
         </div>
       )}
     </nav>

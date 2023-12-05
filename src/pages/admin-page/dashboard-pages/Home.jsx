@@ -26,7 +26,7 @@ const Home = () => {
   }, []);
 
   const tableColumns = [
-    { col: "ID" },
+    { col: "Nama Pelanggan" },
     { col: "KATEGORI" },
     { col: "KELAS PREMIUM" },
     { col: "STATUS" },
@@ -48,7 +48,12 @@ const Home = () => {
               </p>
               <BiMoneyWithdraw className="text-4xl text-green-500" />
             </div>
-            <Table colom={tableColumns} dataTable={courseData} />
+            <Table
+              colom={tableColumns}
+              dataTable={courseData}
+              button={false}
+              filter={["sudah bayar", "belum bayar"]}
+            />
           </div>
         </div>
       )}

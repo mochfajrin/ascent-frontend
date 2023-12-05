@@ -16,7 +16,7 @@ const loginUser = async (email, password, user) => {
     password: password,
   });
 
-  return localStorage.setItem("accessToken", res.data.data);
+  return localStorage.setItem("...", res.data.data);
 };
 
 export { getCourseData, getMemberData, loginUser };

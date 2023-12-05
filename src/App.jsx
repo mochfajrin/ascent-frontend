@@ -12,9 +12,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/"></Route>
-        <Route path="/login">
-          <Route index={true} element={<LoginPage />}></Route>
-        </Route>
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardMainLayout />}>
           <Route index={true} element={<Home />} />
           <Route path="class-management">

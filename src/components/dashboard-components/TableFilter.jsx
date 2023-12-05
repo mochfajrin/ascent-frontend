@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-const TableFilter = ({ hideSearchInput }) => {
+const TableFilter = ({ hideSearchInput, filter, setFilter }) => {
   return (
     // <div className="flex flex-row items-center  border border-[#6148FF] text-[#6148FF] rounded-3xl p-2 space-x-1 ">
     //   <CiFilter className="text-2xl" />
@@ -8,6 +9,7 @@ const TableFilter = ({ hideSearchInput }) => {
     <>
       <select
         onClick={hideSearchInput}
+        onChange={setFilter}
         className="border border-[#6148FF] font-bold text-[#6148FF] w-44 rounded-3xl focus:ring-[#6148FF] "
         name="cars"
         id="cars"
@@ -18,9 +20,14 @@ const TableFilter = ({ hideSearchInput }) => {
           backgroundSize: "24px",
         }}
       >
-        <option className="font-bold ">Filter</option>
-        <option value="mercedes">Sudah bayar</option>
-        <option value="audi">Belum bayar</option>
+        <option value="" className="font-bold ">
+          Filter
+        </option>
+        {filter.map((item, index) => (
+          <option key={index} value={item}>
+            {item}
+          </option>
+        ))}
       </select>
     </>
   );

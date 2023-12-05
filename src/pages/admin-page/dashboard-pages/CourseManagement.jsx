@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 
 import CardStatistic from "../../../components/dashboard-components/CardStatistic";
 import Table from "../../../components/dashboard-components/Table";
+import ValidationDeleteModal from "../../../components/dashboard-components/ValidationDeleteModal";
 import { getCourseData } from "../../../api/fetching";
 
 const CourseManagement = () => {
   const [courseData, setCourseData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +25,6 @@ const CourseManagement = () => {
   if (courseData.length == 0) {
     return;
   }
-  // console.log(courseData);
 
   const tableColumns = [
     { col: "KODE KELAS" },
@@ -36,10 +37,20 @@ const CourseManagement = () => {
   ];
   return (
     <>
+      <ValidationDeleteModal
+        openModal={openModal}
+        setCloseModal={() => setOpenModal(false)}
+      />
       <CardStatistic />
       <div className="mt-16 md:mt-12 xl:mt-24 max-md:ml-8 ">
         <p className="pb-0 text-xl font-bold md:text-2xl ">Kelola Kelas</p>
-        <Table colom={tableColumns} dataTable={courseData} />
+        <Table
+          colom={tableColumns}
+          dataTable={courseData}
+          button={true}
+          setOpenModal={() => setOpenModal(true)}
+          filter={["premium", "free"]}
+        />
       </div>
     </>
   );

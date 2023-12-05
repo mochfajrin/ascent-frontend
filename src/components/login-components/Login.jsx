@@ -37,7 +37,6 @@ const Login = () => {
         return setAlertMessage("Harap masukkan email");
       } else if (!password) {
         setTimeOutMessage(2000);
-
         return setAlertMessage("Harap masukkan password");
       }
       await loginUser(email, password, "admin");
@@ -48,6 +47,16 @@ const Login = () => {
         setTimeOutMessage(2000);
         return;
       }
+    }
+  };
+
+  const handleButtonClick = () => {
+    handleLogin();
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
     }
   };
 
@@ -69,6 +78,7 @@ const Login = () => {
               Email
             </label>
             <input
+              onKeyDown={handleKeyPress}
               type="email"
               autoComplete="email"
               value={email}
@@ -92,6 +102,7 @@ const Login = () => {
             </div>
 
             <input
+              onKeyDown={handleKeyPress}
               type={showPassword ? "text" : "password"}
               id="with-indications"
               value={password}
@@ -116,7 +127,7 @@ const Login = () => {
           </div>
           <button
             type="button"
-            onClick={handleLogin}
+            onClick={handleButtonClick}
             className="text-white w-full font-montserrat mt-5 lg:bg-indigo-700 md:bg-black bg-black  font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2"
           >
             Masuk
