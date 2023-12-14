@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-import { loginUser } from "../../api/fetching";
+import { loginUser } from "../../../api/fetching";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,6 +27,11 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
+    AOS.init({
+      once: true,
+      duration: 300,
+    });
+
     try {
       if (!password && !email) {
         setTimeOutMessage(2000);
@@ -93,12 +100,12 @@ const Login = () => {
               <label className="text-sm text-white font-montserrat lg:text-black md:text-white">
                 Password
               </label>
-              <Link
+              {/* <Link
                 className="text-sm text-black font-montserrat lg:text-indigo-700 md:text-black "
                 to={"/reset-password"}
               >
                 Lupa Kata Sandi
-              </Link>
+              </Link> */}
             </div>
 
             <input
@@ -134,7 +141,10 @@ const Login = () => {
           </button>
         </div>
         {alertMessage && (
-          <div className="flex justify-center items-center w-3/4 md:w-1/2  mx-auto  mt-10 text-sm  text-white bg-[#FF0000] rounded-lg py-3  font-montserrat">
+          <div
+            data-aos="fade-up"
+            className="flex justify-center items-center w-3/4 md:w-1/2  mx-auto  mt-10 text-sm  text-white bg-[#FF0000] rounded-lg py-3  font-montserrat"
+          >
             <span className="inline-block">{alertMessage}</span>
           </div>
         )}

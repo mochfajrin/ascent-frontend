@@ -1,32 +1,28 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { FaHome } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
-import { FaUserGroup } from "react-icons/fa6";
+// import { FaUserGroup } from "react-icons/fa6";
 
 const ListBar = ({ closeDropDown }) => {
-  const [isActive, setIsActive] = useState(() => {
-    return localStorage.getItem("activeButton") || "beranda";
-  });
+  const location = useLocation();
 
-  const toggleActive = (buttonName) => {
-    setIsActive(buttonName);
-    closeDropDown();
-  };
+  const toggleActive = (buttonName) => {};
 
-  useEffect(() => {
-    localStorage.setItem("activeButton", isActive);
-  }, [isActive]);
+  // useEffect(() => {
+
+  // }, [isActive]);
 
   const logOut = () => {
-    const itemsToRemove = ["activeButton", "..."]; // Add more items as needed
+    // const itemsToRemove = ["activeButton", "..."];
 
-    // Remove each item from localStorage
-    itemsToRemove.forEach((item) => {
-      localStorage.removeItem(item);
-    });
+    // itemsToRemove.forEach((item) => {
+    //   localStorage.removeItem(item);
+    // });
+
+    localStorage.removeItem("...");
   };
 
   return (
@@ -34,12 +30,13 @@ const ListBar = ({ closeDropDown }) => {
       <ul className="md:text-sm lg:text-md xl:text-lg  w-full">
         <li>
           <Link
-            onClick={() => toggleActive("beranda")}
+            onClick={closeDropDown}
             to={"/dashboard"}
             href="#"
-            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] ${
-              isActive === "beranda" ? "bg-[#489CFF]" : ""
-            }  w-full  `}
+            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] active: ${
+              location.pathname == "/dashboard" && "bg-[#489CFF]"
+            }
+           w-full  `}
           >
             <div className="flex items-center gap-2">
               Beranda
@@ -49,11 +46,12 @@ const ListBar = ({ closeDropDown }) => {
         </li>
         <li>
           <Link
-            onClick={() => toggleActive("kelolaKelas")}
+            onClick={closeDropDown}
             to={"/dashboard/class-management"}
             href="#"
             className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] ${
-              isActive === "kelolaKelas" ? "bg-[#489CFF]" : ""
+              location.pathname == "/dashboard/class-management" &&
+              "bg-[#489CFF]"
             }  w-full  `}
           >
             <div className="flex items-center gap-2">
@@ -62,7 +60,7 @@ const ListBar = ({ closeDropDown }) => {
             </div>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             onClick={() => toggleActive("kelolaPengguna")}
             to={"/dashboard/member-management"}
@@ -76,7 +74,7 @@ const ListBar = ({ closeDropDown }) => {
               <FaUserGroup />
             </div>
           </Link>
-        </li>
+        </li> */}
       </ul>
 
       <div className="md:flex md:flex-row md:justify-center">

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import NavbarDasboard from "./NavbarDashboard";
 import SideBar from "./SideBar";
 
-const DashboardMainLayout = () => {
+const MainLayout = () => {
   return (
     <div className="font-montserrat">
       <NavbarDasboard />
@@ -17,4 +17,4 @@ const DashboardMainLayout = () => {
   );
 };
 
-export default DashboardMainLayout;
+export default MainLayout;

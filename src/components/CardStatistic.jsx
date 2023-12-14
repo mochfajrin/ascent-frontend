@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { PiUsersLight } from "react-icons/pi";
 import { MdOutlineClass, MdClass } from "react-icons/md";
 
-import { getCourseData, getMemberData } from "../../api/fetching";
+import { getCourseData, getMemberData } from "../api/fetching";
 
 const CardStatistic = () => {
   const [courseData, setCourseData] = useState([]);
   const [memberData, setMemberData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +19,8 @@ const CardStatistic = () => {
         setMemberData(resMember);
       } catch (err) {
         throw new Error(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -60,10 +63,12 @@ const CardStatistic = () => {
 
         <div className="text-lg text-white md:text-sm lg:text-lg xl:text-xl">
           <p>
-            {courseData.filter((course) => course.courseType === "premium")
-              .length === 0
+            {loading
+              ? "Loading...."
+              : courseData.filter((course) => course.courseType === "Premium")
+                  .length === 0
               ? "Belum ada kelas"
-              : courseData.filter((course) => course.courseType === "premium")
+              : courseData.filter((course) => course.courseType === "Premium")
                   .length}
           </p>
           <p className="font-bold">Premium Class</p>

@@ -1,26 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import DashboardMainLayout from "./components/dashboard-components/DashboardMainLayout";
+import MainLayout from "./components/MainLayout";
 
-import "./App.css";
-import Home from "./pages/admin-page/dashboard-pages/Home";
-import CourseManagement from "./pages/admin-page/dashboard-pages/CourseManagement";
-import MemberManagement from "./pages/admin-page/dashboard-pages/MemberManagement";
-import LoginPage from "./pages/admin-page/login-pages/Login";
+import Home from "./pages/home-page/Home";
+import CourseManagement from "./pages/course-management-page/CourseManagement";
+import LoginPage from "./pages/login-pages/Login";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/"></Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardMainLayout />}>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<MainLayout />}>
           <Route index={true} element={<Home />} />
           <Route path="class-management">
             <Route index={true} element={<CourseManagement />} />
           </Route>
-          <Route path="member-management">
+          {/* <Route path="member-management">
             <Route index={true} element={<MemberManagement />} />
-          </Route>
+          </Route> */}
         </Route>
       </Routes>
     </Router>

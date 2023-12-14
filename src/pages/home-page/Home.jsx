@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 import { BiMoneyWithdraw } from "react-icons/bi";
 
-import CardStatistic from "../../../components/dashboard-components/CardStatistic";
-import Table from "../../../components/dashboard-components/Table";
-import { getCourseData } from "../../../api/fetching";
+import CardStatistic from "../../components/CardStatistic";
+import Table from "../../components/Table";
+import LoadingSkeleton from "../../components/LoadingSkeleton";
+import { getCourseData } from "../../api/fetching";
 
 const Home = () => {
   const [courseData, setCourseData] = useState([]);
@@ -37,7 +38,7 @@ const Home = () => {
   return (
     <>
       {loading ? (
-        <div className="mt-16">Loading.......</div>
+        <LoadingSkeleton />
       ) : (
         <div>
           <CardStatistic />
