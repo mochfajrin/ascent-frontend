@@ -38,7 +38,7 @@ const Login = () => {
         return setAlertMessage("Harap masukkan email dan password");
       } else if (!email.includes("@")) {
         setTimeOutMessage(2000);
-        return setAlertMessage("Harap sertakan @ pada email anda");
+        return setAlertMessage("Email tidak valid");
       } else if (!email) {
         setTimeOutMessage(2000);
         return setAlertMessage("Harap masukkan email");
@@ -69,14 +69,14 @@ const Login = () => {
 
   return (
     <div className="flex h-full">
-      <div className="absolute items-center hidden h-screen bg-indigo-700 lg:w-2/6 lg:py-48 lg:px-16 xl:px-28 xl:py-60 md:hidden lg:block lg:relative md:absolute -z-50">
-        <img className="" src="/logo-course.svg" alt="icon" />
+      <div className="absolute items-center hidden h-screen bg-[#DCE0E8] lg:w-2/6 lg:py-48 lg:px-16 xl:px-28 xl:py-60 md:hidden lg:block lg:relative md:absolute -z-50">
+        <img className="" src="/Logo_2.png" alt="icon" />
       </div>
       <div className="absolute px-20 -mt-5 md:-mt-20 md:px-44 lg:hidden">
         <img src="/logo-course.svg" alt="icon" className="" />
       </div>
-      <div className="w-full h-screen px-10 py-48 bg-indigo-700 lg:w-4/6 md:px-44 md:py-60 lg:py-44 lg:px-36 xl:px-64 xl:py-64 md:bg-indigo-700 lg:bg-white">
-        <h1 className="flex justify-center text-2xl font-extrabold text-white lg:text-indigo-700 lg:mb-4 md:text-white font-montserrat">
+      <div className="w-full h-screen px-10 py-48 bg-[#DCE0E8] lg:w-4/6 md:px-44 md:py-60 lg:py-44 lg:px-36 xl:px-64 xl:py-64 md:bg-indigo-700 lg:bg-white">
+        <h1 className="flex justify-center text-2xl font-extrabold text-white lg:text-[#0092A4] lg:mb-4 md:text-white font-montserrat">
           Login
         </h1>
         <div className="">
@@ -90,7 +90,7 @@ const Login = () => {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 w-full px-4 mt-1 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-700 shadow-sm appearance-none font-montserrat rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="flex-1 w-full px-4 mt-1 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-700 shadow-sm appearance-none font-montserrat rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#0092A4] focus:border-transparent"
               placeholder="Contoh:jhoneDoe@gmail.com"
               required
             />
@@ -100,12 +100,6 @@ const Login = () => {
               <label className="text-sm text-white font-montserrat lg:text-black md:text-white">
                 Password
               </label>
-              {/* <Link
-                className="text-sm text-black font-montserrat lg:text-indigo-700 md:text-black "
-                to={"/reset-password"}
-              >
-                Lupa Kata Sandi
-              </Link> */}
             </div>
 
             <input
@@ -114,7 +108,7 @@ const Login = () => {
               id="with-indications"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-700 shadow-sm appearance-none rounded-2xl focus:outline-none focus:ring-2 font-montserrat focus:ring-primary focus:border-transparent"
+              className="w-full px-4 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-700 shadow-sm appearance-none rounded-2xl focus:outline-none focus:ring-2 font-montserrat focus:ring-[#0092A4] focus:border-transparent"
               name="password"
               placeholder="Masukkan password"
             />
@@ -135,7 +129,7 @@ const Login = () => {
           <button
             type="button"
             onClick={handleButtonClick}
-            className="text-white w-full font-montserrat mt-5 lg:bg-indigo-700 md:bg-black bg-black  font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2"
+            className="text-white w-full font-montserrat mt-5 lg:bg-[#0092A4] md:bg-black bg-black  font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2"
           >
             Masuk
           </button>

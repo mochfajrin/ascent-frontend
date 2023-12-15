@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import "aos/dist/aos.css";
 
 const ValidationDeleteModal = ({ openModal, setCloseModal }) => {
   return (

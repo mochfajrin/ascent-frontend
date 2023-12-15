@@ -27,14 +27,15 @@ const CourseManagement = () => {
   }, []);
 
   const tableColumns = [
-    { col: "KODE KELAS" },
-    { col: "KATEGORI" },
-    { col: "NAMA KELAS" },
-    { col: "TIPE KELAS" },
-    { col: "LEVEL" },
-    { col: "HARGA KELAS" },
-    { col: "AKSI" },
+    { key: "courseCode", label: "KODE KELAS" },
+    { key: "category", label: "KATEGORI" },
+    { key: "courseName", label: "NAMA KELAS" },
+    { key: "courseType", label: "TIPE KELAS" },
+    { key: "courseLevel", label: "LEVEL" },
+    { key: "coursePrice", label: "HARGA KELAS" },
+    { key: "aksi", label: "Aksi" },
   ];
+
   return (
     <>
       {loading ? (

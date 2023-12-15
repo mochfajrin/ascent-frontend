@@ -1,27 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import { FaHome } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
 // import { FaUserGroup } from "react-icons/fa6";
 
 const ListBar = ({ closeDropDown }) => {
+  const { id } = useParams();
+
   const location = useLocation();
 
-  const toggleActive = (buttonName) => {};
-
-  // useEffect(() => {
-
-  // }, [isActive]);
-
   const logOut = () => {
-    // const itemsToRemove = ["activeButton", "..."];
-
-    // itemsToRemove.forEach((item) => {
-    //   localStorage.removeItem(item);
-    // });
-
     localStorage.removeItem("...");
   };
 
@@ -33,8 +22,8 @@ const ListBar = ({ closeDropDown }) => {
             onClick={closeDropDown}
             to={"/dashboard"}
             href="#"
-            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] active: ${
-              location.pathname == "/dashboard" && "bg-[#489CFF]"
+            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#0092A4] active: ${
+              location.pathname == "/dashboard" && "bg-[#0092A4]"
             }
            w-full  `}
           >
@@ -47,11 +36,12 @@ const ListBar = ({ closeDropDown }) => {
         <li>
           <Link
             onClick={closeDropDown}
-            to={"/dashboard/class-management"}
+            to={"/dashboard/course-management"}
             href="#"
-            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] ${
-              location.pathname == "/dashboard/class-management" &&
-              "bg-[#489CFF]"
+            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#0092A4] ${
+              (location.pathname == "/dashboard/course-management" ||
+                location.pathname == `/dashboard/course-management/${id}`) &&
+              "bg-[#0092A4]"
             }  w-full  `}
           >
             <div className="flex items-center gap-2">
@@ -60,25 +50,10 @@ const ListBar = ({ closeDropDown }) => {
             </div>
           </Link>
         </li>
-        {/* <li>
-          <Link
-            onClick={() => toggleActive("kelolaPengguna")}
-            to={"/dashboard/member-management"}
-            href="#"
-            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#489CFF] ${
-              isActive === "kelolaPengguna" ? "bg-[#489CFF]" : ""
-            }  w-full  `}
-          >
-            <div className="flex items-center gap-2">
-              Kelola pengguna
-              <FaUserGroup />
-            </div>
-          </Link>
-        </li> */}
       </ul>
 
       <div className="md:flex md:flex-row md:justify-center">
-        <Link to={"/login"}>
+        <Link to={"/"}>
           <button
             onClick={logOut}
             type="button"

@@ -5,17 +5,18 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 import CardStatistic from "../../components/CardStatistic";
 import Table from "../../components/Table";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
-import { getCourseData } from "../../api/fetching";
+import { getTrasactionData } from "../../api/fetching";
 
 const Home = () => {
-  const [courseData, setCourseData] = useState([]);
+  const [transaction, setTransactionData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await getCourseData();
-        setCourseData(res);
+        const getToken = localStorage.getItem("...");
+        const res = await getTrasactionData(getToken);
+        setTransactionData(res);
       } catch (err) {
         throw new Error(err.message);
       } finally {
@@ -27,13 +28,15 @@ const Home = () => {
   }, []);
 
   const tableColumns = [
-    { col: "Nama Pelanggan" },
-    { col: "KATEGORI" },
-    { col: "KELAS PREMIUM" },
-    { col: "STATUS" },
-    { col: "METODE PEMBAYARAN" },
-    { col: "TANGGAL BAYAR" },
+    { key: "userId", label: "Id Pelanggan" },
+    { key: "User.name", label: "Nama PELANGGAN" },
+    { key: "courseName", label: "NAMA KELAS" },
+    { key: "paymentStatus", label: "STATUS" },
+    { key: "paymentMethod", label: "METODE PEMBAYARAN" },
+    { key: "totalPrice", label: "Total BAYAR" },
   ];
+
+  console.log(transaction);
 
   return (
     <>
@@ -51,9 +54,9 @@ const Home = () => {
             </div>
             <Table
               colom={tableColumns}
-              dataTable={courseData}
+              dataTable={transaction}
               button={false}
-              filter={["sudah bayar", "belum bayar"]}
+              filter={["paid", "unpaid"]}
             />
           </div>
         </div>

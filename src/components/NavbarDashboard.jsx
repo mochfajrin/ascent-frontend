@@ -31,8 +31,8 @@ const NavbarDasboard = () => {
         href="#"
         className="md:ml-40 lg:ml-48 xl:ml-60 flex items-center space-x-3 rtl:space-x-reverse text-[#6148FF]"
       >
-        <span className="self-center text-2xl max-md:text-xl whitespace-nowrap font-semibold ">
-          Hi, Admin
+        <span className="self-center text-3xl max-md:text-xl whitespace-nowrap font-semibold ">
+          Hi, Admin.....
         </span>
         <MdWavingHand className="text-3xl text-[#CC9667]" />
       </a>
