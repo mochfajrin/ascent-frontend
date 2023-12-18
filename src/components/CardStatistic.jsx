@@ -1,21 +1,28 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { PiUsersLight } from "react-icons/pi";
 import { MdOutlineClass, MdClass } from "react-icons/md";
 
 import { getCourseData, getMemberData } from "../api/fetching";
+import getCoursesData from "../redux/actions/courseAction";
 
 const CardStatistic = () => {
-  const [courseData, setCourseData] = useState([]);
+  const dispatch = useDispatch();
+
+  // const [courseData, setCourseData] = useState([]);
   const [memberData, setMemberData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { courseData } = useSelector((state) => state.course);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resCourse = await getCourseData();
+        // const resCourse = await getCourseData();
         const resMember = await getMemberData();
-        setCourseData(resCourse);
+        dispatch(getCoursesData());
+        // setCourseData(resCourse);
         setMemberData(resMember);
       } catch (err) {
         throw new Error(err.message);
