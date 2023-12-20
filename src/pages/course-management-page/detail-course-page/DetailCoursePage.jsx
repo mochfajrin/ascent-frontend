@@ -1,30 +1,22 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { getCourseDataById } from "../../../api/fetching";
+import { getCourseDataById } from "../../../redux/actions/courseAction";
 import CourseDetailSkeleton from "./components/CourseDetailSkeleton";
 import ChapterList from "./components/ChapterList";
 
 const DetailCoursePage = () => {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
-  const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const getToken = localStorage.getItem("...");
-        const res = await getCourseDataById(id, getToken);
-        setCourseData(res);
-      } catch (err) {
-        throw new Error(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const { courseData } = useSelector((state) => state.course);
 
-    fetchData();
-  }, [id]);
+  useEffect(() => {
+    dispatch(getCourseDataById(setLoading, id));
+  }, [dispatch, id]);
 
   return (
     <>
@@ -55,8 +47,8 @@ const DetailCoursePage = () => {
 
             <p className="text-lg"> Kembali</p>
           </Link>
-          <div className="flex flex-row items-center space-x-48 bg-slate-50 w-full  p-10 rounded-lg shadow-xl border">
-            <div className=" space-y-8 max-w-[700px]">
+          <div className="flex flex-row  justify-between items-center bg-slate-50 w-full p-10 px-16 rounded-lg shadow-xl border">
+            <div className=" space-y-8 max-w-[800px]">
               <div>
                 <h1 className="text-3xl font-black">{courseData.courseName}</h1>
                 <p className="mt-4">
@@ -66,16 +58,12 @@ const DetailCoursePage = () => {
                   | {courseData.courseType}
                 </p>
               </div>
-              <div className="mt-3 w-[700px]">
+              <div className="mt-3 w-[550px] h-96">
                 <img
                   src={courseData.image}
                   alt="course image"
-                  className="shadow-lg rounded-lg w-[600px] h-full"
+                  className="shadow-lg rounded-lg w-full h-full"
                 />
-              </div>
-              <div>
-                <h1 className="text-lg font-semibold">Deskripsi :</h1>
-                <p className="pt-2 text-justify">{courseData.aboutCourse}</p>
               </div>
             </div>
             <div>

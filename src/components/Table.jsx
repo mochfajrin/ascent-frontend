@@ -37,7 +37,7 @@ const Table = ({ colom, dataTable, button, setOpenModal, filter }) => {
 
   return (
     <div className="relative overflow-x-auto">
-      <div className="flex-col lg:flex-row flex justify-end">
+      {/* <div className="flex-col lg:flex-row flex justify-end">
         <div className="flex flex-row items-center space-x-3">
           <div className="pt-2">
             <TableFilter
@@ -59,7 +59,7 @@ const Table = ({ colom, dataTable, button, setOpenModal, filter }) => {
             </button>
           )}
         </div>
-      </div>
+      </div> */}
       <div className="overflow-y-auto h-96">
         <table className="w-full mt-3 text-sm text-left text-gray-500 rtl:text-right  ">
           <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">

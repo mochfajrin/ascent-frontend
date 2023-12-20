@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const SearchInput = ({ setSearch }) => {
   return (
-    <div className="relative  w-full">
+    <div className="relative  w-56">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none w-full ">
         <svg
           className="w-4 h-4 text-[#6148FF] dark:text-gray-400"

@@ -1,11 +1,11 @@
 import api from "./api.js";
 
-const getCourseData = async () => {
+const fetchingCourseData = async () => {
   const res = await api.get("/course");
   return res.data.data;
 };
 
-const getCourseDataById = async (id, token) => {
+const fetchingCourseDataById = async (id, token) => {
   const res = await api.get(`/course/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -14,12 +14,26 @@ const getCourseDataById = async (id, token) => {
   return res.data.data;
 };
 
-const getMemberData = async () => {
+const fetchingFilterCourseData = async (filter) => {
+  const res = await api.get(`/course?type=${filter}`);
+  return res.data.data;
+};
+
+const deletetingCourseData = async (id, token) => {
+  const res = await api.delete(`/course/delete/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data.message;
+};
+
+const fetchingUserData = async () => {
   const res = await api.get("/user");
   return res.data.allUser;
 };
 
-const getTrasactionData = async (token) => {
+const fetchingTrasactionData = async (token) => {
   const res = await api.get("/transaction", {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -27,6 +41,15 @@ const getTrasactionData = async (token) => {
   });
   return res.data.transactions;
 };
+
+// const fetchingSearchTrasactionData = async (token) => {
+//   const res = await api.get("/transaction", {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+//   return res.data.transactions;
+// };
 
 const loginUser = async (email, password, user) => {
   const res = await api.post(`/auth/${user}/login`, {
@@ -38,9 +61,11 @@ const loginUser = async (email, password, user) => {
 };
 
 export {
-  getCourseData,
-  getMemberData,
+  fetchingCourseData,
+  fetchingUserData,
+  fetchingFilterCourseData,
   loginUser,
-  getTrasactionData,
-  getCourseDataById,
+  fetchingTrasactionData,
+  fetchingCourseDataById,
+  deletetingCourseData,
 };

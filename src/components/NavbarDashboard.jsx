@@ -26,7 +26,7 @@ const NavbarDasboard = () => {
   };
 
   return (
-    <nav className="w-screen fixed z-10 bg-[#EBF3FC] shadow-md flex flex-wrap items-center justify-between mx-auto p-4 max-md:p-3 xl:p-6">
+    <nav className="w-screen fixed z-10 bg-[#F1F2EB] shadow-md flex flex-wrap items-center justify-between mx-auto p-4 max-md:p-3 xl:p-6">
       <a
         href="#"
         className="md:ml-40 lg:ml-48 xl:ml-60 flex items-center space-x-3 rtl:space-x-reverse text-[#6148FF]"

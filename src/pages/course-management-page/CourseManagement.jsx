@@ -1,39 +1,55 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
-import CardStatistic from "../../components/CardStatistic";
-import Table from "../../components/Table";
+import { SiGoogleclassroom } from "react-icons/si";
+
 import ValidationDeleteModal from "../../components/ValidationDeleteModal";
-import { getCourseData } from "../../api/fetching";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
+import TableCourse from "./components/TableCourse";
+import {
+  getCourseData,
+  getFilterCourseData,
+  deleteCourseData,
+} from "../../redux/actions/courseAction";
+
+import SearchInput from "../../components/SearchInput";
+import TableFilter from "../../components/TableFilter";
 
 const CourseManagement = () => {
-  const [courseData, setCourseData] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loadingTable, setLoadingTable] = useState(false);
+  const [refresh, toggleRefresh] = useState(false);
+
+  const { courseData } = useSelector((state) => state.course);
+
+  const deletingCourse = () => {
+    dispatch(
+      deleteCourseData(id, () => {
+        toggleRefresh((prev) => !prev);
+        setOpenModal(false);
+        navigate("/dashboard/course-management");
+      })
+    );
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getCourseData();
-        setCourseData(res);
-      } catch (err) {
-        throw new Error(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    dispatch(getCourseData(setLoading));
+  }, [dispatch, refresh]);
 
   const tableColumns = [
-    { key: "courseCode", label: "KODE KELAS" },
-    { key: "category", label: "KATEGORI" },
-    { key: "courseName", label: "NAMA KELAS" },
-    { key: "courseType", label: "TIPE KELAS" },
-    { key: "courseLevel", label: "LEVEL" },
-    { key: "coursePrice", label: "HARGA KELAS" },
-    { key: "aksi", label: "Aksi" },
+    { label: "KODE KELAS" },
+    { label: "KATEGORI" },
+    { label: "NAMA KELAS" },
+    { label: "TIPE KELAS" },
+    { label: "LEVEL" },
+    { label: "HARGA KELAS" },
+    { label: "AkSI" },
   ];
 
   return (
@@ -45,16 +61,30 @@ const CourseManagement = () => {
           <ValidationDeleteModal
             openModal={openModal}
             setCloseModal={() => setOpenModal(false)}
+            toggleDeleting={deletingCourse}
           />
-          <CardStatistic />
-          <div className="mt-16 md:mt-12 xl:mt-24 max-md:ml-8 ">
-            <p className="pb-0 text-xl font-bold md:text-2xl ">Kelola Kelas</p>
-            <Table
+          <div className="  max-md:ml-8 ">
+            <div className="flex dlex-row items-center space-x-3">
+              <p className="pb-0 text-xl font-bold md:text-2xl  ">
+                Kelola Kelas
+              </p>
+              <SiGoogleclassroom className="text-3xl text-lime-700" />
+            </div>
+            <div className="flex flex-row space-x-3 justify-end ">
+              <TableFilter
+                filter={["Premium", "Free"]}
+                setFilter={(e) =>
+                  dispatch(getFilterCourseData(e.target.value, setLoadingTable))
+                }
+              />
+              <SearchInput />
+            </div>
+
+            <TableCourse
               colom={tableColumns}
               dataTable={courseData}
-              button={true}
               setOpenModal={() => setOpenModal(true)}
-              filter={["Premium", "Free"]}
+              loading={loadingTable}
             />
           </div>
         </div>

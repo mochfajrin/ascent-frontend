@@ -18,7 +18,8 @@ const App = () => {
             <Route index={true} element={<Home />} />
             <Route path="course-management">
               <Route index={true} element={<CourseManagement />} />
-              <Route path={":id"} element={<DetailCoursePage />}></Route>
+              <Route path={":id"} element={<DetailCoursePage />} />
+              <Route path={"delete/:id"} element={<CourseManagement />} />
             </Route>
           </Route>
         </Routes>

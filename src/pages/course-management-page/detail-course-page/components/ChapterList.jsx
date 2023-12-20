@@ -16,7 +16,7 @@ const ChapterList = ({ dataChapter }) => {
   return (
     <>
       <h1 className="text-3xl">Bab kelas</h1>
-      <div className="overflow-y-auto h-[600px] text-xl mt-3">
+      <div className="overflow-y-auto h-[500px] w-full text-xl mt-3">
         {dataChapter.map((data, i) => (
           <div key={i}>
             <div>
@@ -32,20 +32,20 @@ const ChapterList = ({ dataChapter }) => {
                 >
                   <span>{i + 1}</span>
                   <h1>{data.contentTitle}</h1>
-                  <div className="">
+                  <div>
                     <svg
-                      className="w-6 h-6   "
+                      className="w-6 h-6 "
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
-                      viewBox="0 0 20 20"
+                      viewBox="0 0 16 18"
                     >
                       <path
                         stroke="currentColor"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d="M1 5h18M1 5v14h18V5M1 5V1h18v4M5 5l3-4m1.215 4 3-4m1.215 4 3-4M8.007 8v8l5.416-4-5.416-4Z"
+                        d="M1 1.984v14.032a1 1 0 0 0 1.506.845l12.006-7.016a.974.974 0 0 0 0-1.69L2.506 1.139A1 1 0 0 0 1 1.984Z"
                       />
                     </svg>
                   </div>

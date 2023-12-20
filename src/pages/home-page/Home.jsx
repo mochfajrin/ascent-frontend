@@ -1,31 +1,22 @@
 import { useEffect, useState } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
 import { BiMoneyWithdraw } from "react-icons/bi";
 
 import CardStatistic from "../../components/CardStatistic";
 import Table from "../../components/Table";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
-import { getTrasactionData } from "../../api/fetching";
+import { getTransactionData } from "../../redux/actions/transactionAction";
 
 const Home = () => {
-  const [transaction, setTransactionData] = useState([]);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const getToken = localStorage.getItem("...");
-        const res = await getTrasactionData(getToken);
-        setTransactionData(res);
-      } catch (err) {
-        throw new Error(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const { transactionData } = useSelector((state) => state.transaction);
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    dispatch(getTransactionData(setLoading));
+  }, [dispatch]);
 
   const tableColumns = [
     { key: "userId", label: "Id Pelanggan" },
@@ -35,8 +26,9 @@ const Home = () => {
     { key: "paymentMethod", label: "METODE PEMBAYARAN" },
     { key: "totalPrice", label: "Total BAYAR" },
   ];
-
-  console.log(transaction);
+  // if (transactionData.length === 0) {
+  //   return;
+  // }
 
   return (
     <>
@@ -54,7 +46,7 @@ const Home = () => {
             </div>
             <Table
               colom={tableColumns}
-              dataTable={transaction}
+              dataTable={transactionData}
               button={false}
               filter={["paid", "unpaid"]}
             />

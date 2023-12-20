@@ -4,35 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { PiUsersLight } from "react-icons/pi";
 import { MdOutlineClass, MdClass } from "react-icons/md";
 
-import { getCourseData, getMemberData } from "../api/fetching";
-import getCoursesData from "../redux/actions/courseAction";
+import { getCourseData } from "../redux/actions/courseAction";
+import getUserData from "../redux/actions/userAction";
 
 const CardStatistic = () => {
   const dispatch = useDispatch();
 
-  // const [courseData, setCourseData] = useState([]);
-  const [memberData, setMemberData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { courseData } = useSelector((state) => state.course);
+  const { userData } = useSelector((state) => state.user);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // const resCourse = await getCourseData();
-        const resMember = await getMemberData();
-        dispatch(getCoursesData());
-        // setCourseData(resCourse);
-        setMemberData(resMember);
-      } catch (err) {
-        throw new Error(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    dispatch(getCourseData(setLoading));
+    dispatch(getUserData(setLoading));
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col place-items-center max-md:space-y-7 md:flex-row md:space-x-2 lg:space-x-6 xl:space-x-10 ">
@@ -43,10 +29,9 @@ const CardStatistic = () => {
 
         <div className="text-lg text-white md:text-sm lg:text-lg xl:text-xl">
           <p>
-            {memberData.filter((member) => member.role === "member").length ===
-            0
+            {userData.filter((member) => member.role === "member").length === 0
               ? "Belum ada user"
-              : memberData.filter((member) => member.role === "member").length}
+              : userData.filter((member) => member.role === "member").length}
           </p>
           <p className="font-bold md:font-semibold">Active Users</p>
         </div>
@@ -70,11 +55,10 @@ const CardStatistic = () => {
 
         <div className="text-lg text-white md:text-sm lg:text-lg xl:text-xl">
           <p>
+            {!courseData.filter((course) => course.courseType === "Premium") &&
+              "Belum ada kelas"}
             {loading
               ? "Loading...."
-              : courseData.filter((course) => course.courseType === "Premium")
-                  .length === 0
-              ? "Belum ada kelas"
               : courseData.filter((course) => course.courseType === "Premium")
                   .length}
           </p>
