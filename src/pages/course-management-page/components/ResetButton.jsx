@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 
-const ResetButton = ({ setDefaultValue }) => {
+const ResetButton = ({ setDefaultValue, routePath }) => {
   const navigate = useNavigate();
 
   const resetHabdle = () => {
     setDefaultValue();
-    navigate(`/dashboard/course-management`);
+    navigate(routePath);
   };
   return (
     <button

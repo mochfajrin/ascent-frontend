@@ -121,8 +121,12 @@ const CourseManagement = () => {
               <SearchInput
                 defaultValue={defaultValue}
                 setDefaultValue={() => setDefaultValue(false)}
+                placeholder={"Cari kelas..."}
               />
-              <ResetButton setDefaultValue={() => setDefaultValue(true)} />
+              <ResetButton
+                routePath={"/dashboard/course-management"}
+                setDefaultValue={() => setDefaultValue(true)}
+              />
             </div>
 
             <TableCourse

@@ -12,12 +12,14 @@ import {
 } from "../../redux/actions/transactionAction";
 import TableTransaction from "./components/TableTransaction";
 import TableFilter from "../../components/TableFilter";
+import SearchInput from "../../components/SearchInput";
+import ResetButton from "../course-management-page/components/ResetButton";
 
 const Home = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const queryStatus = searchParams.get("paymentStatus");
-  // const querySearch = searchParams.get("search");
+  const querySearch = searchParams.get("search");
 
   const [loading, setLoading] = useState(true);
   const [loadingTable, setLoadingTable] = useState(false);
@@ -38,10 +40,18 @@ const Home = () => {
           setLoadingTable: setLoadingTable,
         })
       );
+    } else if (querySearch) {
+      setLoading(false);
+      dispatch(
+        getFilterTransactionData({
+          queryData: querySearch,
+          setLoadingTable: setLoadingTable,
+        })
+      );
     } else {
       dispatch(getTransactionData(setLoading));
     }
-  }, [dispatch, queryStatus]);
+  }, [dispatch, queryStatus, querySearch]);
 
   const tableColumns = [
     { label: "Id Pelanggan" },
@@ -71,6 +81,15 @@ const Home = () => {
                 setDefaultValue={() => setDefaultValue(false)}
                 defaultValue={defaultValue}
                 filter={["Sudah bayar", "Belum bayar"]}
+              />
+              <SearchInput
+                defaultValue={defaultValue}
+                setDefaultValue={() => setDefaultValue(false)}
+                placeholder={"Cari pelanggan..."}
+              />
+              <ResetButton
+                routePath={"/dashboard"}
+                setDefaultValue={() => setDefaultValue(true)}
               />
             </div>
             <TableTransaction
