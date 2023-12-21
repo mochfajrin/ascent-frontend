@@ -3,7 +3,7 @@ import {
   fetchingFilterCourseData,
   fetchingCourseDataById,
   deletetingCourseData,
-} from "../../api/fetching";
+} from "../../api/fetching/fetchingCourseData";
 
 import { setCourseData } from "../reducers/courseReducer";
 

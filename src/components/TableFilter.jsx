@@ -1,18 +1,32 @@
 import PropTypes from "prop-types";
 
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 
 const TableFilter = ({ filter, defaultValue, setDefaultValue }) => {
   const [searchParams] = useSearchParams();
+  const querySearch = searchParams.get("search");
+  const location = useLocation();
 
   const navigate = useNavigate();
-  let queryType = searchParams.get("type");
+  let queryFilter;
   if (defaultValue === true) {
-    queryType = "";
+    queryFilter = "";
   }
 
   const handleFilter = (e) => {
-    navigate(`/dashboard/course-management?type=${e.target.value}`);
+    if (location.pathname == "/dashboard/course-management") {
+      if (querySearch) {
+        navigate(
+          `/dashboard/course-management?type=${e.target.value}&search=${querySearch}`
+        );
+      } else {
+        navigate(`/dashboard/course-management?type=${e.target.value}`);
+      }
+    }
+
+    if (location.pathname == "/dashboard") {
+      navigate(`/dashboard?paymentStatus=${e.target.value}`);
+    }
     // hideSearchInput();
   };
 
@@ -20,7 +34,7 @@ const TableFilter = ({ filter, defaultValue, setDefaultValue }) => {
     <select
       // onSubmit={handleFilter}
       onClick={setDefaultValue}
-      value={queryType}
+      value={queryFilter}
       onChange={handleFilter}
       className="border border-[#6148FF] font-bold text-[#6148FF] w-44 rounded-3xl focus:ring-[#6148FF] "
       name="cars"
@@ -36,8 +50,21 @@ const TableFilter = ({ filter, defaultValue, setDefaultValue }) => {
         Filter
       </option>
       {filter.map((item, index) => (
-        <option key={index} value={item}>
-          {item}
+        <option
+          key={index}
+          value={
+            item === "Sudah bayar"
+              ? (item = "paid")
+              : item === "Belum bayar"
+              ? (item = "unpaid")
+              : item
+          }
+        >
+          {item === "paid"
+            ? (item = "Sudah bayar")
+            : item === "unpaid"
+            ? (item = "Belum bayar")
+            : item}
         </option>
       ))}
     </select>

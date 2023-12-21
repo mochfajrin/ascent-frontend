@@ -50,7 +50,18 @@ const CourseManagement = () => {
     AOS.init({
       duration: 300,
     });
-    if (queryType) {
+
+    if (queryType && querySearch) {
+      setLoading(false);
+
+      dispatch(
+        getFilterCourseData({
+          filterData: queryType,
+          queryData: querySearch,
+          setLoadingTable: setLoadingTable,
+        })
+      );
+    } else if (queryType) {
       setLoading(false);
 
       dispatch(

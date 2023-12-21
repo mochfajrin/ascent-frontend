@@ -2,10 +2,12 @@ import PropTypes from "prop-types";
 
 import { BsSearch } from "react-icons/bs";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SearchInput = ({ defaultValue, setDefaultValue }) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const queryType = searchParams.get("type");
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -16,7 +18,13 @@ const SearchInput = ({ defaultValue, setDefaultValue }) => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    navigate(`/dashboard/course-management?search=${searchQuery}`);
+    if (queryType) {
+      navigate(
+        `/dashboard/course-management?search=${searchQuery}&type=${queryType}`
+      );
+    } else {
+      navigate(`/dashboard/course-management?search=${searchQuery}`);
+    }
   };
 
   return (

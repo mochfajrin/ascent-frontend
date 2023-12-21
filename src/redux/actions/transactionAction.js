@@ -1,4 +1,7 @@
-import { fetchingTrasactionData } from "../../api/fetching";
+import {
+  fetchingTrasactionData,
+  fetchingFilterTransactionData,
+} from "../../api/fetching/fetchingTransactionData";
 import { setTransactionData } from "../reducers/transactionReducer";
 
 const getTransactionData = (setLoading) => async (dispatch) => {
@@ -12,14 +15,25 @@ const getTransactionData = (setLoading) => async (dispatch) => {
     setLoading(false);
   }
 };
+const getFilterTransactionData =
+  ({ queryData, filterData, setLoadingTable }) =>
+  async (dispatch) => {
+    console.log(filterData);
+    setLoadingTable(true);
+    try {
+      const getToken = localStorage.getItem("...");
 
-// const getSearchCourseData = () => async (dispatch) => {
-//   try {
-//     const res = await fetchingSearchCourseData();
-//     dispatch(setCourseData(res));
-//   } catch (err) {
-//     throw new Error(err.message);
-//   }
-// };
+      const res = await fetchingFilterTransactionData({
+        filter: filterData,
+        query: queryData,
+        token: getToken,
+      });
+      dispatch(setTransactionData(res));
+    } catch (err) {
+      throw new Error(err.message);
+    } finally {
+      setLoadingTable(false);
+    }
+  };
 
-export { getTransactionData };
+export { getTransactionData, getFilterTransactionData };

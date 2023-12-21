@@ -1,30 +1,55 @@
 import { useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { BiMoneyWithdraw } from "react-icons/bi";
+import { useSearchParams } from "react-router-dom";
+import AOS from "aos";
 
 import CardStatistic from "../../components/CardStatistic";
-import Table from "../../components/Table";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
-import { getTransactionData } from "../../redux/actions/transactionAction";
+import {
+  getFilterTransactionData,
+  getTransactionData,
+} from "../../redux/actions/transactionAction";
+import TableTransaction from "./components/TableTransaction";
+import TableFilter from "../../components/TableFilter";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const queryStatus = searchParams.get("paymentStatus");
+  // const querySearch = searchParams.get("search");
+
   const [loading, setLoading] = useState(true);
+  const [loadingTable, setLoadingTable] = useState(false);
+  const [defaultValue, setDefaultValue] = useState(false);
 
   const { transactionData } = useSelector((state) => state.transaction);
 
   useEffect(() => {
-    dispatch(getTransactionData(setLoading));
-  }, [dispatch]);
+    AOS.init({
+      duration: 300,
+    });
+
+    if (queryStatus) {
+      setLoading(false);
+      dispatch(
+        getFilterTransactionData({
+          filterData: queryStatus,
+          setLoadingTable: setLoadingTable,
+        })
+      );
+    } else {
+      dispatch(getTransactionData(setLoading));
+    }
+  }, [dispatch, queryStatus]);
 
   const tableColumns = [
-    { key: "userId", label: "Id Pelanggan" },
-    { key: "User.name", label: "Nama PELANGGAN" },
-    { key: "courseName", label: "NAMA KELAS" },
-    { key: "paymentStatus", label: "STATUS" },
-    { key: "paymentMethod", label: "METODE PEMBAYARAN" },
-    { key: "totalPrice", label: "Total BAYAR" },
+    { label: "Id Pelanggan" },
+    { label: "Nama PELANGGAN" },
+    { label: "NAMA KELAS" },
+    { label: "STATUS" },
+    { label: "METODE PEMBAYARAN" },
+    { label: "Total BAYAR" },
   ];
 
   return (
@@ -41,11 +66,18 @@ const Home = () => {
               </p>
               <BiMoneyWithdraw className="text-4xl text-green-500" />
             </div>
-            <Table
+            <div className="flex flex-row space-x-3 justify-end ">
+              <TableFilter
+                setDefaultValue={() => setDefaultValue(false)}
+                defaultValue={defaultValue}
+                filter={["Sudah bayar", "Belum bayar"]}
+              />
+            </div>
+            <TableTransaction
               colom={tableColumns}
               dataTable={transactionData}
-              button={false}
-              filter={["paid", "unpaid"]}
+              showButtonAction={false}
+              loading={loadingTable}
             />
           </div>
         </div>

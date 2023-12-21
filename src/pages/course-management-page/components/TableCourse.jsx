@@ -72,7 +72,10 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                     {data.courseLevel ?? "-"}
                   </td>
                   <td className="px-6 py-4 space-x-3">
-                    Rp.{data.coursePrice ?? "-"}
+                    Rp.
+                    {data.coursePrice
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".") ?? "-"}
                   </td>
                   <td className="flex flex-row items-center px-6 py-2 space-x-3">
                     <Link to={`/dashboard/course-management/${data.id}`}>
