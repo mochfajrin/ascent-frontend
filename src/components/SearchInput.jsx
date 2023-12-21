@@ -10,6 +10,7 @@ const SearchInput = ({ defaultValue, setDefaultValue, placeholder }) => {
 
   const [searchParams] = useSearchParams();
   const queryType = searchParams.get("type");
+  const queryStatus = searchParams.get("paymentStatus");
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -31,7 +32,13 @@ const SearchInput = ({ defaultValue, setDefaultValue, placeholder }) => {
     }
 
     if (location.pathname == "/dashboard") {
-      navigate(`/dashboard?search=${searchQuery}`);
+      if (queryStatus) {
+        navigate(
+          `/dashboard?search=${searchQuery}&paymentStatus=${queryStatus}`
+        );
+      } else {
+        navigate(`/dashboard?search=${searchQuery}`);
+      }
     }
   };
 
@@ -46,13 +53,13 @@ const SearchInput = ({ defaultValue, setDefaultValue, placeholder }) => {
         placeholder={placeholder}
         id="search_movie"
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-full text-black rounded-lg border-2 border-[#6148FF] bg-transparent px-5 py-2  outline-none backdrop-blur-md focus:ring-[#6148FF]"
+        className="w-full text-black rounded-lg border-2 border-[#6148FF] bg-transparent px-4 py-2  outline-none  focus:ring-[#6148FF]"
       />
       <button
         type="submit"
-        className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-full bg-slate-300 p-2 transition-colors"
+        className="absolute bottom-1/2 h-11 w-10 right-[0.5px] rounded-r-lg translate-y-1/2  bg-[#6148FF] p-2.5"
       >
-        <BsSearch className="h-5 w-5" />
+        <BsSearch className="h-5 w-5 text-white" />
       </button>
     </form>
   );

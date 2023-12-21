@@ -25,7 +25,13 @@ const TableFilter = ({ filter, defaultValue, setDefaultValue }) => {
     }
 
     if (location.pathname == "/dashboard") {
-      navigate(`/dashboard?paymentStatus=${e.target.value}`);
+      if (querySearch) {
+        navigate(
+          `/dashboard?paymentStatus=${e.target.value}&search=${querySearch}`
+        );
+      } else {
+        navigate(`/dashboard?paymentStatus=${e.target.value}`);
+      }
     }
     // hideSearchInput();
   };

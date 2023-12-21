@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {
   fetchingTrasactionData,
   fetchingFilterTransactionData,
@@ -18,7 +20,7 @@ const getTransactionData = (setLoading) => async (dispatch) => {
 const getFilterTransactionData =
   ({ queryData, filterData, setLoadingTable }) =>
   async (dispatch) => {
-    console.log(filterData);
+    console.log(queryData);
     setLoadingTable(true);
     try {
       const getToken = localStorage.getItem("...");
@@ -30,7 +32,9 @@ const getFilterTransactionData =
       });
       dispatch(setTransactionData(res));
     } catch (err) {
-      throw new Error(err.message);
+      if (axios.isAxiosError(err)) {
+        dispatch(setTransactionData([]));
+      }
     } finally {
       setLoadingTable(false);
     }

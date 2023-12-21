@@ -10,8 +10,9 @@ const fetchingTrasactionData = async (token) => {
 };
 
 const fetchingFilterTransactionData = async ({ filter, query, token }) => {
-  console.log(filter);
+  console.log();
   let res;
+
   if (filter && query) {
     res = await api.get(
       `/transaction?search=${query}&paymentStatus=${filter}`,

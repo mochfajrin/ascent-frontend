@@ -32,7 +32,16 @@ const Home = () => {
       duration: 300,
     });
 
-    if (queryStatus) {
+    if (queryStatus && querySearch) {
+      setLoading(false);
+      dispatch(
+        getFilterTransactionData({
+          filterData: queryStatus,
+          queryData: querySearch,
+          setLoadingTable: setLoadingTable,
+        })
+      );
+    } else if (queryStatus) {
       setLoading(false);
       dispatch(
         getFilterTransactionData({
