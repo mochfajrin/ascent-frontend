@@ -7,6 +7,7 @@ import CourseManagement from "./pages/course-management-page/CourseManagement";
 import LoginPage from "./pages/login-pages/Login";
 import DetailCoursePage from "./pages/course-management-page/detail-course-page/DetailCoursePage";
 import store from "./redux/store";
+import AddCoursePage from "./pages/course-management-page/add-course-page/AddCoursePage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
               <Route index={true} element={<CourseManagement />} />
               <Route path={":id"} element={<DetailCoursePage />} />
               <Route path={"delete/:id"} element={<CourseManagement />} />
+              <Route path={"add-course"} element={<AddCoursePage />} />
             </Route>
           </Route>
         </Routes>

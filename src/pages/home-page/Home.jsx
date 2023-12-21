@@ -26,9 +26,6 @@ const Home = () => {
     { key: "paymentMethod", label: "METODE PEMBAYARAN" },
     { key: "totalPrice", label: "Total BAYAR" },
   ];
-  // if (transactionData.length === 0) {
-  //   return;
-  // }
 
   return (
     <>

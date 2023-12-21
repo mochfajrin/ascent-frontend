@@ -47,7 +47,7 @@ const DetailCoursePage = () => {
 
             <p className="text-lg"> Kembali</p>
           </Link>
-          <div className="flex flex-row  justify-between items-center bg-slate-50 w-full p-10 px-16 rounded-lg shadow-xl border">
+          <div className="flex flex-row  justify-between items-center bg-slate-50 w-full p-10 px-16 rounded-lg shadow-xl">
             <div className=" space-y-8 max-w-[800px]">
               <div>
                 <h1 className="text-3xl font-black">{courseData.courseName}</h1>

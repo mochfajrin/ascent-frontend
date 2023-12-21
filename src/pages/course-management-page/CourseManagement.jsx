@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import AOS from "aos";
 
 import { SiGoogleclassroom } from "react-icons/si";
 
@@ -15,8 +16,14 @@ import {
 
 import SearchInput from "../../components/SearchInput";
 import TableFilter from "../../components/TableFilter";
+import AddCourseButton from "./components/AddCourseButtton";
+import ResetButton from "./components/ResetButton";
 
 const CourseManagement = () => {
+  const [searchParams] = useSearchParams();
+  const queryType = searchParams.get("type");
+  const querySearch = searchParams.get("search");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -25,6 +32,7 @@ const CourseManagement = () => {
   const [loading, setLoading] = useState(true);
   const [loadingTable, setLoadingTable] = useState(false);
   const [refresh, toggleRefresh] = useState(false);
+  const [defaultValue, setDefaultValue] = useState(false);
 
   const { courseData } = useSelector((state) => state.course);
 
@@ -39,8 +47,31 @@ const CourseManagement = () => {
   };
 
   useEffect(() => {
-    dispatch(getCourseData(setLoading));
-  }, [dispatch, refresh]);
+    AOS.init({
+      duration: 300,
+    });
+    if (queryType) {
+      setLoading(false);
+
+      dispatch(
+        getFilterCourseData({
+          filterData: queryType,
+          setLoadingTable: setLoadingTable,
+        })
+      );
+    } else if (querySearch) {
+      setLoading(false);
+
+      dispatch(
+        getFilterCourseData({
+          queryData: querySearch,
+          setLoadingTable: setLoadingTable,
+        })
+      );
+    } else {
+      dispatch(getCourseData(setLoading));
+    }
+  }, [dispatch, refresh, queryType, querySearch]);
 
   const tableColumns = [
     { label: "KODE KELAS" },
@@ -51,7 +82,6 @@ const CourseManagement = () => {
     { label: "HARGA KELAS" },
     { label: "AkSI" },
   ];
-
   return (
     <>
       {loading ? (
@@ -71,13 +101,17 @@ const CourseManagement = () => {
               <SiGoogleclassroom className="text-3xl text-lime-700" />
             </div>
             <div className="flex flex-row space-x-3 justify-end ">
+              <AddCourseButton />
               <TableFilter
+                setDefaultValue={() => setDefaultValue(false)}
+                defaultValue={defaultValue}
                 filter={["Premium", "Free"]}
-                setFilter={(e) =>
-                  dispatch(getFilterCourseData(e.target.value, setLoadingTable))
-                }
               />
-              <SearchInput />
+              <SearchInput
+                defaultValue={defaultValue}
+                setDefaultValue={() => setDefaultValue(false)}
+              />
+              <ResetButton setDefaultValue={() => setDefaultValue(true)} />
             </div>
 
             <TableCourse

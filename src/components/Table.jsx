@@ -34,32 +34,12 @@ const Table = ({ colom, dataTable, button, setOpenModal, filter }) => {
       });
     }
   };
+  // if (dataTable.length === 0) {
+  //   return;
+  // }
 
   return (
     <div className="relative overflow-x-auto">
-      {/* <div className="flex-col lg:flex-row flex justify-end">
-        <div className="flex flex-row items-center space-x-3">
-          <div className="pt-2">
-            <TableFilter
-              hideSearchInput={searchInputHide}
-              filter={filter}
-              setFilter={(e) => setSelectedFilter(e.target.value)}
-            />
-          </div>
-          {searchInput ? (
-            <div data-aos="fade-right">
-              <SearchInput setSearch={(e) => setSearch(e.target.value)} />
-            </div>
-          ) : (
-            <button
-              className="text-[#6148FF] text-2xl"
-              onClick={searchInputShow}
-            >
-              <IoSearchSharp />
-            </button>
-          )}
-        </div>
-      </div> */}
       <div className="overflow-y-auto h-96">
         <table className="w-full mt-3 text-sm text-left text-gray-500 rtl:text-right  ">
           <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">

@@ -42,6 +42,8 @@ const ListBar = ({ closeDropDown }) => {
               (location.pathname == "/dashboard/course-management" ||
                 location.pathname ==
                   `/dashboard/course-management/delete/${id}` ||
+                location.pathname ==
+                  `/dashboard/course-management/add-course` ||
                 location.pathname == `/dashboard/course-management/${id}`) &&
               "bg-[#0092A4]"
             }  w-full  `}

@@ -1,34 +1,49 @@
-/* eslint-disable react/prop-types */
-const SearchInput = ({ setSearch }) => {
+import PropTypes from "prop-types";
+
+import { BsSearch } from "react-icons/bs";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const SearchInput = ({ defaultValue, setDefaultValue }) => {
+  const navigate = useNavigate();
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  let querySearch;
+  if (defaultValue === true) {
+    querySearch = "";
+  }
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    navigate(`/dashboard/course-management?search=${searchQuery}`);
+  };
+
   return (
-    <div className="relative  w-56">
-      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none w-full ">
-        <svg
-          className="w-4 h-4 text-[#6148FF] dark:text-gray-400"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 20 20"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-          />
-        </svg>
-        <span className="sr-only">Search icon</span>
-      </div>
+    <form
+      onSubmit={handleSearch}
+      className="relative flex w-52 items-center justify-center"
+    >
       <input
-        onChange={setSearch}
-        type="text"
-        id="search-navbar"
-        className="  p-2 ps-10 text-sm text-gray-900 border w-full border-[#6148FF] rounded-lg bg-gray-50 focus:ring-[#6148FF] focus:border-[#6148FF]"
-        placeholder="Cari kelas...."
+        onClick={setDefaultValue}
+        value={querySearch}
+        placeholder="cari kelas.."
+        id="search_movie"
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="w-full text-black rounded-lg border-2 border-[#6148FF] bg-transparent px-5 py-2  outline-none backdrop-blur-md focus:ring-[#6148FF]"
       />
-    </div>
+      <button
+        type="submit"
+        className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-full bg-slate-300 p-2 transition-colors"
+      >
+        <BsSearch className="h-5 w-5" />
+      </button>
+    </form>
   );
+};
+SearchInput.propTypes = {
+  defaultValue: PropTypes.bool.isRequired,
+  setDefaultValue: PropTypes.func.isRequired,
 };
 
 export default SearchInput;

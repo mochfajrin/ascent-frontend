@@ -33,10 +33,14 @@ const getCourseDataById = (setLoading, id) => async (dispatch) => {
 };
 
 const getFilterCourseData =
-  (filterData, setLoadingTable) => async (dispatch) => {
+  ({ queryData, filterData, setLoadingTable }) =>
+  async (dispatch) => {
     setLoadingTable(true);
     try {
-      const res = await fetchingFilterCourseData(filterData);
+      const res = await fetchingFilterCourseData({
+        filter: filterData,
+        query: queryData,
+      });
       dispatch(setCourseData(res));
     } catch (err) {
       throw new Error(err.message);

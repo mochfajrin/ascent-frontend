@@ -14,8 +14,11 @@ const fetchingCourseDataById = async (id, token) => {
   return res.data.data;
 };
 
-const fetchingFilterCourseData = async (filter) => {
-  const res = await api.get(`/course?type=${filter}`);
+const fetchingFilterCourseData = async ({ filter, query }) => {
+  const res = await api.get(
+    `/course?${filter ? `type=${filter}` : `search=${query}`}`
+  );
+
   return res.data.data;
 };
 
