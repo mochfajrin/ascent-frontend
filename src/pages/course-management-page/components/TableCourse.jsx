@@ -1,13 +1,34 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import noResultPng from "../../../assets/icons/no-results.png";
 import "aos/dist/aos.css";
 
 const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
+  const { labelNewData } = useSelector((state) => state.course);
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+
+  const queryType = searchParams.get("type");
+  const querySearch = searchParams.get("search");
+  const getUrl = (id) => {
+    if (queryType && querySearch) {
+      return `${location.pathname}/delete/${id}?type=${queryType}&search=${querySearch}`;
+    }
+    if (queryType) {
+      return `${location.pathname}/delete/${id}?type=${queryType}`;
+    } else if (querySearch) {
+      return `${location.pathname}/delete/${id}?search=${querySearch}`;
+    } else {
+      return `${location.pathname}/delete/${id}`;
+    }
+  };
+
   return (
     <div className="relative overflow-x-auto">
       <div>
-        <table className="w-full mt-3 text-sm text-left text-gray-500 rtl:text-right  ">
+        <table className=" w-full mt-3 text-sm text-left text-gray-500 rtl:text-right  ">
           <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">
             <tr>
               {colom.map((data, i) => (
@@ -57,7 +78,17 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                     {data.category ?? "-"}
                   </td>
                   <td className="px-6 py-4 space-x-3">
-                    {data.courseName ?? "-"}
+                    <div className="flex flex-row space-x-1">
+                      <div>{data.courseName ?? "-"}</div>
+                      {i === 0 && labelNewData && (
+                        <div className="font-bold text-yellow-300">New </div>
+                      )}
+                      {data.isDiscount == true ? (
+                        <div className="font-bold text-red-600">Diskon! </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </td>
                   <td
                     className={`px-6 py-4 space-x-3 font-bold ${
@@ -81,7 +112,7 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                     <Link to={`/dashboard/course-management/${data.id}`}>
                       <button
                         type="button"
-                        className="focus:outline-none text-white bg-yellow-300 hover:bg-yellow-300 focus:ring-4 focus:ring-[rgb(188,181,235)] font-medium rounded-lg text-xs px-2 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        className="focus:outline-none text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300  font-medium rounded-lg text-xs px-2 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                       >
                         <svg
                           className="w-4 h-4 dark:text-white"
@@ -103,31 +134,44 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                       </button>
                     </Link>
 
-                    <Link to={`/dashboard/course-management/delete/${data.id}`}>
+                    <Link>
                       <button
-                        onClick={setOpenModal}
                         type="button"
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        className="focus:outline-none text-white bg-blue-600 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                       >
                         Perbarui
                       </button>
                     </Link>
-                    <Link to={`/dashboard/course-management/delete/${data.id}`}>
+                    <Link>
                       <button
-                        onClick={setOpenModal}
+                        // onClick={setOpenModal}
                         type="button"
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        className="focus:outline-none text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                       >
                         Lihat chapter
                       </button>
                     </Link>
-                    <Link to={`/dashboard/course-management/delete/${data.id}`}>
+                    <Link to={getUrl(data.id)}>
                       <button
                         onClick={setOpenModal}
                         type="button"
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                       >
-                        Hapus
+                        <svg
+                          className="w-4 h-4  dark:text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 18 20"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
+                          />
+                        </svg>
                       </button>
                     </Link>
                   </td>

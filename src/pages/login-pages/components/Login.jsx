@@ -14,7 +14,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -47,7 +47,13 @@ const Login = () => {
         return setAlertMessage("Harap masukkan password");
       }
       await loginUser(email, password, "admin");
-      navigate("/dashboard");
+      setAlertMessage("Anda berhasil login");
+
+      setTimeOutMessage(2000);
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setAlertMessage(err.response.data.message);
@@ -137,7 +143,11 @@ const Login = () => {
         {alertMessage && (
           <div
             data-aos="fade-up"
-            className="flex justify-center items-center w-3/4 md:w-1/2  mx-auto  mt-10 text-sm  text-white bg-[#FF0000] rounded-lg py-3  font-montserrat"
+            className={`flex justify-center items-center w-3/4 md:w-1/2 mx-auto mt-10 text-sm font-montserrat py-3 rounded-lg ${
+              alertMessage.includes("Anda berhasil login")
+                ? "bg-green-500 text-white"
+                : "bg-[#FF0000] text-white"
+            }`}
           >
             <span className="inline-block">{alertMessage}</span>
           </div>

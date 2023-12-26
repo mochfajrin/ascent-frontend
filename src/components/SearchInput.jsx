@@ -53,7 +53,7 @@ const SearchInput = ({ defaultValue, setDefaultValue, placeholder }) => {
         placeholder={placeholder}
         id="search_movie"
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-full text-black rounded-lg border-2 border-[#6148FF] bg-transparent px-4 py-2  outline-none  focus:ring-[#6148FF]"
+        className="min-w-full text-black rounded-lg border-2 border-[#6148FF] bg-transparent px-4 pr-12 py-2  outline-none  focus:ring-[#6148FF]"
       />
       <button
         type="submit"

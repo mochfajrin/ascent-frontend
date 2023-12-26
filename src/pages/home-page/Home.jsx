@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiMoneyWithdraw } from "react-icons/bi";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import AOS from "aos";
 
 import CardStatistic from "../../components/CardStatistic";
@@ -20,12 +20,18 @@ const Home = () => {
   const [searchParams] = useSearchParams();
   const queryStatus = searchParams.get("paymentStatus");
   const querySearch = searchParams.get("search");
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [loadingTable, setLoadingTable] = useState(false);
   const [defaultValue, setDefaultValue] = useState(false);
 
   const { transactionData } = useSelector((state) => state.transaction);
+
+  const settingDefaultValue = () => {
+    setDefaultValue(false);
+    // navigate("/dashboard");
+  };
 
   useEffect(() => {
     AOS.init({
@@ -87,7 +93,7 @@ const Home = () => {
             </div>
             <div className="flex flex-row space-x-3 justify-end ">
               <TableFilter
-                setDefaultValue={() => setDefaultValue(false)}
+                setDefaultValue={settingDefaultValue}
                 defaultValue={defaultValue}
                 filter={["Sudah bayar", "Belum bayar"]}
               />

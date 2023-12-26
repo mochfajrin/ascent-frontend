@@ -2,6 +2,7 @@ import {
   fetchingCourseData,
   fetchingFilterCourseData,
   fetchingCourseDataById,
+  postCourseData,
   deletetingCourseData,
 } from "../../api/fetching/fetchingCourseData";
 
@@ -49,7 +50,38 @@ const getFilterCourseData =
     }
   };
 
-const deleteCourseData = (id, callback) => async () => {
+const createCourseData =
+  (imageFile, navigate, setLoading) => async (dispatch, getState) => {
+    try {
+      setLoading(true);
+      const { form } = getState().course;
+
+      const formData = new FormData();
+
+      formData.append("image", imageFile);
+
+      for (const key in form) {
+        formData.append(key, form[key]);
+      }
+
+      const getToken = localStorage.getItem("...");
+      await postCourseData(formData, getToken);
+      toastify({ message: "Berhasil menambahkan kelas", type: "success" });
+      navigate("/dashboard/course-management");
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert("Harap isi formulir yang diberi tanda *");
+        setLoading(false);
+      }
+      if (err.response.status === 400) {
+        alert("Untuk memberikan diskon harga kelas harus diatas Rp.10.000");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+const deleteCourseData = (id, setLoading, callback) => async () => {
   try {
     const getToken = localStorage.getItem("...");
 
@@ -58,6 +90,8 @@ const deleteCourseData = (id, callback) => async () => {
     toastify({ message: "Berhasil mengahapus kelas", type: "success" });
   } catch (err) {
     throw new Error(err.message);
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -65,5 +99,6 @@ export {
   getCourseData,
   getFilterCourseData,
   getCourseDataById,
+  createCourseData,
   deleteCourseData,
 };

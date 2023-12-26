@@ -1,7 +1,7 @@
 import api from "../api";
 
 const fetchingCourseData = async () => {
-  const res = await api.get("/course");
+  const res = await api.get("/course?sort_by=createdAt&order_by=desc");
   return res.data.data;
 };
 
@@ -27,18 +27,27 @@ const fetchingFilterCourseData = async ({ filter, query }) => {
   return res.data.data;
 };
 
+const postCourseData = async (formData, token) => {
+  await api.post("/course/create", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 const deletetingCourseData = async (id, token) => {
-  const res = await api.delete(`/course/delete/${id}`, {
+  await api.delete(`/course/delete/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  return res.data.message;
 };
 
 export {
   fetchingCourseData,
   fetchingFilterCourseData,
   fetchingCourseDataById,
+  postCourseData,
   deletetingCourseData,
 };

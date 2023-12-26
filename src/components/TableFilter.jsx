@@ -42,9 +42,7 @@ const TableFilter = ({ filter, defaultValue, setDefaultValue }) => {
       onClick={setDefaultValue}
       value={queryFilter}
       onChange={handleFilter}
-      className="border border-[#6148FF] font-bold text-[#6148FF] w-44 rounded-3xl focus:ring-[#6148FF] "
-      name="cars"
-      id="cars"
+      className="border border-[#6148FF] font-bold text-[#6148FF] w-44 rounded-lg focus:ring-[#6148FF] "
       style={{
         appearance: "none",
         backgroundImage:
