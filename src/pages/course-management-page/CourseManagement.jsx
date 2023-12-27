@@ -10,7 +10,7 @@ import AOS from "aos";
 
 import { SiGoogleclassroom } from "react-icons/si";
 
-import ValidationDeleteModal from "./components/ValidationDeleteModal";
+import ValidationDeleteModal from "../../components/ValidationDeleteModal";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import TableCourse from "./components/TableCourse";
 import {
@@ -120,6 +120,7 @@ const CourseManagement = () => {
             openModal={openModal}
             setCloseModal={cancelDeleteCourse}
             toggleDeleting={deletingCourse}
+            validationText={"Apakah anda yakin ingin menghapus kelas ini ?"}
           />
           <div className="  max-md:ml-8 ">
             <div className="flex dlex-row items-center space-x-3">

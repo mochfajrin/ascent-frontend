@@ -18,7 +18,19 @@ const CardStatistic = () => {
   useEffect(() => {
     dispatch(getCourseData(setLoading));
     dispatch(getUserData(setLoading));
-  }, [dispatch]);
+  }, [dispatch, setLoading]);
+
+  const activeUsersCount = Array.isArray(userData)
+    ? userData.filter((member) => member.role === "member").length
+    : "Belum ada user";
+
+  const activeClassesCount = Array.isArray(courseData)
+    ? courseData.length
+    : "Belum ada kelas";
+
+  const premiumClassesCount = Array.isArray(courseData)
+    ? courseData.filter((course) => course.courseType === "Premium").length
+    : "Belum ada kelas premium";
 
   return (
     <>
@@ -32,16 +44,7 @@ const CardStatistic = () => {
             </div>
 
             <div className="text-lg text-white md:text-sm lg:text-lg xl:text-xl">
-              <p>
-                {!userData.filter(
-                  (course) => course.courseType === "Premium"
-                ) && "Belum ada kelas"}
-
-                {loading
-                  ? "Loading..."
-                  : userData.filter((member) => member.role === "member")
-                      .length}
-              </p>
+              <p>{activeUsersCount}</p>
               <p className="font-bold md:font-semibold">Active Users</p>
             </div>
           </div>
@@ -51,10 +54,7 @@ const CardStatistic = () => {
             </div>
 
             <div className="text-lg text-white md:text-sm lg:text-lg xl:text-xl">
-              <p>
-                {!courseData && "Belum ada kelas"}
-                {loading ? "Loading..." : courseData.length}
-              </p>
+              <p>{activeClassesCount}</p>
               <p className="font-bold">Active Class</p>
             </div>
           </div>
@@ -64,16 +64,7 @@ const CardStatistic = () => {
             </div>
 
             <div className="text-lg text-white md:text-sm lg:text-lg xl:text-xl">
-              <p>
-                {!courseData.filter(
-                  (course) => course.courseType === "Premium"
-                ) && "Belum ada kelas"}
-                {loading
-                  ? "Loading...."
-                  : courseData.filter(
-                      (course) => course.courseType === "Premium"
-                    ).length}
-              </p>
+              <p>{premiumClassesCount}</p>
               <p className="font-bold">Premium Class</p>
             </div>
           </div>

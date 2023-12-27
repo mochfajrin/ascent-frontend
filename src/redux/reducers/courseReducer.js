@@ -5,7 +5,7 @@ const courseSlice = createSlice({
   initialState: {
     courseData: [],
     form: {
-      categoryId: 0,
+      categoryId: "",
       courseCode: null,
       courseName: "",
       courseLevel: null,

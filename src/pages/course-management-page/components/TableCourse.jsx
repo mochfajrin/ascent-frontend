@@ -14,14 +14,14 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
   const querySearch = searchParams.get("search");
   const getUrl = (id) => {
     if (queryType && querySearch) {
-      return `${location.pathname}/delete/${id}?type=${queryType}&search=${querySearch}`;
+      return `${location.pathname}/delete-course/${id}?type=${queryType}&search=${querySearch}`;
     }
     if (queryType) {
-      return `${location.pathname}/delete/${id}?type=${queryType}`;
+      return `${location.pathname}/delete-course/${id}?type=${queryType}`;
     } else if (querySearch) {
-      return `${location.pathname}/delete/${id}?search=${querySearch}`;
+      return `${location.pathname}/delete-course/${id}?search=${querySearch}`;
     } else {
-      return `${location.pathname}/delete/${id}`;
+      return `${location.pathname}/delete-course/${id}`;
     }
   };
 
@@ -142,7 +142,9 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                         Perbarui
                       </button>
                     </Link>
-                    <Link>
+                    <Link
+                      to={`/dashboard/course-management/chapter-course/${data.id}`}
+                    >
                       <button
                         // onClick={setOpenModal}
                         type="button"

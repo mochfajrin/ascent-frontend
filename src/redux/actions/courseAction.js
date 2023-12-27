@@ -23,6 +23,7 @@ const getCourseData = (setLoading) => async (dispatch) => {
 
 const getCourseDataById = (setLoading, id) => async (dispatch) => {
   try {
+    setLoading(true);
     const getToken = localStorage.getItem("...");
     const res = await fetchingCourseDataById(id, getToken);
     dispatch(setCourseData(res));
@@ -71,7 +72,6 @@ const createCourseData =
     } catch (err) {
       if (err.response.status === 500) {
         alert("Harap isi formulir yang diberi tanda *");
-        setLoading(false);
       }
       if (err.response.status === 400) {
         alert("Untuk memberikan diskon harga kelas harus diatas Rp.10.000");

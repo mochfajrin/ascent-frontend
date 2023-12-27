@@ -1,8 +1,6 @@
 import inbox from "../assets/icons/inbox.png";
 import { Modal } from "flowbite-react";
 
-import "./AddDataLoading.css";
-
 const AddDataLoading = ({ loadingText }) => {
   return (
     <>

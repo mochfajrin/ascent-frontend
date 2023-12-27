@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import NavbarDasboard from "./NavbarDashboard";
 import SideBar from "./SideBar";
 import "react-toastify/dist/ReactToastify.css";
-import "./AddDataLoading.css";
 
 const MainLayout = () => {
   return (

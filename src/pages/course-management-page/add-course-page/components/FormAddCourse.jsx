@@ -155,7 +155,8 @@ const FormAddCourse = ({ setImageFile }) => {
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             htmlFor="default_size"
           >
-            Unggah gambar kelas
+            Unggah gambar kelas :{" "}
+            <span className="text-red-600 font-bold">*</span>
           </label>
           <input
             onChange={(e) => {
@@ -189,13 +190,13 @@ const FormAddCourse = ({ setImageFile }) => {
           <select
             onChange={(e) =>
               dispatch(
-                setForm({ ...form, categoryId: parseInt(e.target.value || 0) })
+                setForm({ ...form, categoryId: parseInt(e.target.value) })
               )
             }
             id="countries"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option defaultValue={0}>Beri kategori kelas</option>
+            <option defaultValue="">Beri kategori kelas</option>
             <option value={1}>UI/UX Design</option>
             <option value={2}>Web Development</option>
             <option value={3}>Data Science</option>

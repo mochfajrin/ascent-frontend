@@ -21,7 +21,6 @@ const ListBar = ({ closeDropDown }) => {
           <Link
             onClick={closeDropDown}
             to={"/dashboard"}
-            href="#"
             className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#0092A4] active: ${
               location.pathname == "/dashboard" && "bg-[#0092A4]"
             }
@@ -44,6 +43,8 @@ const ListBar = ({ closeDropDown }) => {
                   `/dashboard/course-management/delete/${id}` ||
                 location.pathname ==
                   `/dashboard/course-management/add-course` ||
+                location.pathname ==
+                  `/dashboard/course-management/chapter-course/${id}` ||
                 location.pathname == `/dashboard/course-management/${id}`) &&
               "bg-[#0092A4]"
             }  w-full  `}

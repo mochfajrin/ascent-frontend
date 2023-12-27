@@ -14,13 +14,13 @@ import TableTransaction from "./components/TableTransaction";
 import TableFilter from "../../components/TableFilter";
 import SearchInput from "../../components/SearchInput";
 import ResetButton from "../course-management-page/components/ResetButton";
+import PieChart from "./components/PieChart";
 
 const Home = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const queryStatus = searchParams.get("paymentStatus");
   const querySearch = searchParams.get("search");
-  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [loadingTable, setLoadingTable] = useState(false);
@@ -84,35 +84,40 @@ const Home = () => {
       ) : (
         <div>
           <CardStatistic />
-          <div className="mt-16 md:mt-12 xl:mt-24 max-md:ml-8">
-            <div className="flex flex-row space-x-2 items-centers">
-              <p className="text-xl font-bold md:text-2xl ">
-                Status pembayaran
-              </p>
-              <BiMoneyWithdraw className="text-4xl text-green-500" />
+          <div className="flex flex-row  justify-between items-center space-x-3 mt-16 md:mt-12 ">
+            <div className=" max-md:ml-8 w-full">
+              <div className="flex flex-row space-x-2 items-centers">
+                <p className="text-xl font-bold md:text-2xl ">
+                  Status pembayaran
+                </p>
+                <BiMoneyWithdraw className="text-4xl text-green-500" />
+              </div>
+              <div className="flex flex-row space-x-3 justify-end ">
+                <TableFilter
+                  setDefaultValue={settingDefaultValue}
+                  defaultValue={defaultValue}
+                  filter={["Sudah bayar", "Belum bayar"]}
+                />
+                <SearchInput
+                  defaultValue={defaultValue}
+                  setDefaultValue={() => setDefaultValue(false)}
+                  placeholder={"Cari pelanggan..."}
+                />
+                <ResetButton
+                  routePath={"/dashboard"}
+                  setDefaultValue={() => setDefaultValue(true)}
+                />
+              </div>
+              <TableTransaction
+                colom={tableColumns}
+                dataTable={transactionData}
+                showButtonAction={false}
+                loading={loadingTable}
+              />
             </div>
-            <div className="flex flex-row space-x-3 justify-end ">
-              <TableFilter
-                setDefaultValue={settingDefaultValue}
-                defaultValue={defaultValue}
-                filter={["Sudah bayar", "Belum bayar"]}
-              />
-              <SearchInput
-                defaultValue={defaultValue}
-                setDefaultValue={() => setDefaultValue(false)}
-                placeholder={"Cari pelanggan..."}
-              />
-              <ResetButton
-                routePath={"/dashboard"}
-                setDefaultValue={() => setDefaultValue(true)}
-              />
+            <div>
+              <PieChart />
             </div>
-            <TableTransaction
-              colom={tableColumns}
-              dataTable={transactionData}
-              showButtonAction={false}
-              loading={loadingTable}
-            />
           </div>
         </div>
       )}

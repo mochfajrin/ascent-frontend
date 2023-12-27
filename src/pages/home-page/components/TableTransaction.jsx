@@ -4,8 +4,8 @@ import "aos/dist/aos.css";
 
 const TableTransaction = ({ colom, dataTable, loading }) => {
   return (
-    <div className="relative overflow-x-auto">
-      <div>
+    <div className="relative overflow-x-auto mt-2">
+      <div className="overflow-y-auto h-[500px]">
         <table className="w-full mt-3 text-sm text-left text-gray-500 rtl:text-right  ">
           <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">
             <tr>

@@ -3,6 +3,7 @@ import { setUserData } from "../reducers/userReducer";
 
 const getUserData = (setLoading) => async (dispatch) => {
   try {
+    setLoading(true);
     const res = await fetchingUserData();
     dispatch(setUserData(res));
   } catch (err) {
