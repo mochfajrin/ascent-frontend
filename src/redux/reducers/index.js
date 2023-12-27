@@ -5,6 +5,7 @@ import userReducer from "./userReducer";
 import transactionReducer from "./transactionReducer";
 import chapterReducer from "./chapterReducer";
 import categoryReducer from "./categoryReducer";
+import contentReducer from "./contentReducer";
 
 export default combineReducers({
   course: courseReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   transaction: transactionReducer,
   chapter: chapterReducer,
   category: categoryReducer,
+  content: contentReducer,
 });

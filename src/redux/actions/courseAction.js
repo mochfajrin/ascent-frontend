@@ -70,7 +70,7 @@ const createCourseData =
       toastify({ message: "Berhasil menambahkan kelas", type: "success" });
       navigate("/dashboard/course-management");
     } catch (err) {
-      if (err.response.status === 500) {
+      if (err.response.data.message) {
         alert("Harap isi formulir yang diberi tanda *");
       }
       if (err.response.status === 400) {

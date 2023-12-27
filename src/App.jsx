@@ -21,11 +21,19 @@ const App = () => {
             <Route path="course-management">
               <Route index={true} element={<CourseManagement />} />
               <Route
-                path={"chapter-course/:courseid"}
+                path={"chapter-course/:courseId"}
                 element={<ChapterCoursePage />}
               />
               <Route
-                path={"chapter-course/:courseid/delete-chapter/:chapterId"}
+                path={"chapter-course/:courseId/delete-chapter/:chapterId"}
+                element={<ChapterCoursePage />}
+              />
+              <Route
+                path={"chapter-course/:courseId/add-content/:chapterId"}
+                element={<ChapterCoursePage />}
+              />
+              <Route
+                path={"chapter-course/:courseId/delete-content/:contentId"}
                 element={<ChapterCoursePage />}
               />
               <Route path={":id"} element={<DetailCoursePage />} />
@@ -33,6 +41,7 @@ const App = () => {
                 path={"delete-course/:id"}
                 element={<CourseManagement />}
               />
+
               <Route path={"add-course"} element={<AddCoursePage />} />
             </Route>
           </Route>

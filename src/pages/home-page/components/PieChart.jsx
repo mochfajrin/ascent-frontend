@@ -11,8 +11,6 @@ const PieChart = () => {
 
   const [loading, setLoading] = useState(true);
 
-  console.log(categoryData);
-
   useEffect(() => {
     dispatch(getCategoryData(setLoading));
   }, [dispatch]);

@@ -6,13 +6,31 @@ import { SiGoogleclassroom } from "react-icons/si";
 // import { FaUserGroup } from "react-icons/fa6";
 
 const ListBar = ({ closeDropDown }) => {
-  const { id } = useParams();
+  const { id, courseId, chapterId, contentId } = useParams();
 
   const location = useLocation();
 
   const logOut = () => {
     localStorage.removeItem("...");
   };
+
+  const isActive = (path) => {
+    const activePaths = [
+      "/dashboard/course-management",
+      `/dashboard/course-management/delete-course/${id}`,
+      `/dashboard/course-management/add-course`,
+      `/dashboard/course-management/chapter-course/${courseId}`,
+      `/dashboard/course-management/${id}`,
+      `/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${chapterId}`,
+      `/dashboard/course-management/chapter-course/${courseId}/delete-content/${contentId}`,
+    ];
+
+    return activePaths.includes(path);
+  };
+
+  const linkClass = `block py-2 max-md:rounded px-3 lg:px-4 hover:bg-[#0092A4] ${
+    isActive(location.pathname) ? "bg-[#0092A4]" : ""
+  } w-full`;
 
   return (
     <div className="flex-auto flex flex-col justify-between h-52 rounded-lg font-bold mt-2 text-[#373F51]   ">
@@ -37,17 +55,7 @@ const ListBar = ({ closeDropDown }) => {
             onClick={closeDropDown}
             to={"/dashboard/course-management"}
             href="#"
-            className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#0092A4] ${
-              (location.pathname == "/dashboard/course-management" ||
-                location.pathname ==
-                  `/dashboard/course-management/delete/${id}` ||
-                location.pathname ==
-                  `/dashboard/course-management/add-course` ||
-                location.pathname ==
-                  `/dashboard/course-management/chapter-course/${id}` ||
-                location.pathname == `/dashboard/course-management/${id}`) &&
-              "bg-[#0092A4]"
-            }  w-full  `}
+            className={linkClass}
           >
             <div className="flex items-center gap-2">
               Kelola kelas
