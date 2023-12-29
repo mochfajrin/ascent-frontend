@@ -18,7 +18,13 @@ const PieChart = () => {
   return (
     <>
       {loading ? (
-        <div>loading...</div>
+        <div>
+          <img
+            src="/Logo_2.png"
+            alt="ascent logo"
+            className="mx-auto w-48 py-28 animate-bounce"
+          />
+        </div>
       ) : (
         <div className="w-[500px]">
           <PolarArea

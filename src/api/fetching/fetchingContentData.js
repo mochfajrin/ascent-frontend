@@ -38,6 +38,13 @@ const postContentData = async (formData, token, id) => {
     },
   });
 };
+const patchContentData = async (formData, token, id) => {
+  await api.patch(`/chapter/update/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 const deletetingContentData = async (id, token) => {
   await api.delete(`/content/deleted/${id}`, {
@@ -51,6 +58,7 @@ export {
   // fetchingChapterData,
   // fetchingFilterCourseData,
   // fetchingCourseDataById,
+  patchContentData,
   postContentData,
   deletetingContentData,
 };

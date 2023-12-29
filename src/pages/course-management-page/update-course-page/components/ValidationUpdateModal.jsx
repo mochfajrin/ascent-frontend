@@ -5,7 +5,7 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 const ValidationUpdateModal = ({
   openModal,
   setCloseModal,
-  toggleDeleting,
+  toggleUpdate,
   validationText,
 }) => {
   return (
@@ -18,7 +18,7 @@ const ValidationUpdateModal = ({
             {validationText}
           </h3>
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={toggleDeleting}>
+            <Button color="failure" onClick={toggleUpdate}>
               Iya, tentu
             </Button>
             <Button color="gray" onClick={setCloseModal}>

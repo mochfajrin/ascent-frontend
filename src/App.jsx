@@ -30,6 +30,10 @@ const App = () => {
                 element={<ChapterCoursePage />}
               />
               <Route
+                path={"chapter-course/:courseId/update-chapter/:chapterId"}
+                element={<ChapterCoursePage />}
+              />
+              <Route
                 path={"chapter-course/:courseId/add-content/:chapterId"}
                 element={<ChapterCoursePage />}
               />

@@ -10,6 +10,7 @@ import {
   getChapterData,
   createChapterData,
   deleteChapterData,
+  updateChapterData,
 } from "../../redux/actions/chapterAction";
 import {
   createContentData,
@@ -25,6 +26,7 @@ import AddChapterButton from "./components/AddButton";
 import UpdateButton from "./components/UpdateButton";
 import ModalUpdateContent from "./components/ModalUpdateChapter";
 import ModalUpdateChapter from "./components/ModalUpdateChapter";
+import noContent from "../../../src/assets/icons/no-content.png";
 
 const ChapterCoursePage = () => {
   const dispatch = useDispatch();
@@ -34,6 +36,8 @@ const ChapterCoursePage = () => {
 
   const [loading, setLoading] = useState(true);
   const [addLoading, setAddLoading] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
+
   const [openAddChapterModal, setOpenAddChapterModal] = useState(false);
   const [openAddContentModal, setOpenAddContentModal] = useState(false);
   const [openUpdateContentModal, setOpenUpdateContentModal] = useState(false);
@@ -122,6 +126,17 @@ const ChapterCoursePage = () => {
           />
           <ModalUpdateChapter
             openModal={openUpdateChapterModal}
+            updateChapter={() =>
+              dispatch(
+                updateChapterData(setUpdateLoading, chapterId, () => {
+                  toggleRefresh((prev) => !prev);
+                  setOpenUpdateChapterModal(false);
+                  navigate(
+                    `/dashboard/course-management/chapter-course/${courseId}`
+                  );
+                })
+              )
+            }
             closeModal={() => setOpenUpdateChapterModal(false)}
           />
           <ValidationDeleteModal
@@ -137,6 +152,8 @@ const ChapterCoursePage = () => {
           />
           {addLoading ? (
             <AddDataLoading loadingText={"Mengunggah data kelas"} />
+          ) : updateLoading ? (
+            <AddDataLoading loadingText={"Memperbarui data kelas"} />
           ) : (
             <div className="space-y-5">
               <div className="text-4xl font-bold">Bab kelas</div>
@@ -187,10 +204,14 @@ const ChapterCoursePage = () => {
                           setOpenModal={() => setOpenAddContentModal(true)}
                           routePath={`/dashboard/course-management/chapter-course/${courseId}/add-content/${data.id}`}
                         />
-                        <UpdateButton
-                          buttonText={"Perbarui bab"}
-                          setOpenModal={() => setOpenUpdateChapterModal(true)}
-                        />
+                        <Link
+                          to={`/dashboard/course-management/chapter-course/${courseId}/update-chapter/${data.id}`}
+                        >
+                          <UpdateButton
+                            buttonText={"Perbarui bab"}
+                            setOpenModal={() => setOpenUpdateChapterModal(true)}
+                          />
+                        </Link>
                         <Link
                           to={`/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${data.id}`}
                         >
@@ -218,11 +239,20 @@ const ChapterCoursePage = () => {
                           </button>
                         </Link>
                       </div>
-                      <div className="grid grid-cols-2 gap-5 pt-4">
-                        {data.contents.length === 0 ? (
-                          <div className="text-lg"> Belum ada konten</div>
-                        ) : (
-                          data.contents.map((data, i) => (
+                      {data.contents.length === 0 ? (
+                        // <div className="text-lg"> Belum ada konten</div>
+                        <div className="flex flex-row justify-center mt-20 mb-9">
+                          <div className="text-center">
+                            <img className="w-64" src={noContent} alt="" />
+                            <div className="text-3xl font-semibold">
+                              {" "}
+                              Belum ada konten
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-5 pt-4">
+                          {data.contents.map((data, i) => (
                             <div key={i}>
                               <div className="h-[450px] ">
                                 <ReactPlayer
@@ -268,9 +298,9 @@ const ChapterCoursePage = () => {
                                 </Link>
                               </div>
                             </div>
-                          ))
-                        )}
-                      </div>
+                          ))}
+                        </div>
+                      )}
                     </Accordion.Content>
                   </Accordion.Panel>
                 ))}

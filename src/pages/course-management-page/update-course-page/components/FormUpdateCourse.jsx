@@ -248,7 +248,7 @@ const FormUpdateCourse = ({ setImageFile, courseData }) => {
                   dispatch(
                     setForm({
                       ...form,
-                      courseDiscountInPercent: parseInt(e.target.value),
+                      courseDiscountInPercent: parseInt(e.target.value) || 0,
                     })
                   )
                 }
@@ -275,7 +275,7 @@ const FormUpdateCourse = ({ setImageFile, courseData }) => {
                 dispatch(
                   setForm({
                     ...form,
-                    rating: parseFloat(e.target.value),
+                    rating: parseFloat(e.target.value) || 0,
                   })
                 )
               }

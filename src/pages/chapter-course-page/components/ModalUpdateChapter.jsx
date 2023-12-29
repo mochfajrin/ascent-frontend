@@ -1,12 +1,15 @@
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { setFormChapter } from "../../../redux/reducers/chapterReducer";
-import { useState } from "react";
 const ModalUpdateChapter = ({ openModal, closeModal, updateChapter }) => {
   const dispatch = useDispatch();
   const [updateValidation, setUpdateValidation] = useState(true);
+  const navigate = useNavigate();
+  const { courseId } = useParams();
 
   const { form } = useSelector((state) => state.chapter);
 
@@ -17,9 +20,15 @@ const ModalUpdateChapter = ({ openModal, closeModal, updateChapter }) => {
     }
   };
 
+  const closeModalToggle = () => {
+    setUpdateValidation(true);
+    closeModal();
+    navigate(`/dashboard/course-management/chapter-course/${courseId}`);
+  };
+
   return (
     <>
-      <Modal show={openModal} size="md" onClose={closeModal} popup>
+      <Modal show={openModal} size="md" onClose={closeModalToggle} popup>
         <Modal.Header />
         <Modal.Body>
           <div className="space-y-6">
@@ -62,9 +71,9 @@ const ModalUpdateChapter = ({ openModal, closeModal, updateChapter }) => {
             </div>
 
             <div className="w-full">
-              {/* <Button onClick={addChapter} disabled={updateValidation}>
+              <Button onClick={updateChapter} disabled={updateValidation}>
                 Simpan
-              </Button> */}
+              </Button>
             </div>
           </div>
         </Modal.Body>

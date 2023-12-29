@@ -22,6 +22,13 @@ const UpdateCoursePage = () => {
 
   const { courseData } = useSelector((state) => state.course);
 
+  const updateHandle = () => {
+    dispatch(
+      updateCourseData(imageFile, navigate, setLoadingAddData, courseId)
+    );
+    setShowValidationUpdateModal(false);
+  };
+
   useEffect(() => {
     dispatch(getCourseDataById(setLoading, courseId));
   }, [dispatch, courseId]);
@@ -35,7 +42,12 @@ const UpdateCoursePage = () => {
           {loadingAddData && (
             <AddDataLoading loadingText={"Mengunggah data baru kelas"} />
           )}
-          {/* <ValidationUpdateModal openModal={setShowValidationUpdateModal} /> */}
+          <ValidationUpdateModal
+            openModal={showValidationUpdateModal}
+            validationText={"Apakah anda ingin menyimpan perubahan ?"}
+            setCloseModal={() => setShowValidationUpdateModal(false)}
+            toggleUpdate={updateHandle}
+          />
           <h1 className="text-3xl font-bold">Update data kelas</h1>
           <Link
             to={"/dashboard/course-management"}
@@ -67,16 +79,17 @@ const UpdateCoursePage = () => {
             <div className="flex justify-end">
               <Link>
                 <button
-                  onClick={() =>
-                    dispatch(
-                      updateCourseData(
-                        imageFile,
-                        navigate,
-                        setLoadingAddData,
-                        courseId
-                      )
-                    )
-                  }
+                  // onClick={() =>
+                  //   dispatch(
+                  //     updateCourseData(
+                  //       imageFile,
+                  //       navigate,
+                  //       setLoadingAddData,
+                  //       courseId
+                  //     )
+                  //   )
+                  // }
+                  onClick={() => setShowValidationUpdateModal(true)}
                   type="button"
                   className="focus:outline-none text-white bg-purple-700 mt-1  hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-lg px-5 py-2.5  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                 >

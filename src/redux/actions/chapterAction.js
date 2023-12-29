@@ -2,6 +2,7 @@ import {
   fetchingChapterData,
   postChapterData,
   deletetingChapterData,
+  patchChapterData,
 } from "../../api/fetching/fetchingChapterData";
 import { setChapterData } from "../reducers/chapterReducer";
 
@@ -43,6 +44,27 @@ const createChapterData =
     }
   };
 
+const updateChapterData =
+  (setUpdateChapterLoading, id, callback) => async (dispatch, getState) => {
+    try {
+      setUpdateChapterLoading(true);
+      const { form } = getState().chapter;
+
+      const formData = new FormData();
+
+      formData.append("chapterTitle", form.chapterTitle);
+
+      const getToken = localStorage.getItem("...");
+      await patchChapterData(formData, getToken, id);
+      callback();
+      toastify({ message: "Berhasil memperbarui judul bab", type: "success" });
+    } catch (err) {
+      throw new Error(err.response.data.message);
+    } finally {
+      setUpdateChapterLoading(false);
+    }
+  };
+
 const deleteChapterData = (id, setLoading, callback) => async () => {
   try {
     const getToken = localStorage.getItem("...");
@@ -57,4 +79,9 @@ const deleteChapterData = (id, setLoading, callback) => async () => {
   }
 };
 
-export { createChapterData, getChapterData, deleteChapterData };
+export {
+  createChapterData,
+  getChapterData,
+  updateChapterData,
+  deleteChapterData,
+};

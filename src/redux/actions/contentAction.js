@@ -10,16 +10,20 @@ const createContentData =
       setAddChapterLoading(true);
       const { form } = getState().content;
 
-      const formData = new FormData();
+      if (form.videoDuration.includes(":")) {
+        const formData = new FormData();
 
-      for (const key in form) {
-        formData.append(key, form[key]);
+        for (const key in form) {
+          formData.append(key, form[key]);
+        }
+
+        const getToken = localStorage.getItem("...");
+        await postContentData(formData, getToken, id);
+        callback();
+        toastify({ message: "Berhasil menambahkan konten", type: "success" });
+      } else {
+        alert("Invalid time format. Please use the format HH:mm");
       }
-
-      const getToken = localStorage.getItem("...");
-      await postContentData(formData, getToken, id);
-      callback();
-      toastify({ message: "Berhasil menambahkan konten", type: "success" });
     } catch (err) {
       if (err.response.data.message) {
         alert("Formulir tidak boleh kosong");
