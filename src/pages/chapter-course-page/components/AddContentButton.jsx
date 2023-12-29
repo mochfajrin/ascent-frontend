@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setFormContent } from "../../../../redux/reducers/contentReducer";
+import PropTypes from "prop-types";
+
+import { setFormContent } from "../../../redux/reducers/contentReducer";
 
 const AddContentButton = ({ setOpenModal, routePath }) => {
   const dispatch = useDispatch();
@@ -43,6 +45,11 @@ const AddContentButton = ({ setOpenModal, routePath }) => {
       </button>
     </Link>
   );
+};
+
+AddContentButton.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+  routePath: PropTypes.string.isRequired,
 };
 
 export default AddContentButton;

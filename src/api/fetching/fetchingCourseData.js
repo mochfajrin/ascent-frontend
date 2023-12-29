@@ -36,6 +36,15 @@ const postCourseData = async (formData, token) => {
   });
 };
 
+const patchCourseData = async (id, formData, token) => {
+  await api.patch(`/course/update/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 const deletetingCourseData = async (id, token) => {
   await api.delete(`/course/delete/${id}`, {
     headers: {
@@ -49,5 +58,6 @@ export {
   fetchingFilterCourseData,
   fetchingCourseDataById,
   postCourseData,
+  patchCourseData,
   deletetingCourseData,
 };

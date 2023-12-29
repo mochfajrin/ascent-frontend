@@ -1,4 +1,4 @@
-import { Doughnut } from "react-chartjs-2";
+import { PolarArea } from "react-chartjs-2";
 import "chart.js/auto";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ const PieChart = () => {
         <div>loading...</div>
       ) : (
         <div className="w-[500px]">
-          <Doughnut
+          <PolarArea
             data={{
               labels: categoryData.map((data) => data.categoryName),
               datasets: [

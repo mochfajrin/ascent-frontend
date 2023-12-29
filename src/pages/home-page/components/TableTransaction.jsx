@@ -53,7 +53,7 @@ const TableTransaction = ({ colom, dataTable, loading }) => {
                     {data.userId ?? "-"}
                   </th>
                   <td className="px-6 py-4 space-x-3">
-                    {data.User.name ?? "-"}
+                    {data.User ? data.User.name : "-"}
                   </td>
                   <td className="px-6 py-4 space-x-3">
                     {data.courseName ?? "-"}

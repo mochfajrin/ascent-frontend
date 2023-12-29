@@ -4,6 +4,7 @@ import {
   fetchingCourseDataById,
   postCourseData,
   deletetingCourseData,
+  patchCourseData,
 } from "../../api/fetching/fetchingCourseData";
 
 import { setCourseData } from "../reducers/courseReducer";
@@ -81,6 +82,33 @@ const createCourseData =
     }
   };
 
+const updateCourseData =
+  (imageFile, navigate, setLoading, id) => async (dispatch, getState) => {
+    try {
+      setLoading(true);
+      const { form } = getState().course;
+
+      const formData = new FormData();
+
+      formData.append("image", imageFile);
+
+      for (const key in form) {
+        formData.append(key, form[key]);
+      }
+
+      const getToken = localStorage.getItem("...");
+      await patchCourseData(id, formData, getToken);
+      toastify({ message: "Berhasil memperbarui data kelas", type: "success" });
+      navigate("/dashboard/course-management");
+    } catch (err) {
+      if (err.response.status === 400) {
+        alert(err.response.data.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
 const deleteCourseData = (id, setLoading, callback) => async () => {
   try {
     const getToken = localStorage.getItem("...");
@@ -100,5 +128,6 @@ export {
   getFilterCourseData,
   getCourseDataById,
   createCourseData,
+  updateCourseData,
   deleteCourseData,
 };

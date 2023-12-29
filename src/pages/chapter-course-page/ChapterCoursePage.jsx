@@ -4,23 +4,27 @@ import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { Accordion } from "flowbite-react";
 import ReactPlayer from "react-player/youtube";
 
-import { getCourseDataById } from "../../../redux/actions/courseAction";
-import CourseDetailSkeleton from "../detail-course-page/components/CourseDetailSkeleton";
+import { getCourseDataById } from "../../redux/actions/courseAction";
+import CourseDetailSkeleton from "../course-management-page/detail-course-page/components/CourseDetailSkeleton";
 import {
   getChapterData,
   createChapterData,
   deleteChapterData,
-} from "../../../redux/actions/chapterAction";
+} from "../../redux/actions/chapterAction";
 import {
   createContentData,
   deleteContentData,
-} from "../../../redux/actions/contentAction";
-import AddCourseButton from "./components/AddChapterButton";
+} from "../../redux/actions/contentAction";
+import AddCourseButton from "./components/AddButton";
 import ModalAddChapter from "./components/ModalAddChapter";
-import AddDataLoading from "../../../components/AddDataLoading";
-import ValidationDeleteModal from "../../../components/ValidationDeleteModal";
+import AddDataLoading from "../../components/AddDataLoading";
+import ValidationDeleteModal from "../../components/ValidationDeleteModal";
 import AddContentButton from "./components/AddContentButton";
 import ModalAddContent from "./components/ModalAddContent";
+import AddChapterButton from "./components/AddButton";
+import UpdateButton from "./components/UpdateButton";
+import ModalUpdateContent from "./components/ModalUpdateChapter";
+import ModalUpdateChapter from "./components/ModalUpdateChapter";
 
 const ChapterCoursePage = () => {
   const dispatch = useDispatch();
@@ -30,8 +34,11 @@ const ChapterCoursePage = () => {
 
   const [loading, setLoading] = useState(true);
   const [addLoading, setAddLoading] = useState(false);
-  const [openChapterModal, setOpenChapterModal] = useState(false);
-  const [openContentModal, setOpenContentModal] = useState(false);
+  const [openAddChapterModal, setOpenAddChapterModal] = useState(false);
+  const [openAddContentModal, setOpenAddContentModal] = useState(false);
+  const [openUpdateContentModal, setOpenUpdateContentModal] = useState(false);
+  const [openUpdateChapterModal, setOpenUpdateChapterModal] = useState(false);
+
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const [refresh, toggleRefresh] = useState(false);
@@ -71,7 +78,7 @@ const ChapterCoursePage = () => {
   };
 
   const cancelAddContent = () => {
-    setOpenContentModal(false);
+    setOpenAddContentModal(false);
     navigate(`/dashboard/course-management/chapter-course/${courseId}`);
   };
 
@@ -83,17 +90,17 @@ const ChapterCoursePage = () => {
   return (
     <>
       {loading ? (
-        <CourseDetailSkeleton openModal={openContentModal} />
+        <CourseDetailSkeleton openModal={openAddContentModal} />
       ) : (
         <div>
           <ModalAddContent
-            openModal={openContentModal}
+            openModal={openAddContentModal}
             closeModal={cancelAddContent}
             addContent={() =>
               dispatch(
                 createContentData(setAddLoading, chapterId, () => {
                   toggleRefresh((prev) => !prev);
-                  setOpenContentModal(false);
+                  setOpenAddContentModal(false);
                   navigate(
                     `/dashboard/course-management/chapter-course/${courseId}`
                   );
@@ -102,16 +109,20 @@ const ChapterCoursePage = () => {
             }
           />
           <ModalAddChapter
-            openModal={openChapterModal}
+            openModal={openAddChapterModal}
             addChapter={() =>
               dispatch(
                 createChapterData(setAddLoading, courseId, () => {
                   toggleRefresh((prev) => !prev);
-                  setOpenChapterModal(false);
+                  setOpenAddChapterModal(false);
                 })
               )
             }
-            closeModal={() => setOpenChapterModal(false)}
+            closeModal={() => setOpenAddChapterModal(false)}
+          />
+          <ModalUpdateChapter
+            openModal={openUpdateChapterModal}
+            closeModal={() => setOpenUpdateChapterModal(false)}
           />
           <ValidationDeleteModal
             openModal={openDeleteModal}
@@ -155,8 +166,9 @@ const ChapterCoursePage = () => {
                 <p className="text-lg"> Kembali</p>
               </Link>
               <div className="flex flex-row justify-end">
-                <AddCourseButton
-                  setOpenModal={() => setOpenChapterModal(true)}
+                <AddChapterButton
+                  setOpenModal={() => setOpenAddChapterModal(true)}
+                  buttonText={"Tambah bab"}
                 />
               </div>
               <Accordion className="mt-3">
@@ -172,8 +184,12 @@ const ChapterCoursePage = () => {
                     <Accordion.Content>
                       <div className="flex flex-row space-x-2 justify-end ">
                         <AddContentButton
-                          setOpenModal={() => setOpenContentModal(true)}
+                          setOpenModal={() => setOpenAddContentModal(true)}
                           routePath={`/dashboard/course-management/chapter-course/${courseId}/add-content/${data.id}`}
+                        />
+                        <UpdateButton
+                          buttonText={"Perbarui bab"}
+                          setOpenModal={() => setOpenUpdateChapterModal(true)}
                         />
                         <Link
                           to={`/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${data.id}`}
@@ -217,9 +233,14 @@ const ChapterCoursePage = () => {
                                 />
                               </div>
                               <div className="flex flex-row  mt-4 items-center justify-between">
-                                <h1 className="text-xl font-semibold">
-                                  {data.contentTitle}
-                                </h1>
+                                <div className="flex flex-row space-x-3 items-center">
+                                  <h1 className="text-xl font-semibold ">
+                                    {data.contentTitle}
+                                  </h1>
+                                  <h1 className="text-md font-normal">
+                                    {data.duration} menit
+                                  </h1>
+                                </div>
                                 <Link
                                   to={`/dashboard/course-management/chapter-course/${courseId}/delete-content/${data.id}`}
                                 >

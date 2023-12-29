@@ -1,8 +1,7 @@
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setFormContent } from "../../../../redux/reducers/contentReducer";
+import { setFormContent } from "../../../redux/reducers/contentReducer";
 
 const ModalAddContent = ({ openModal, closeModal, addContent }) => {
   const dispatch = useDispatch();
@@ -79,20 +78,6 @@ const ModalAddContent = ({ openModal, closeModal, addContent }) => {
                 required
               />
             </div>
-            {/* <div className="mb-2 block">
-                <Label htmlFor="chapterTitle" value="Judul bab kelass" />
-              </div>
-              <TextInput
-                id="chapterTitle"
-                type="text"
-                required
-                placeholder="beri judul bab "
-                onChange={(e) =>
-                  dispatch(
-                    setFormContent({ ...form, chapterTitle: e.target.value })
-                  )
-                }
-              /> */}
 
             <div className="w-full">
               <Button onClick={addContent}>Simpan</Button>

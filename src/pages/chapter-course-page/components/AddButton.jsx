@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setFormChapter } from "../../../../redux/reducers/chapterReducer";
+import PropTypes from "prop-types";
 
-const AddChapterButton = ({ setOpenModal }) => {
+import { setFormChapter } from "../../../redux/reducers/chapterReducer";
+
+const AddButton = ({ setOpenModal, buttonText }) => {
   const dispatch = useDispatch();
   const { form } = useSelector((state) => state.chapter);
 
@@ -11,7 +13,7 @@ const AddChapterButton = ({ setOpenModal }) => {
   };
   return (
     <button
-      onClick={openModal}
+      onClick={() => openModal()}
       type="button"
       className="flex flex-row items-center gap-2 text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
     >
@@ -30,9 +32,17 @@ const AddChapterButton = ({ setOpenModal }) => {
           d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
         />
       </svg>
-      Tambah bab
+
+      {buttonText}
     </button>
   );
 };
 
-export default AddChapterButton;
+AddButton.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+};
+AddButton.defaultProps = {
+  setOpenModal: () => {},
+};
+
+export default AddButton;

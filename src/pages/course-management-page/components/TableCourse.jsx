@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import noResultPng from "../../../assets/icons/no-results.png";
 import "aos/dist/aos.css";
+import { setForm } from "../../../redux/reducers/courseReducer";
 
 const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
   const { labelNewData } = useSelector((state) => state.course);
   const location = useLocation();
   const [searchParams] = useSearchParams();
+  const { form } = useSelector((state) => state.course);
+  const dispatch = useDispatch();
+
+  // const {form} =
 
   const queryType = searchParams.get("type");
   const querySearch = searchParams.get("search");
@@ -134,9 +139,28 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                       </button>
                     </Link>
 
-                    <Link>
+                    <Link
+                      to={`/dashboard/course-management/update-course/${data.id}`}
+                    >
                       <button
                         type="button"
+                        onClick={() =>
+                          dispatch(
+                            setForm({
+                              ...form,
+                              aboutCourse: "",
+                              categoryId: "",
+                              courseCode: "",
+                              // courseDiscountInPercent: 0,
+                              courseLevel: "",
+                              // coursePrice: 0,
+                              // courseRating: 0,
+                              intendedFor: "",
+                              telegramGroup: "",
+                              courseName: "",
+                            })
+                          )
+                        }
                         className="focus:outline-none text-white bg-blue-600 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                       >
                         Perbarui

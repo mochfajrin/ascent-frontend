@@ -23,6 +23,7 @@ const ListBar = ({ closeDropDown }) => {
       `/dashboard/course-management/${id}`,
       `/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${chapterId}`,
       `/dashboard/course-management/chapter-course/${courseId}/delete-content/${contentId}`,
+      `/dashboard/course-management/update-course/${courseId}`,
     ];
 
     return activePaths.includes(path);
