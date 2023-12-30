@@ -154,7 +154,7 @@ const FormUpdateCourse = ({ setImageFile, courseData }) => {
                 dispatch(
                   setForm({
                     ...form,
-                    coursePrice: parseInt(e.target.value) || 0,
+                    coursePrice: parseInt(e.target.value),
                   })
                 )
               }

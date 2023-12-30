@@ -75,7 +75,7 @@ const Login = () => {
 
   return (
     <div className="flex h-full">
-      <div className="absolute items-center hidden h-screen bg-[#D0F4DE] lg:w-2/6 lg:py-48 lg:px-16 xl:px-28 xl:py-60 md:hidden lg:block lg:relative md:absolute -z-50">
+      <div className="absolute items-center hidden h-screen bg-[#DCE0E8] lg:w-2/6 lg:py-48 lg:px-16 xl:px-28 xl:py-60 md:hidden lg:block lg:relative md:absolute -z-50">
         <img className="w-96" src="/Logo_2.png" alt="icon" />
       </div>
       {/* <div className="absolute px-20 -mt-5 md:-mt-20 md:px-44 lg:hidden">

@@ -140,7 +140,7 @@ const FormAddCourse = ({ setImageFile }) => {
           <input
             onChange={(e) =>
               dispatch(
-                setForm({ ...form, coursePrice: parseInt(e.target.value) || 0 })
+                setForm({ ...form, coursePrice: parseInt(e.target.value) })
               )
             }
             type="number"
@@ -262,7 +262,7 @@ const FormAddCourse = ({ setImageFile }) => {
               dispatch(
                 setForm({
                   ...form,
-                  courseRating: parseFloat(e.target.value) || 0,
+                  rating: parseFloat(e.target.value) || 0,
                 })
               )
             }

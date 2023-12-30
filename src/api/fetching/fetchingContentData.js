@@ -38,12 +38,17 @@ const postContentData = async (formData, token, id) => {
     },
   });
 };
-const patchContentData = async (formData, token, id) => {
-  await api.patch(`/chapter/update/${id}`, formData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+const patchContentData = async (formData, token, chapterid, contentId) => {
+  await api.patch(
+    `/content/update-bylink/${chapterid}/${contentId}`,
+    formData,
+    {
+      headers: {
+        // "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
 
 const deletetingContentData = async (id, token) => {

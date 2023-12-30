@@ -71,12 +71,13 @@ const createCourseData =
       toastify({ message: "Berhasil menambahkan kelas", type: "success" });
       navigate("/dashboard/course-management");
     } catch (err) {
-      if (err.response.data.message) {
-        alert("Harap isi formulir yang diberi tanda *");
-      }
+      // if (err.response.data.message) {
+      //   alert("Harap isi formulir yang diberi tanda *");
+      // }
       if (err.response.status === 400) {
         alert("Untuk memberikan diskon harga kelas harus diatas Rp.10.000");
       }
+      console.log(err.response.data.message);
     } finally {
       setLoading(false);
     }
