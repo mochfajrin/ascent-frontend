@@ -9,7 +9,7 @@ import DetailCoursePage from "./pages/course-management-page/detail-course-page/
 import store from "./redux/store";
 import AddCoursePage from "./pages/course-management-page/add-course-page/AddCoursePage";
 import ChapterCoursePage from "./pages/chapter-course-page/ChapterCoursePage";
-import UpdateCoursePage from "./pages/course-management-page/update-course-page/updateCoursePage";
+import UpdateCoursePage from "./pages/course-management-page/update-course-page/UpdateCourse";
 //
 const App = () => {
   return (
