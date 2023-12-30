@@ -51,7 +51,7 @@ const UpdateCoursePage = () => {
           <h1 className="text-3xl font-bold">Update data kelas</h1>
           <Link
             to={"/dashboard/course-management"}
-            className="text-black flex flex-row items-center space-x-2 mt-1 mb-1"
+            className="flex flex-row items-center mt-1 mb-1 space-x-2 text-black"
           >
             <svg
               className="w-4 h-4 "
@@ -71,7 +71,7 @@ const UpdateCoursePage = () => {
 
             <p className="text-lg"> Kembali</p>
           </Link>
-          <div className="bg-slate-50 w-full p-4 rounded-lg shadow-lg">
+          <div className="w-full p-4 rounded-lg shadow-lg bg-slate-50">
             <FormUpdateCourse
               setImageFile={setImageFile}
               courseData={courseData}
