@@ -15,6 +15,7 @@ import {
 import {
   createContentData,
   deleteContentData,
+  updateContentData,
 } from "../../redux/actions/contentAction";
 import AddCourseButton from "./components/AddButton";
 import ModalAddChapter from "./components/ModalAddChapter";
@@ -23,10 +24,12 @@ import ValidationDeleteModal from "../../components/ValidationDeleteModal";
 import AddContentButton from "./components/AddContentButton";
 import ModalAddContent from "./components/ModalAddContent";
 import AddChapterButton from "./components/AddButton";
-import UpdateButton from "./components/UpdateButton";
-import ModalUpdateContent from "./components/ModalUpdateChapter";
+import UpdateButton from "./components/UpdateContentButton";
 import ModalUpdateChapter from "./components/ModalUpdateChapter";
 import noContent from "../../../src/assets/icons/no-content.png";
+import chapterIcon from "../../assets/icons/chapter.png";
+import UpdateContentButton from "./components/UpdateContentButton";
+import ModalUpdateContent from "./components/ModalUpdateContent";
 
 const ChapterCoursePage = () => {
   const dispatch = useDispatch();
@@ -42,6 +45,8 @@ const ChapterCoursePage = () => {
   const [openAddContentModal, setOpenAddContentModal] = useState(false);
   const [openUpdateContentModal, setOpenUpdateContentModal] = useState(false);
   const [openUpdateChapterModal, setOpenUpdateChapterModal] = useState(false);
+
+  console.log(openUpdateContentModal);
 
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -139,6 +144,27 @@ const ChapterCoursePage = () => {
             }
             closeModal={() => setOpenUpdateChapterModal(false)}
           />
+
+          <ModalUpdateContent
+            openModal={openUpdateContentModal}
+            updateContent={() =>
+              dispatch(
+                updateContentData(
+                  setUpdateLoading,
+                  chapterId,
+                  contentId,
+                  () => {
+                    toggleRefresh((prev) => !prev);
+                    setOpenUpdateContentModal(false);
+                    navigate(
+                      `/dashboard/course-management/chapter-course/${courseId}`
+                    );
+                  }
+                )
+              )
+            }
+            closeModal={() => setOpenUpdateContentModal(false)}
+          />
           <ValidationDeleteModal
             openModal={openDeleteModal}
             setCloseModal={cancelDeleteChapter}
@@ -156,7 +182,12 @@ const ChapterCoursePage = () => {
             <AddDataLoading loadingText={"Memperbarui data kelas"} />
           ) : (
             <div className="space-y-5">
-              <div className="text-4xl font-bold">Bab kelas</div>
+              <div className="text-4xl font-bold flex flex-row items-center space-x-3">
+                <div>Bab kelas </div>
+                <span>
+                  <img className="w-9" src={chapterIcon} alt="" />
+                </span>
+              </div>
               <h1 className="text-2xl font-semibold">
                 {courseData.courseName}
               </h1>
@@ -188,13 +219,14 @@ const ChapterCoursePage = () => {
                   buttonText={"Tambah bab"}
                 />
               </div>
+
               <Accordion className="mt-3">
-                {chaptersData.map((data, i) => (
+                {chaptersData.map((dataChapter, i) => (
                   <Accordion.Panel key={i}>
                     <Accordion.Title>
                       <div className="flex flex-row items-center space-x-6">
                         <div className="text-lg font-semibold">
-                          {data.chapterTitle}
+                          {dataChapter.chapterTitle}
                         </div>
                       </div>
                     </Accordion.Title>
@@ -202,10 +234,10 @@ const ChapterCoursePage = () => {
                       <div className="flex flex-row space-x-2 justify-end ">
                         <AddContentButton
                           setOpenModal={() => setOpenAddContentModal(true)}
-                          routePath={`/dashboard/course-management/chapter-course/${courseId}/add-content/${data.id}`}
+                          routePath={`/dashboard/course-management/chapter-course/${courseId}/add-content/${dataChapter.id}`}
                         />
                         <Link
-                          to={`/dashboard/course-management/chapter-course/${courseId}/update-chapter/${data.id}`}
+                          to={`/dashboard/course-management/chapter-course/${courseId}/update-chapter/${dataChapter.id}`}
                         >
                           <UpdateButton
                             buttonText={"Perbarui bab"}
@@ -213,7 +245,7 @@ const ChapterCoursePage = () => {
                           />
                         </Link>
                         <Link
-                          to={`/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${data.id}`}
+                          to={`/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${dataChapter.id}`}
                         >
                           <button
                             onClick={() => setOpenDeleteModal(true)}
@@ -239,7 +271,7 @@ const ChapterCoursePage = () => {
                           </button>
                         </Link>
                       </div>
-                      {data.contents.length === 0 ? (
+                      {dataChapter.contents.length === 0 ? (
                         // <div className="text-lg"> Belum ada konten</div>
                         <div className="flex flex-row justify-center mt-20 mb-9">
                           <div className="text-center">
@@ -252,7 +284,7 @@ const ChapterCoursePage = () => {
                         </div>
                       ) : (
                         <div className="grid grid-cols-2 gap-5 pt-4">
-                          {data.contents.map((data, i) => (
+                          {dataChapter.contents.map((data, i) => (
                             <div key={i}>
                               <div className="h-[450px] ">
                                 <ReactPlayer
@@ -271,31 +303,46 @@ const ChapterCoursePage = () => {
                                     {data.duration} menit
                                   </h1>
                                 </div>
-                                <Link
-                                  to={`/dashboard/course-management/chapter-course/${courseId}/delete-content/${data.id}`}
-                                >
-                                  <button
-                                    onClick={() => setOpenDeleteModal(true)}
-                                    type="button"
-                                    className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-3  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                                  >
-                                    <svg
-                                      className="w-5 h-5  dark:text-white"
-                                      aria-hidden="true"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      fill="none"
-                                      viewBox="0 0 18 20"
+                                <div className="space-x-2 flex flex-row">
+                                  <div>
+                                    <Link
+                                      to={`/dashboard/course-management/chapter-course/${courseId}/update-content/${data.id}/${dataChapter.id}`}
                                     >
-                                      <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
+                                      <UpdateContentButton
+                                        setOpenModal={() =>
+                                          setOpenUpdateContentModal(true)
+                                        }
+                                        buttonText={"Update konten"}
                                       />
-                                    </svg>
-                                  </button>
-                                </Link>
+                                    </Link>
+                                  </div>
+
+                                  <Link
+                                    to={`/dashboard/course-management/chapter-course/${courseId}/delete-content/${data.id}`}
+                                  >
+                                    <button
+                                      onClick={() => setOpenDeleteModal(true)}
+                                      type="button"
+                                      className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-3  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                    >
+                                      <svg
+                                        className="w-5 h-5  dark:text-white"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 18 20"
+                                      >
+                                        <path
+                                          stroke="currentColor"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                          d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
+                                        />
+                                      </svg>
+                                    </button>
+                                  </Link>
+                                </div>
                               </div>
                             </div>
                           ))}

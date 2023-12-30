@@ -66,7 +66,7 @@ const DetailCoursePage = () => {
                 />
               </div>
             </div>
-            <div>
+            <div className="w-[700px]">
               <ChapterList dataChapter={courseData.chapters} />
             </div>
           </div>

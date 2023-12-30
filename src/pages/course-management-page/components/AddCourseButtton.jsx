@@ -18,7 +18,7 @@ const AddCourseButton = () => {
               courseDiscountInPercent: 0,
               courseLevel: "",
               coursePrice: 0,
-              courseRating: 0,
+              rating: 0,
               intendedFor: "",
               telegramGroup: "",
               courseName: "",

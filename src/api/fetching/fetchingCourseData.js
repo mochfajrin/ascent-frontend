@@ -28,6 +28,7 @@ const fetchingFilterCourseData = async ({ filter, query }) => {
 };
 
 const postCourseData = async (formData, token) => {
+  console.log(token);
   await api.post("/course/create", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
