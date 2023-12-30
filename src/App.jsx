@@ -7,9 +7,9 @@ import CourseManagement from "./pages/course-management-page/CourseManagement";
 import LoginPage from "./pages/login-pages/Login";
 import DetailCoursePage from "./pages/course-management-page/detail-course-page/DetailCoursePage";
 import store from "./redux/store";
-import UpdateCoursePage from "./pages/course-management-page/update-course-page/updateCoursePage";
 import AddCoursePage from "./pages/course-management-page/add-course-page/AddCoursePage";
 import ChapterCoursePage from "./pages/chapter-course-page/ChapterCoursePage";
+import CoursePage from "./pages/course-management-page/update-course-page/updateCoursePage";
 
 const App = () => {
   return (
@@ -56,7 +56,7 @@ const App = () => {
               <Route path={"add-course"} element={<AddCoursePage />} />
               <Route
                 path={"update-course/:courseId"}
-                element={<UpdateCoursePage />}
+                element={<CoursePage />}
               />
             </Route>
           </Route>
