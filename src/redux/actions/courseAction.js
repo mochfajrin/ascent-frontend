@@ -102,9 +102,7 @@ const updateCourseData =
       toastify({ message: "Berhasil memperbarui data kelas", type: "success" });
       navigate("/dashboard/course-management");
     } catch (err) {
-      if (err.response.status === 400) {
-        alert(err.response.data.message);
-      }
+      console.log(err.response.data.message);
     } finally {
       setLoading(false);
     }

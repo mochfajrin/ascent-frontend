@@ -153,7 +153,7 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                               courseCode: "",
                               courseDiscountInPercent: "",
                               courseLevel: "",
-                              coursePrice: "",
+                              coursePrice: data.coursePrice,
                               rating: "",
                               intendedFor: "",
                               telegramGroup: "",

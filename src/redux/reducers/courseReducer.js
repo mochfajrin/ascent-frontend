@@ -13,7 +13,7 @@ const courseSlice = createSlice({
       telegramGroup: "",
       intendedFor: "",
       coursePrice: "",
-      // courseDiscountInPercent: "",
+      courseDiscountInPercent: "",
       rating: "",
     },
     labelNewData: false,
