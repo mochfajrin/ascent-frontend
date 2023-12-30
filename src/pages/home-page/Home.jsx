@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiMoneyWithdraw } from "react-icons/bi";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import AOS from "aos";
 
 import CardStatistic from "../../components/CardStatistic";
@@ -15,6 +15,7 @@ import TableFilter from "../../components/TableFilter";
 import SearchInput from "../../components/SearchInput";
 import ResetButton from "../course-management-page/components/ResetButton";
 import PieChart from "./components/PieChart";
+import Pagination from "../../components/Pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,11 +26,36 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [loadingTable, setLoadingTable] = useState(false);
   const [defaultValue, setDefaultValue] = useState(false);
+  const [curentPage, setCurrentPage] = useState(1);
 
   const { transactionData } = useSelector((state) => state.transaction);
 
+  const recordsPerPage = 5;
+  const lastIndex = curentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = transactionData.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(transactionData.length / recordsPerPage);
+  const numbers = [...Array(npage + 1).keys()].slice(1);
+
+  const prefPage = () => {
+    if (curentPage !== 1) {
+      setCurrentPage(curentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (curentPage !== npage) {
+      setCurrentPage(curentPage + 1);
+    }
+  };
+
+  const changeCpage = (i) => {
+    setCurrentPage(i);
+  };
+
   const settingDefaultValue = () => {
     setDefaultValue(false);
+    setCurrentPage(1);
     // navigate("/dashboard");
   };
 
@@ -100,7 +126,7 @@ const Home = () => {
                 />
                 <SearchInput
                   defaultValue={defaultValue}
-                  setDefaultValue={() => setDefaultValue(false)}
+                  setDefaultValue={settingDefaultValue}
                   placeholder={"Cari pelanggan..."}
                 />
                 <ResetButton
@@ -109,10 +135,20 @@ const Home = () => {
                 />
               </div>
               <TableTransaction
+                setCurrentPage={setCurrentPage}
+                curentPage={curentPage}
                 colom={tableColumns}
                 dataTable={transactionData}
                 showButtonAction={false}
                 loading={loadingTable}
+                records={records}
+              />
+              <Pagination
+                prefPage={prefPage}
+                numbers={numbers}
+                changeCpage={changeCpage}
+                curentPage={curentPage}
+                nextPage={nextPage}
               />
             </div>
             <div>

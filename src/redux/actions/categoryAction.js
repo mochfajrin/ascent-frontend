@@ -4,7 +4,6 @@ import { setCategoryData } from "../reducers/categoryReducer";
 const getCategoryData = (setLoading) => async (dispatch) => {
   try {
     const res = await fetchingCategoryData();
-    console.log(res);
     dispatch(setCategoryData(res));
   } catch (err) {
     throw new Error(err.message);

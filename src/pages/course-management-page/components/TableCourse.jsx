@@ -6,14 +6,12 @@ import noResultPng from "../../../assets/icons/no-results.png";
 import "aos/dist/aos.css";
 import { setForm } from "../../../redux/reducers/courseReducer";
 
-const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
+const TableCourse = ({ colom, records, loading, setOpenModal }) => {
   const { labelNewData } = useSelector((state) => state.course);
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const { form } = useSelector((state) => state.course);
   const dispatch = useDispatch();
-
-  // const {form} =
 
   const queryType = searchParams.get("type");
   const querySearch = searchParams.get("search");
@@ -45,7 +43,7 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
           </thead>
 
           <tbody>
-            {dataTable.length === 0 ? (
+            {records.length === 0 ? (
               <tr>
                 <td colSpan={colom.length}>
                   <div data-aos="zoom-in">
@@ -68,7 +66,7 @@ const TableCourse = ({ colom, dataTable, loading, setOpenModal }) => {
                 </td>
               </tr>
             ) : (
-              dataTable.map((data, i) => (
+              records.map((data, i) => (
                 <tr
                   key={i}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"

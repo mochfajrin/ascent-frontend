@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  useNavigate,
-  useParams,
-  useSearchParams,
-  useLocation,
-} from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import AOS from "aos";
 
 import { SiGoogleclassroom } from "react-icons/si";
@@ -17,17 +12,16 @@ import {
   getCourseData,
   getFilterCourseData,
   deleteCourseData,
-  getCourseDataById,
 } from "../../redux/actions/courseAction";
 
 import SearchInput from "../../components/SearchInput";
 import TableFilter from "../../components/TableFilter";
 import AddCourseButton from "./components/AddCourseButtton";
 import ResetButton from "./components/ResetButton";
+import Pagination from "../../components/Pagination";
 
 const CourseManagement = () => {
   const [searchParams] = useSearchParams();
-  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -36,7 +30,38 @@ const CourseManagement = () => {
   const [loadingTable, setLoadingTable] = useState(false);
   const [refresh, toggleRefresh] = useState(false);
   const [defaultValue, setDefaultValue] = useState(false);
+  const [curentPage, setCurrentPage] = useState(1);
+
   const { courseData } = useSelector((state) => state.course);
+
+  const recordsPerPage = 9;
+  const lastIndex = curentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = courseData.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(courseData.length / recordsPerPage);
+  const numbers = [...Array(npage + 1).keys()].slice(1);
+
+  const prefPage = () => {
+    if (curentPage !== 1) {
+      setCurrentPage(curentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (curentPage !== npage) {
+      setCurrentPage(curentPage + 1);
+    }
+  };
+
+  const changeCpage = (i) => {
+    setCurrentPage(i);
+  };
+
+  const settingDefaultValue = () => {
+    setDefaultValue(false);
+    setCurrentPage(1);
+    // navigate("/dashboard");
+  };
 
   const navigateWithQuery = () => {
     const queryType = searchParams.get("type");
@@ -132,13 +157,13 @@ const CourseManagement = () => {
             <div className="flex flex-row space-x-3 justify-end ">
               <AddCourseButton />
               <TableFilter
-                setDefaultValue={() => setDefaultValue(false)}
+                setDefaultValue={settingDefaultValue}
                 defaultValue={defaultValue}
                 filter={["Premium", "Free"]}
               />
               <SearchInput
                 defaultValue={defaultValue}
-                setDefaultValue={() => setDefaultValue(false)}
+                setDefaultValue={settingDefaultValue}
                 placeholder={"Cari kelas..."}
               />
               <ResetButton
@@ -152,6 +177,14 @@ const CourseManagement = () => {
               dataTable={courseData}
               setOpenModal={() => setOpenModal(true)}
               loading={loadingTable}
+              records={records}
+            />
+            <Pagination
+              prefPage={prefPage}
+              numbers={numbers}
+              changeCpage={changeCpage}
+              curentPage={curentPage}
+              nextPage={nextPage}
             />
           </div>
         </div>
