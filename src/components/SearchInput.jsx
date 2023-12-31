@@ -53,11 +53,11 @@ const SearchInput = ({ defaultValue, setDefaultValue, placeholder }) => {
         placeholder={placeholder}
         id="search_movie"
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="min-w-full text-black rounded-lg border-2 border-[#6148FF] bg-transparent px-4 pr-12 py-2  outline-none  focus:ring-[#6148FF]"
+        className="min-w-full text-black rounded-lg border-2 border-[#0093A3] bg-transparent px-4 pr-12 py-2  outline-none  focus:ring-[#0093A3] focus:border-[#0093A3]"
       />
       <button
         type="submit"
-        className="absolute bottom-1/2 h-11 w-10 right-[0.5px] rounded-r-lg translate-y-1/2  bg-[#6148FF] p-2.5"
+        className="absolute bottom-1/2 h-11 w-10 right-[0.5px] rounded-r-lg translate-y-1/2  bg-[#0093A3] p-2.5"
       >
         <BsSearch className="h-5 w-5 text-white" />
       </button>

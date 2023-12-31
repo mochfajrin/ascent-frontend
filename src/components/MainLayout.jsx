@@ -13,7 +13,7 @@ const MainLayout = () => {
         <SideBar />
       </div>
 
-      <div className=" pt-24 xl:pt-32 pb-16  md:ml-44 md:mr-4 lg:ml-52 lg:mr-6 xl:ml-72 xl:mr-8 ">
+      <div className=" pt-24 xl:pt-32 pb-16   md:ml-44 md:mr-4 lg:ml-52 lg:mr-6 xl:ml-72 xl:mr-8 ">
         <Outlet />
         <ToastContainer
           position="top-center"

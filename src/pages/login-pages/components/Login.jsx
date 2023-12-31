@@ -74,20 +74,30 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-full">
-      <div className="absolute items-center hidden h-screen bg-[#DCE0E8] lg:w-2/6 lg:py-48 lg:px-16 xl:px-28 xl:py-60 md:hidden lg:block lg:relative md:absolute -z-50">
-        <img className="w-96" src="/Logo_2.png" alt="icon" />
+    <div className=" flex h-screen flex-row items-center font-montserrat">
+      <div className="  h-full flex flex-col justify-between border-r shadow-xl space-y-0">
+        <div className=" flex  flex-col items-center my-auto">
+          <div>
+            <img className="w-52  " src="/Logo_2.png" alt="icon" />
+          </div>
+          <h1 className="text-4xl font-extrabold mt-8">
+            Dashboard <span className="text-[#0092A4]">Ascent</span>
+          </h1>
+        </div>
+        <div className="text-center"></div>
+
+        <img className="w-[550px]" src="/coding-pana.png" alt="" />
       </div>
-      {/* <div className="absolute px-20 -mt-5 md:-mt-20 md:px-44 lg:hidden">
-        <img src="/logo-course.svg" alt="icon" className="" />
-      </div> */}
-      <div className="w-full h-screen px-10 py-48 bg-[#DCE0E8] lg:w-4/6 md:px-44 md:py-60 lg:py-44 lg:px-36 xl:px-64 xl:py-64 lg:bg-white">
-        <h1 className="flex justify-center text-2xl font-extrabold text-white lg:text-[#0092A4] lg:mb-4 md:text-white font-montserrat">
-          Login
-        </h1>
+
+      <div className="w-[600px] mx-auto h-96">
+        <div>
+          <h1 className="flex justify-center text-2xl font-extrabold  text-[#0092A4] lg:mb-4  font-montserrat">
+            Login
+          </h1>
+        </div>
         <div className="">
           <div className="relative mb-4">
-            <label className="text-sm text-white font-montserrat lg:text-black md:text-white">
+            <label className="text-base font-bold text-[#0092A4]  font-montserrat  ">
               Email
             </label>
             <input
@@ -96,14 +106,14 @@ const Login = () => {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 w-full px-4 mt-1 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-700 shadow-sm appearance-none font-montserrat rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#0092A4] focus:border-transparent"
+              className="flex-1 w-full px-4 mt-1 text-base text-gray-700 placeholder-gray-400 bg-white  border-gray-700 shadow-sm appearance-none font-montserrat rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#0092A4] focus:border-transparent"
               placeholder="Contoh:jhoneDoe@gmail.com"
               required
             />
           </div>
           <div className="relative">
             <div className="flex items-center justify-between mb-1">
-              <label className="text-sm text-white font-montserrat lg:text-black md:text-white">
+              <label className="text-sm text-[#0092A4] font-montserrat font-bold ">
                 Password
               </label>
             </div>
@@ -143,7 +153,7 @@ const Login = () => {
         {alertMessage && (
           <div
             data-aos="fade-up"
-            className={`flex justify-center items-center w-3/4 md:w-1/2 mx-auto mt-10 text-sm font-montserrat py-3 rounded-lg ${
+            className={`flex justify-center items-center w-3/4 md:w-1/2 mx-auto mt-12 text-sm font-montserrat py-3 rounded-lg ${
               alertMessage.includes("Anda berhasil login")
                 ? "bg-green-500 text-white"
                 : "bg-[#FF0000] text-white"

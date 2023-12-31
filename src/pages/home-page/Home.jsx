@@ -5,7 +5,6 @@ import { useSearchParams } from "react-router-dom";
 import AOS from "aos";
 
 import CardStatistic from "../../components/CardStatistic";
-import LoadingSkeleton from "../../components/LoadingSkeleton";
 import {
   getFilterTransactionData,
   getTransactionData,
@@ -16,6 +15,7 @@ import SearchInput from "../../components/SearchInput";
 import ResetButton from "../course-management-page/components/ResetButton";
 import PieChart from "./components/PieChart";
 import Pagination from "../../components/Pagination";
+import LoadingSkeletonHome from "./components/LoadingSkeletonHome";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -106,15 +106,15 @@ const Home = () => {
   return (
     <>
       {loading ? (
-        <LoadingSkeleton />
+        <LoadingSkeletonHome />
       ) : (
         <div>
           <CardStatistic />
           <div className="flex flex-row  justify-between items-center space-x-3 mt-16 md:mt-12 ">
             <div className=" max-md:ml-8 w-full">
               <div className="flex flex-row space-x-2 items-centers">
-                <p className="text-xl font-bold md:text-2xl ">
-                  Status pembayaran
+                <p className="text-xl font-bold md:text-2xl text-[#303A2B]   ">
+                  Status <span className="text-[#0092A4]">pembayaran</span>
                 </p>
                 <BiMoneyWithdraw className="text-4xl text-green-500" />
               </div>
@@ -134,22 +134,24 @@ const Home = () => {
                   setDefaultValue={() => setDefaultValue(true)}
                 />
               </div>
-              <TableTransaction
-                setCurrentPage={setCurrentPage}
-                curentPage={curentPage}
-                colom={tableColumns}
-                dataTable={transactionData}
-                showButtonAction={false}
-                loading={loadingTable}
-                records={records}
-              />
-              <Pagination
-                prefPage={prefPage}
-                numbers={numbers}
-                changeCpage={changeCpage}
-                curentPage={curentPage}
-                nextPage={nextPage}
-              />
+              <div className="h-96">
+                <TableTransaction
+                  setCurrentPage={setCurrentPage}
+                  curentPage={curentPage}
+                  colom={tableColumns}
+                  dataTable={transactionData}
+                  showButtonAction={false}
+                  loading={loadingTable}
+                  records={records}
+                />
+                <Pagination
+                  prefPage={prefPage}
+                  numbers={numbers}
+                  changeCpage={changeCpage}
+                  curentPage={curentPage}
+                  nextPage={nextPage}
+                />
+              </div>
             </div>
             <div>
               <PieChart />

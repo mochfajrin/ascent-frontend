@@ -24,7 +24,7 @@ const FormAddCourse = ({ setImageFile }) => {
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2   text-[#0092A4] font-semibold"
           >
             Kode kelas : <span className="text-red-600 font-bold">*</span>
           </label>
@@ -35,13 +35,13 @@ const FormAddCourse = ({ setImageFile }) => {
             type="text"
             id="base-input"
             placeholder="Beri kode kelas"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-[#0092A4] font-semibold"
           >
             Nama kelas : <span className="text-red-600 font-bold">*</span>
           </label>
@@ -52,13 +52,13 @@ const FormAddCourse = ({ setImageFile }) => {
             type="text"
             id="base-input"
             placeholder="Beri nama kelas"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="mb-5">
           <label
             htmlFor="countries"
-            className="block mb-2 font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-[#0092A4] font-semibold"
           >
             Level kelas : <span className="text-red-600 font-bold">*</span>
           </label>
@@ -67,7 +67,7 @@ const FormAddCourse = ({ setImageFile }) => {
               dispatch(setForm({ ...form, courseLevel: e.target.value || "" }))
             }
             id="countries"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option defaultValue="">Pilih level kelas</option>
             <option value="Beginner">Beginner</option>
@@ -78,7 +78,7 @@ const FormAddCourse = ({ setImageFile }) => {
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2  text-[#0092A4] font-semibold"
           >
             Tentang kelas : <span className="text-red-600 font-bold">*</span>
           </label>
@@ -88,7 +88,7 @@ const FormAddCourse = ({ setImageFile }) => {
             }
             id="message"
             rows="4"
-            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-[#0092A4] focus:border-[#0092A4]  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Masukkan data tentang kelas"
           ></textarea>
         </div>
@@ -96,7 +96,7 @@ const FormAddCourse = ({ setImageFile }) => {
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2  text-[#0092A4] font-semibold"
           >
             Kelas ini ditujukan untuk :{" "}
             <span className="text-red-600 font-bold">*</span>
@@ -107,14 +107,14 @@ const FormAddCourse = ({ setImageFile }) => {
             }
             type="text"
             id="base-input"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Contoh: Untuk pemula yang ingin menjadi profesional, untuk menjadi andorid dev"
           />
         </div>
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2  text-[#0092A4] font-semibold"
           >
             Grub kelas : <span className="text-red-600 font-bold">*</span>
           </label>
@@ -124,7 +124,7 @@ const FormAddCourse = ({ setImageFile }) => {
             }
             type="text"
             id="base-input"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Beri url grub kelas"
           />
         </div>
@@ -133,7 +133,7 @@ const FormAddCourse = ({ setImageFile }) => {
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2  text-[#0092A4] font-semibold"
           >
             Harga kelas (Rp) :
           </label>
@@ -147,12 +147,12 @@ const FormAddCourse = ({ setImageFile }) => {
             id="base-input"
             min="0"
             placeholder="masukkan harga kelas"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="mb-3  ">
           <label
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm text-[#0092A4] font-semibold"
             htmlFor="default_size"
           >
             Unggah gambar kelas :{" "}
@@ -173,17 +173,14 @@ const FormAddCourse = ({ setImageFile }) => {
             id="default_size"
             type="file"
           />
-          <p
-            className="mt-1 text-xs text-gray-500 dark:text-gray-300"
-            id="file_input_help"
-          >
+          <p className="mt-1 text-xs text-[#0092A4]" id="file_input_help">
             SVG, PNG, or JPG
           </p>
         </div>
         <div className="mb-5">
           <label
             htmlFor="countries"
-            className="block mb-2 font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-[#0092A4] font-semibold"
           >
             Kategori kelas : <span className="text-red-600 font-bold">*</span>
           </label>
@@ -194,7 +191,7 @@ const FormAddCourse = ({ setImageFile }) => {
               )
             }
             id="countries"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option defaultValue="">Beri kategori kelas</option>
             <option value={1}>UI/UX Design</option>
@@ -209,14 +206,14 @@ const FormAddCourse = ({ setImageFile }) => {
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2  text-[#0092A4] font-semibold"
           >
             Beri diskon ? :
           </label>
           <select
             onChange={(e) => showInputDiscount(e)}
             id="countries"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option defaultValue="">Beri diskon kelas ?</option>
             <option value={true}>Iya</option>
@@ -245,7 +242,7 @@ const FormAddCourse = ({ setImageFile }) => {
               min="0"
               max="100"
               placeholder="Beri diskon pada kelas"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
         )}
@@ -253,7 +250,7 @@ const FormAddCourse = ({ setImageFile }) => {
         <div className="mb-5">
           <label
             htmlFor="base-input"
-            className="block mb-2  font-medium text-gray-900 dark:text-white"
+            className="block mb-2  text-[#0092A4] font-semibold"
           >
             Beri rating : <span className="text-red-600 font-bold">*</span>
           </label>
@@ -272,7 +269,7 @@ const FormAddCourse = ({ setImageFile }) => {
             max="10"
             step="0.1"
             placeholder="Beri rating pada kelas"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#0092A4] focus:border-[#0092A4]  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
       </form>

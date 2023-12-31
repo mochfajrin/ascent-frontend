@@ -12,7 +12,7 @@ const ResetButton = ({ setDefaultValue, routePath }) => {
     <button
       onClick={resetHabdle}
       type="button"
-      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg flex flex-row gap-2 text-sm p-3 me-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      className="text-white bg-[#6C464E] hover:bg-[#492f35] focus:ring-4 focus:ring-[#6C464E] font-medium rounded-lg flex flex-row gap-2 text-sm p-3 me-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
     >
       <svg
         className="w-5 h-5 dark:text-white"

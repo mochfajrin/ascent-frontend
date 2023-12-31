@@ -17,47 +17,37 @@ const PieChart = () => {
 
   return (
     <>
-      {loading ? (
-        <div>
-          <img
-            src="/Logo_2.png"
-            alt="ascent logo"
-            className="mx-auto w-48 py-28 animate-bounce"
-          />
-        </div>
-      ) : (
-        <div className="w-[500px]">
-          <PolarArea
-            data={{
-              labels: categoryData.map((data) => data.categoryName),
-              datasets: [
-                {
-                  data: categoryData.map((data) => data.Courses.length),
-                  backgroundColor: [
-                    "rgba(43, 63, 229, 0.8)",
-                    "rgba(250, 192, 19, 0.8)",
-                    "rgba(253, 135, 135, 0.8)",
-                    "rgba(34, 193, 195, 0.8)",
-                    "rgba(0, 128, 0, 0.8)",
-                    "rgba(255, 69, 0, 0.8)",
-                  ],
-                },
-              ],
-            }}
-            options={{
-              plugins: {
-                title: {
-                  display: true,
-                  text: "Total jumlah kelas dalam setiap kategori",
-                  font: {
-                    size: 22,
-                  },
+      <div className="w-[500px]">
+        <PolarArea
+          data={{
+            labels: categoryData.map((data) => data.categoryName),
+            datasets: [
+              {
+                data: categoryData.map((data) => data.Courses.length),
+                backgroundColor: [
+                  "#AF5B5B",
+                  "#183059",
+                  "#95A472",
+                  "#FCAB10",
+                  "#6B4E71",
+                  "rgba(255, 69, 0, 0.8)",
+                ],
+              },
+            ],
+          }}
+          options={{
+            plugins: {
+              title: {
+                display: true,
+                text: "Total jumlah kelas dalam setiap kategori",
+                font: {
+                  size: 22,
                 },
               },
-            }}
-          />
-        </div>
-      )}
+            },
+          }}
+        />
+      </div>
     </>
   );
 };

@@ -10,14 +10,14 @@ const Pagination = ({
   return (
     <nav
       aria-label="Page navigation example"
-      className="flex flex-row justify-center mt-6"
+      className="flex flex-row justify-center mt-6 text-base"
     >
-      <ul className="inline-flex -space-x-px text-sm">
+      <ul className="inline-flex -space-x-px shadow-md rounded-lg">
         <li>
           <a
             onClick={prefPage}
             href="#"
-            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-[#0093A3] hover:text-white bg-white border border-e-0 border-[#0093A3] rounded-s-lg hover:bg-[#0093A3] "
           >
             Previous
           </a>
@@ -29,8 +29,10 @@ const Pagination = ({
               onClick={() => changeCpage(data)}
               href="#"
               className={`flex ${
-                curentPage === data ? "bg-gray-100" : "bg-white"
-              } items-center justify-center px-3 h-8 leading-tight text-gray-500  border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                curentPage === data
+                  ? "bg-[#0093A3] text-white  "
+                  : "bg-white   text-[#303A2B] "
+              } items-center justify-center px-3 h-8 leading-tight  hover:text-white border border-[#0093A3] hover:bg-[#0093A3]  `}
             >
               {data}
             </a>
@@ -41,7 +43,7 @@ const Pagination = ({
           <a
             onClick={nextPage}
             href="#"
-            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="flex items-center justify-center px-3 h-8 leading-tight text-[#0093A3] hover:text-white bg-white border border-[#0093A3] rounded-e-lg hover:bg-[#0093A3]"
           >
             Next
           </a>

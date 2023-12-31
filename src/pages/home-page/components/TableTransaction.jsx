@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-import noResultPng from "../../../assets/icons/no-results.png";
 import "aos/dist/aos.css";
+import courseNotFound from "../../../assets/icons/course-not-found.svg";
+import LoadingDataTable from "../../../components/LoadingDataTable";
 
 const TableTransaction = ({ colom, loading, records }) => {
   return (
-    <div className="relative overflow-x-auto mt-2">
-      <table className="w-full mt-3 text-sm text-left text-gray-500 rtl:text-right  ">
-        <thead className="text-xs text-gray-700 uppercase bg-[#EBF3FC]">
+    <div className="relative overflow-x-auto mt-2  ">
+      <table className="w-full mt-3 text-sm text-center text-[#303A2B]  rtl:text-right border">
+        <thead className="text-xs text-white uppercase bg-[#0093A3]  ">
           <tr>
             {colom.map((data, i) => (
               <th key={i} scope="col" className="px-6 py-3">
@@ -16,27 +17,30 @@ const TableTransaction = ({ colom, loading, records }) => {
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="text-sm">
           {records.length === 0 ? (
             <tr>
-              <td colSpan={colom.length}>
-                <div data-aos="zoom-in">
-                  <img
-                    src={noResultPng}
-                    alt="ascent logo"
-                    className="mx-auto w-48 py-28"
-                  />
+              <td colSpan={colom.length} className="text-center">
+                <div className="py-12">
+                  <div data-aos="zoom-in">
+                    <img
+                      src={courseNotFound}
+                      alt="ascent logo"
+                      className="mx-auto w-64 pt-10"
+                    />
+                    <h1 className="mt-8 text-lg font-bold">
+                      Data transaksi tidak ditemukan
+                    </h1>
+                  </div>
                 </div>
               </td>
             </tr>
           ) : loading ? (
             <tr>
               <td colSpan={colom.length}>
-                <img
-                  src="/Logo_2.png"
-                  alt="ascent logo"
-                  className="mx-auto w-48 py-28 animate-bounce"
-                />
+                <div className="flex flex-row justify-center my-10">
+                  <LoadingDataTable />
+                </div>
               </td>
             </tr>
           ) : (
@@ -54,11 +58,11 @@ const TableTransaction = ({ colom, loading, records }) => {
                 <td className="px-6 py-4 space-x-3">
                   {data.User ? data.User.name : "-"}
                 </td>
-                <td className="px-6 py-4 space-x-3">
+                <td className="px-6 py-4 space-x-3 text-left">
                   {data.courseName ?? "-"}
                 </td>
                 <td
-                  className={`px-6 py-4 space-x-3 font-bold ${
+                  className={`px-6 py-4 space-x-3 font-extrabold ${
                     data.paymentStatus === "unpaid"
                       ? "text-[#ff4848]"
                       : "text-green-500"
@@ -73,11 +77,12 @@ const TableTransaction = ({ colom, loading, records }) => {
                     ? data.paymentMethod.replace(/_/g, " ")
                     : "-"}
                 </td>
-                <td className="px-6 py-4 space-x-3">
+                <td className="px-6 py-4 space-x-3  text-green-400">
                   Rp.
                   {data.totalPrice
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ".") ?? "-"}
+                  ,00
                 </td>
               </tr>
             ))

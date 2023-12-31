@@ -15,10 +15,12 @@ const AddCoursePage = () => {
   return (
     <>
       {loading && <AddDataLoading loadingText={"Mengunggah data kelas"} />}
-      <h1 className="text-3xl font-bold">Tambah kelas</h1>
+      <h1 className="text-3xl font-bold">
+        Tambah <span className="text-[#0092A4]">kelas</span>
+      </h1>
       <Link
         to={"/dashboard/course-management"}
-        className="text-black flex flex-row items-center space-x-2 mt-1 mb-1"
+        className="hover:text-[#57b7c4]  text-[#0092A4] w-28 flex flex-row items-center space-x-2 mt-1 mb-1"
       >
         <svg
           className="w-4 h-4 "
@@ -38,7 +40,7 @@ const AddCoursePage = () => {
 
         <p className="text-lg"> Kembali</p>
       </Link>
-      <div className="bg-slate-50 w-full p-4 rounded-lg shadow-lg">
+      <div className="bg-white w-full p-3 rounded-lg shadow-lg mt-4">
         <FormAddCourse setImageFile={setImageFile} />
         <div className="flex justify-end">
           <Link>
@@ -47,7 +49,7 @@ const AddCoursePage = () => {
                 dispatch(createCourseData(imageFile, navigate, setLoading))
               }
               type="button"
-              className="focus:outline-none text-white bg-purple-700 mt-1  hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-lg px-5 py-2.5  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+              className="focus:outline-none text-white  focus:ring-4 bg-[#0092A4] hover:bg-[#469eaa] focus:ring-[#0092A4] font-medium rounded-lg text-lg px-5 py-2.5  "
             >
               Simpan
             </button>

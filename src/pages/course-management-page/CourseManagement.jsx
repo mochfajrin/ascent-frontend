@@ -6,7 +6,6 @@ import AOS from "aos";
 import { SiGoogleclassroom } from "react-icons/si";
 
 import ValidationDeleteModal from "../../components/ValidationDeleteModal";
-import LoadingSkeleton from "../../components/LoadingSkeleton";
 import TableCourse from "./components/TableCourse";
 import {
   getCourseData,
@@ -19,6 +18,7 @@ import TableFilter from "../../components/TableFilter";
 import AddCourseButton from "./components/AddCourseButtton";
 import ResetButton from "./components/ResetButton";
 import Pagination from "../../components/Pagination";
+import LoadingSkeletonCourseManagementPage from "./components/LoadingSkeletonCourseManagementPage";
 
 const CourseManagement = () => {
   const [searchParams] = useSearchParams();
@@ -37,8 +37,14 @@ const CourseManagement = () => {
   const recordsPerPage = 9;
   const lastIndex = curentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-  const records = courseData.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(courseData.length / recordsPerPage);
+  const records = Array.isArray(courseData)
+    ? courseData.slice(firstIndex, lastIndex)
+    : [];
+
+  const npage = Array.isArray(courseData)
+    ? Math.ceil(courseData.length / recordsPerPage)
+    : [];
+
   const numbers = [...Array(npage + 1).keys()].slice(1);
 
   const prefPage = () => {
@@ -98,32 +104,26 @@ const CourseManagement = () => {
   useEffect(() => {
     AOS.init({ duration: 300 });
 
-    const fetchData = () => {
-      const queryType = searchParams.get("type");
-      const querySearch = searchParams.get("search");
+    const queryType = searchParams.get("type");
+    const querySearch = searchParams.get("search");
 
-      if (queryType && querySearch) {
-        dispatch(
-          getFilterCourseData({
-            filterData: queryType,
-            queryData: querySearch,
-            setLoadingTable,
-          })
-        );
-      } else if (queryType) {
-        dispatch(
-          getFilterCourseData({ filterData: queryType, setLoadingTable })
-        );
-      } else if (querySearch) {
-        dispatch(
-          getFilterCourseData({ queryData: querySearch, setLoadingTable })
-        );
-      } else {
-        dispatch(getCourseData(setLoading));
-      }
-    };
-
-    fetchData();
+    if (queryType && querySearch) {
+      dispatch(
+        getFilterCourseData({
+          filterData: queryType,
+          queryData: querySearch,
+          setLoadingTable,
+        })
+      );
+    } else if (queryType) {
+      dispatch(getFilterCourseData({ filterData: queryType, setLoadingTable }));
+    } else if (querySearch) {
+      dispatch(
+        getFilterCourseData({ queryData: querySearch, setLoadingTable })
+      );
+    } else {
+      dispatch(getCourseData(setLoading));
+    }
   }, [dispatch, refresh, searchParams]);
 
   const tableColumns = [
@@ -138,7 +138,7 @@ const CourseManagement = () => {
   return (
     <>
       {loading ? (
-        <LoadingSkeleton />
+        <LoadingSkeletonCourseManagementPage />
       ) : (
         <div>
           <ValidationDeleteModal
@@ -147,10 +147,10 @@ const CourseManagement = () => {
             toggleDeleting={deletingCourse}
             validationText={"Apakah anda yakin ingin menghapus kelas ini ?"}
           />
-          <div className="  max-md:ml-8 ">
+          <div className="  max-md:ml-8 text-[#303A2B]   ">
             <div className="flex dlex-row items-center space-x-3">
               <p className="pb-0 text-xl font-bold md:text-2xl  ">
-                Kelola Kelas
+                Kelola <span className="text-[#0092A4]">Kelas</span>
               </p>
               <SiGoogleclassroom className="text-3xl text-lime-700" />
             </div>
