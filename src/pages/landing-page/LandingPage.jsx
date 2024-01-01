@@ -13,7 +13,7 @@ import ScrollOnTopButton from "./components/ScrollOntopButton";
 import Footer from "./components/Footer";
 import CourseCard from "./components/cards/CourseCard";
 import { getCourseData } from "../../redux/actions/courseAction";
-import LoadingPage from "./components/LoadingPage";
+import LoadingPage from "./loading-page/LoadingPage";
 
 const LandingPage = () => {
   const dispatch = useDispatch();

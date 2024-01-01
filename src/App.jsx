@@ -11,6 +11,8 @@ import AddCoursePage from "./pages/course-management-page/add-course-page/AddCou
 import ChapterCoursePage from "./pages/chapter-course-page/ChapterCoursePage";
 import UpdateCoursePage from "./pages/course-management-page/update-course-page/UpdateCourse";
 import LandingPage from "./pages/landing-page/LandingPage";
+import Protected from "./components/Protected";
+import Unauthorized from "./pages/unauthorized-page/Unauthorized";
 
 const App = () => {
   return (
@@ -18,8 +20,17 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/dashboard/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<MainLayout />}>
+
+          <Route
+            path="/dashboard"
+            element={
+              <Protected>
+                <MainLayout />
+              </Protected>
+            }
+          >
             <Route index={true} element={<Home />} />
             <Route path="course-management">
               <Route index={true} element={<CourseManagement />} />
