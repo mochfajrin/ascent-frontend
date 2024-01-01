@@ -155,7 +155,7 @@ const TableCourse = ({ colom, records, loading, setOpenModal }) => {
                           })
                         )
                       }
-                      className="focus:outline-none text-white bg-[#424874] hover:bg-[#5d639b] focus:ring-4 focus:ring-[#424874]font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                      className="focus:outline-none text-white bg-[#424874] hover:bg-[#5d639b] focus:ring-4 focus:ring-[#424874] font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 "
                     >
                       Perbarui
                     </button>

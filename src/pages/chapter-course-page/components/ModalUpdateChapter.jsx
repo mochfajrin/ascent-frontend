@@ -33,12 +33,16 @@ const ModalUpdateChapter = ({ openModal, closeModal, updateChapter }) => {
         <Modal.Body>
           <div className="space-y-6">
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-              Ganti judul bab
+              Ganti <span className="text-[#0092A4]">judul bab</span>
             </h3>
 
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="chapterTitle" value="Judul bab kelas" />
+                <Label
+                  htmlFor="chapterTitle"
+                  className="text-[#0092A4] text-md font-semibold"
+                  value="Judul bab kelas"
+                />
               </div>
               <TextInput
                 id="chapterTitle"
@@ -59,7 +63,7 @@ const ModalUpdateChapter = ({ openModal, closeModal, updateChapter }) => {
                   id="default-checkbox"
                   type="checkbox"
                   onClick={validationTogle}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="w-4 h-4 text-[#0092A4] bg-gray-100 border-gray-300 rounded focus:ring-[#0092A4] focus:border-[#0092A4] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
                   htmlFor="default-checkbox"

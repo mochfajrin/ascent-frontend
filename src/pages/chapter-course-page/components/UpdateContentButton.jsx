@@ -22,7 +22,7 @@ const UpdateContentButton = ({ setOpenModal, buttonText }) => {
     <button
       onClick={openModal}
       type="button"
-      className="flex flex-row items-center gap-2 text-white bg-blue-600 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-3 text-center  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+      className="flex flex-row items-center gap-2 text-white bg-[#424874] hover:bg-[#5d639b] focus:ring-4 focus:ring-[#424874] focus:outline-none font-medium rounded-lg text-sm px-5 py-3 text-center  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
     >
       {buttonText}
     </button>

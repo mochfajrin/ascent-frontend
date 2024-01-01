@@ -6,8 +6,8 @@ import { updateCourseData } from "../../../redux/actions/courseAction";
 import AddDataLoading from "../../../components/AddDataLoading";
 import FormUpdateCourse from "./components/FormUpdateCourse";
 import { getCourseDataById } from "../../../redux/actions/courseAction";
-import CourseDetailSkeleton from "../detail-course-page/components/CourseDetailSkeleton";
 import ValidationUpdateModal from "./components/ValidationUpdateModal";
+import LoadingSkeletonUpdateCourse from "./components/LoadingSkeletonUpdateCourse";
 
 const UpdateCoursePage = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,8 @@ const UpdateCoursePage = () => {
   return (
     <>
       {loading ? (
-        <CourseDetailSkeleton />
+        // <CourseDetailSkeleton />
+        <LoadingSkeletonUpdateCourse />
       ) : (
         <div>
           {loadingAddData && (
@@ -48,10 +49,12 @@ const UpdateCoursePage = () => {
             setCloseModal={() => setShowValidationUpdateModal(false)}
             toggleUpdate={updateHandle}
           />
-          <h1 className="text-3xl font-bold">Update data kelas</h1>
+          <h1 className="text-3xl font-bold">
+            Update <span className="text-[#0092A4]">data kelas</span>
+          </h1>
           <Link
             to={"/dashboard/course-management"}
-            className="flex flex-row items-center mt-1 mb-1 space-x-2 text-black"
+            className="flex flex-row w-24 hover:text-[#57b7c4]  text-[#0092A4] items-center mt-1 mb-1 space-x-2 "
           >
             <svg
               className="w-4 h-4 "
@@ -91,7 +94,7 @@ const UpdateCoursePage = () => {
                   // }
                   onClick={() => setShowValidationUpdateModal(true)}
                   type="button"
-                  className="focus:outline-none text-white bg-purple-700 mt-1  hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-lg px-5 py-2.5  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                  className="focus:outline-none text-white bg-[#0092A4] hover:bg-[#469eaa] focus:ring-[#0092A4] focus:ring-4  font-medium rounded-lg text-lg px-5 py-2.5  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                 >
                   Simpan
                 </button>

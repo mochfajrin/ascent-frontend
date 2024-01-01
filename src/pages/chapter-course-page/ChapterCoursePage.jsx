@@ -17,7 +17,6 @@ import {
   deleteContentData,
   updateContentData,
 } from "../../redux/actions/contentAction";
-import AddCourseButton from "./components/AddButton";
 import ModalAddChapter from "./components/ModalAddChapter";
 import AddDataLoading from "../../components/AddDataLoading";
 import ValidationDeleteModal from "../../components/ValidationDeleteModal";
@@ -30,7 +29,8 @@ import noContent from "../../../src/assets/icons/no-content.png";
 import chapterIcon from "../../assets/icons/chapter.png";
 import UpdateContentButton from "./components/UpdateContentButton";
 import ModalUpdateContent from "./components/ModalUpdateContent";
-
+import dataNotFound from "../../assets/icons/data-not-found.svg";
+import LoadingSkeletonChapter from "./components/LoadingSkeletonChapterPage";
 const ChapterCoursePage = () => {
   const dispatch = useDispatch();
   const { courseId, chapterId, contentId } = useParams();
@@ -99,7 +99,7 @@ const ChapterCoursePage = () => {
   return (
     <>
       {loading ? (
-        <CourseDetailSkeleton openModal={openAddContentModal} />
+        <LoadingSkeletonChapter />
       ) : (
         <div>
           <ModalAddContent
@@ -183,7 +183,9 @@ const ChapterCoursePage = () => {
           ) : (
             <div className="space-y-5">
               <div className="text-4xl font-bold flex flex-row items-center space-x-3">
-                <div>Bab kelas </div>
+                <div>
+                  Bab <span className="text-[#0092A4]">kelas</span>{" "}
+                </div>
                 <span>
                   <img className="w-9" src={chapterIcon} alt="" />
                 </span>
@@ -193,7 +195,7 @@ const ChapterCoursePage = () => {
               </h1>
               <Link
                 to={"/dashboard/course-management"}
-                className="text-black flex flex-row items-center space-x-2 mb-4  w-24"
+                className="hover:text-[#57b7c4]  text-[#0092A4] flex flex-row items-center space-x-2 mb-4  w-24"
               >
                 <svg
                   className="w-4 h-4 "
@@ -219,139 +221,152 @@ const ChapterCoursePage = () => {
                   buttonText={"Tambah bab"}
                 />
               </div>
-
-              <Accordion className="mt-3">
-                {chaptersData.map((dataChapter, i) => (
-                  <Accordion.Panel key={i}>
-                    <Accordion.Title>
-                      <div className="flex flex-row items-center space-x-6">
-                        <div className="text-lg font-semibold">
-                          {dataChapter.chapterTitle}
-                        </div>
-                      </div>
-                    </Accordion.Title>
-                    <Accordion.Content>
-                      <div className="flex flex-row space-x-2 justify-end ">
-                        <AddContentButton
-                          setOpenModal={() => setOpenAddContentModal(true)}
-                          routePath={`/dashboard/course-management/chapter-course/${courseId}/add-content/${dataChapter.id}`}
-                        />
-                        <Link
-                          to={`/dashboard/course-management/chapter-course/${courseId}/update-chapter/${dataChapter.id}`}
-                        >
-                          <UpdateButton
-                            buttonText={"Perbarui bab"}
-                            setOpenModal={() => setOpenUpdateChapterModal(true)}
-                          />
-                        </Link>
-                        <Link
-                          to={`/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${dataChapter.id}`}
-                        >
-                          <button
-                            onClick={() => setOpenDeleteModal(true)}
-                            type="button"
-                            className="focus:outline-none text-sm flex flex-row gap-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg  px-3 py-3  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                          >
-                            <svg
-                              className="w-5 h-5  dark:text-white"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 18 20"
-                            >
-                              <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
-                              />
-                            </svg>
-                            Hapus bab kelas
-                          </button>
-                        </Link>
-                      </div>
-                      {dataChapter.contents.length === 0 ? (
-                        // <div className="text-lg"> Belum ada konten</div>
-                        <div className="flex flex-row justify-center mt-20 mb-9">
-                          <div className="text-center">
-                            <img className="w-64" src={noContent} alt="" />
-                            <div className="text-3xl font-semibold">
-                              {" "}
-                              Belum ada konten
-                            </div>
+              {chaptersData.length === 0 ? (
+                <div className="flex flex-row justify-center mt-20 mb-9">
+                  <div className="text-center">
+                    <img className="w-96 mt-10" src={dataNotFound} alt="" />
+                    <div className="text-2xl font-semibold mt-10">
+                      {" "}
+                      Belum ada bab kelas
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                chaptersData.map((dataChapter, i) => (
+                  <Accordion key={i} className="mt-3  ">
+                    <Accordion.Panel className=" border-0">
+                      <Accordion.Title className="bg-[#0092A4] text-white hover:bg-[#57b7c4] rounded-lg">
+                        <div className="flex flex-row items-center space-x-6 text-white">
+                          <div className="text-lg font-semibold">
+                            {dataChapter.chapterTitle}
                           </div>
                         </div>
-                      ) : (
-                        <div className="grid grid-cols-2 gap-5 pt-4">
-                          {dataChapter.contents.map((data, i) => (
-                            <div key={i}>
-                              <div className="h-[450px] ">
-                                <ReactPlayer
-                                  className="react-player "
-                                  url={`https://www.youtube.com/watch?v=${data.youtubeId}`}
-                                  width="100%"
-                                  height="100%"
+                      </Accordion.Title>
+                      <Accordion.Content>
+                        <div className="flex flex-row space-x-2 justify-end ">
+                          <AddContentButton
+                            setOpenModal={() => setOpenAddContentModal(true)}
+                            routePath={`/dashboard/course-management/chapter-course/${courseId}/add-content/${dataChapter.id}`}
+                          />
+                          <Link
+                            to={`/dashboard/course-management/chapter-course/${courseId}/update-chapter/${dataChapter.id}`}
+                          >
+                            <UpdateButton
+                              buttonText={"Perbarui bab"}
+                              setOpenModal={() =>
+                                setOpenUpdateChapterModal(true)
+                              }
+                            />
+                          </Link>
+                          <Link
+                            to={`/dashboard/course-management/chapter-course/${courseId}/delete-chapter/${dataChapter.id}`}
+                          >
+                            <button
+                              onClick={() => setOpenDeleteModal(true)}
+                              type="button"
+                              className="focus:outline-none text-sm flex flex-row gap-2 text-white bg-[#FF6B6B] hover:bg-red-500 focus:ring-2 focus:ring-red-300 font-medium rounded-lg  px-3 py-3  "
+                            >
+                              <svg
+                                className="w-5 h-5  dark:text-white"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 18 20"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
                                 />
-                              </div>
-                              <div className="flex flex-row  mt-4 items-center justify-between">
-                                <div className="flex flex-row space-x-3 items-center">
-                                  <h1 className="text-xl font-semibold ">
-                                    {data.contentTitle}
-                                  </h1>
-                                  <h1 className="text-md font-normal">
-                                    {data.duration} menit
-                                  </h1>
-                                </div>
-                                <div className="space-x-2 flex flex-row">
-                                  <div>
-                                    <Link
-                                      to={`/dashboard/course-management/chapter-course/${courseId}/update-content/${data.id}/${dataChapter.id}`}
-                                    >
-                                      <UpdateContentButton
-                                        setOpenModal={() =>
-                                          setOpenUpdateContentModal(true)
-                                        }
-                                        buttonText={"Update konten"}
-                                      />
-                                    </Link>
-                                  </div>
-
-                                  <Link
-                                    to={`/dashboard/course-management/chapter-course/${courseId}/delete-content/${data.id}`}
-                                  >
-                                    <button
-                                      onClick={() => setOpenDeleteModal(true)}
-                                      type="button"
-                                      className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-3  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                                    >
-                                      <svg
-                                        className="w-5 h-5  dark:text-white"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 18 20"
-                                      >
-                                        <path
-                                          stroke="currentColor"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth="2"
-                                          d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
-                                        />
-                                      </svg>
-                                    </button>
-                                  </Link>
-                                </div>
+                              </svg>
+                              Hapus bab kelas
+                            </button>
+                          </Link>
+                        </div>
+                        {dataChapter.contents.length === 0 ? (
+                          // <div className="text-lg"> Belum ada konten</div>
+                          <div className="flex flex-row justify-center mt-20 mb-9">
+                            <div className="text-center">
+                              <img className="w-72" src={dataNotFound} alt="" />
+                              <div className="text-2xl font-semibold mt-10">
+                                {" "}
+                                Belum ada konten
                               </div>
                             </div>
-                          ))}
-                        </div>
-                      )}
-                    </Accordion.Content>
-                  </Accordion.Panel>
-                ))}
-              </Accordion>
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-2 gap-5 pt-4">
+                            {dataChapter.contents.map((data, i) => (
+                              <div key={i}>
+                                <div className="h-[450px] ">
+                                  <ReactPlayer
+                                    className="react-player "
+                                    url={`https://www.youtube.com/watch?v=${data.youtubeId}`}
+                                    width="100%"
+                                    height="100%"
+                                  />
+                                </div>
+                                <div className="flex flex-row  mt-4 items-center justify-between">
+                                  <div className="flex flex-row space-x-3 items-center">
+                                    <h1 className="text-xl font-semibold ">
+                                      {data.contentTitle}
+                                    </h1>
+                                    <h1 className="text-md font-normal">
+                                      {data.duration} menit
+                                    </h1>
+                                  </div>
+                                  <div className="space-x-2 flex flex-row">
+                                    <div>
+                                      <Link
+                                        to={`/dashboard/course-management/chapter-course/${courseId}/update-content/${data.id}/${dataChapter.id}`}
+                                      >
+                                        <UpdateContentButton
+                                          setOpenModal={() =>
+                                            setOpenUpdateContentModal(true)
+                                          }
+                                          buttonText={"Update konten"}
+                                        />
+                                      </Link>
+                                    </div>
+
+                                    <Link
+                                      to={`/dashboard/course-management/chapter-course/${courseId}/delete-content/${data.id}`}
+                                    >
+                                      <button
+                                        onClick={() => setOpenDeleteModal(true)}
+                                        type="button"
+                                        className="focus:outline-none text-white bg-[#FF6B6B] hover:bg-red-500 focus:ring-2 focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-3  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                      >
+                                        <svg
+                                          className="w-5 h-5  dark:text-white"
+                                          aria-hidden="true"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          fill="none"
+                                          viewBox="0 0 18 20"
+                                        >
+                                          <path
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
+                                          />
+                                        </svg>
+                                      </button>
+                                    </Link>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </Accordion.Content>
+                    </Accordion.Panel>
+                  </Accordion>
+                ))
+              )}
             </div>
           )}
         </div>

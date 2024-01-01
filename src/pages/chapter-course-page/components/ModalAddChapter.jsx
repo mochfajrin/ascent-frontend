@@ -15,12 +15,16 @@ const ModalAddChapter = ({ openModal, closeModal, addChapter }) => {
         <Modal.Body>
           <div className="space-y-6">
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-              Tambah bab kelas
+              Tambah <span className="text-[#0092A4]">bab kelas</span>
             </h3>
 
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="chapterTitle" value="Judul bab kelas" />
+                <Label
+                  htmlFor="chapterTitle"
+                  className="text-[#0092A4] text-md font-semibold"
+                  value="Judul bab kelas"
+                />
               </div>
               <TextInput
                 id="chapterTitle"

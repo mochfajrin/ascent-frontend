@@ -1,5 +1,7 @@
-import inbox from "../assets/icons/inbox.png";
 import { Modal } from "flowbite-react";
+import PropTypes from "prop-types";
+
+import inbox from "../assets/icons/inbox.png";
 
 const AddDataLoading = ({ loadingText }) => {
   return (
@@ -11,12 +13,18 @@ const AddDataLoading = ({ loadingText }) => {
         >
           <div className="flex flex-col items-center animate-bounce ">
             <img src={inbox} alt="upload image" className="w-40" />
-            <p className="mt-3 text-2xl font-semibold">{loadingText}</p>
+            <p className="mt-3 text-2xl font-semibold  text-white">
+              {loadingText}
+            </p>
           </div>
         </div>
       </Modal>
     </>
   );
+};
+
+AddDataLoading.propTypes = {
+  loadingText: PropTypes.string.isRequired,
 };
 
 export default AddDataLoading;

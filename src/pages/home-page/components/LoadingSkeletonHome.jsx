@@ -1,8 +1,8 @@
 const LoadingSkeletonHome = () => {
   return (
     <div role="status" className="animate-pulse">
-      <div className="flex flex-col place-items-center max-md:space-y-7 md:flex-row md:space-x-2 lg:space-x-6 xl:space-x-10">
-        <div className="flex flex-row items-center space-x-5 md:space-x-3 xl:space-x-6 bg-gray-300 p-6 md:p-3 w-5/6 lg:w-4/6 xl:min-w-3/5 lg:p-4 xl:p-6 rounded-xl">
+      <div className="animate-pulse flex flex-col place-items-center max-md:space-y-7 md:flex-row md:space-x-2 lg:space-x-6 xl:space-x-10">
+        <div className="animate-pulse flex flex-row items-center space-x-5 md:space-x-3 xl:space-x-6 bg-gray-300 p-6 md:p-3 w-5/6 lg:w-4/6 xl:min-w-3/5 lg:p-4 xl:p-6 rounded-xl">
           <div className="p-2 bg-white rounded-3xl md:rounded-2xl">
             <svg
               className="w-10 h-10 text-gray-200 dark:text-gray-600"

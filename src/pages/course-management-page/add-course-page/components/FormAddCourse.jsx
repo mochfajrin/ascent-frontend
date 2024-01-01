@@ -224,7 +224,7 @@ const FormAddCourse = ({ setImageFile }) => {
           <div className="mb-5">
             <label
               htmlFor="base-input"
-              className="block mb-2  font-medium text-gray-900 dark:text-white"
+              className="block mb-2  text-[#0092A4] font-semibold dark:text-white"
             >
               Beri diskon (%) :
             </label>
