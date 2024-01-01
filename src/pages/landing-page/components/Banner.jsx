@@ -1,4 +1,5 @@
 import DownloadButton from "./DownloadButton";
+import "aos/dist/aos.css";
 
 const Banner = () => {
   return (
@@ -11,7 +12,10 @@ const Banner = () => {
             alt="tpa image"
           />
         </div>
-        <div className="h-full flex flex-col justify-center px-24 drop-shadow-2xl">
+        <div
+          data-aos="fade-right"
+          className="h-full flex flex-col justify-center px-24 drop-shadow-2xl"
+        >
           <h1
             style={{
               WebkitTextStroke: "1px #0092A4",

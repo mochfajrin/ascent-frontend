@@ -1,3 +1,5 @@
+import "aos/dist/aos.css";
+
 const Navbar = () => {
   const handleClick = () => {
     const whatsappLink = "http://wa.me/+6282266951933?text=Halo mimin ascent ";
@@ -5,7 +7,10 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className=" z-20 top-0 start-0 max-w-screen flex flex-wrap items-center justify-between mr-16 ml-16 p-4 ">
+      <nav
+        data-aos="fade-down"
+        className=" z-20 top-0 start-0 max-w-screen flex flex-wrap items-center justify-between mr-16 ml-16 p-4 "
+      >
         <a href="" className="flex items-center space-x-0.5 ">
           <img src="./Logo_2.png" className="h-20" alt="TrashIN Logo" />
 
@@ -36,7 +41,7 @@ const Navbar = () => {
           <ul className="flex flex-col p-2  mt-4 font-bold text-2xl opacity-100 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  ">
             <li>
               <a
-                href="#"
+                href="#aboutUs"
                 className="block py-2 px-3 text-white rounded  hover:text-gray-300 md:hover:bg-transparent md:p-0  "
               >
                 Tentang kami
@@ -44,7 +49,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="#service"
                 className="block py-2 px-3 text-white rounded hover:text-gray-300 md:hover:bg-transparent md:p-0  "
               >
                 Layanan
@@ -52,7 +57,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="#contact"
                 className="block py-2 px-3 text-white rounded hover:text-gray-300 md:hover:bg-transparent  md:p-0  "
               >
                 Kontak

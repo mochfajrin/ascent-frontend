@@ -3,36 +3,34 @@ import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
-// import { getTpsData } from "../api/fetching";
 
 const Map = ({ height, weight, zoom, show, onMarkerClick, shadow }) => {
-  const [tpsData, setTpsData] = useState([]);
-  // useEffect(() => {
-  //   getTpsData()
-  //     .then((res) => {
-  //       setTpsData(res);
-  //     })
-  //     .catch((err) => {
-  //       throw new Error(err.message);
-  //     });
-  // }, []);
+  const mapData = [
+    {
+      latitude: -1.14996,
+      longitude: 116.861754,
+      address:
+        "Jl. Soekarno Hatta No.KM 15, Karang Joang, Kec. Balikpapan Utara, Kota Balikpapan, Kalimantan Timur 76127",
+    },
+    {
+      latitude: -6.302146,
+      longitude: 106.654423,
+      address:
+        "Jl. BSD Green Office Park Jl. BSD Grand Boulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345",
+    },
+    {
+      latitude: -7.332573,
+      longitude: 110.509433,
+      address:
+        " Jl. DR. Muwardi No.45A, Kutowinangun Kidul, Kec. Tingkir, Kota Salatiga, Jawa Tengah 50742",
+    },
+  ];
 
-  const customIcon = new Icon({
-    iconUrl: "/icons/garbage.png",
-    iconSize: [30, 30],
-  });
-
-  // if (tpsData.length === 0) {
-  //   return;
-  // }
   return (
     <>
       <MapContainer
         className={`h-${height} w-${weight} rounded-xl z-0 shadow-${shadow}`}
-        center={[-0.433603, 116.984715]}
+        center={[0.110819, 114.73348]}
         zoom={zoom}
       >
         <TileLayer
@@ -41,45 +39,21 @@ const Map = ({ height, weight, zoom, show, onMarkerClick, shadow }) => {
           maxZoom={18}
         />
 
-        {tpsData.length > 0 &&
-          tpsData.map((data) => {
-            if (data.is_clean === false) {
-              return (
-                <Marker
-                  position={[
-                    data.latitude.toFixed(6),
-                    data.longitude.toFixed(6),
-                  ]}
-                  icon={customIcon}
-                  key={data.id}
-                  eventHandlers={{
-                    click: () => {
-                      onMarkerClick(data);
-                    },
-                  }}
-                >
-                  <Popup>
-                    <p>Alamat : {data.address}</p>
-                    <p>Latitude : {data.latitude.toFixed(6)}</p>
-                    <p>Longitude : {data.longitude.toFixed(6)}</p>
-                    {show && <Link>Lihat selangkapnya</Link>}
-                  </Popup>
-                </Marker>
-              );
-            }
-          })}
-
-        {/* <Marker
-          position={[
-            tpsData.data[0].latitude.toFixed(6),
-            tpsData.data[0].longitude.toFixed(6),
-          ]}
-          icon={customIcon}
-        >
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker> */}
+        {mapData.map((data, i) => (
+          <Marker
+            position={[data.latitude.toFixed(6), data.longitude.toFixed(6)]}
+            key={i}
+            eventHandlers={{
+              click: () => {
+                onMarkerClick(data);
+              },
+            }}
+          >
+            <Popup>
+              <p>Alamat : {data.address}</p>
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </>
   );

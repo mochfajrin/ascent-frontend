@@ -7,23 +7,15 @@ const Footer = () => {
       <footer className=" max-w-screen flex flex-wrap justify-between w-full pl-20 pr-20 bg-[#004E64] p-10 ">
         <div>
           <a href="" className="flex items-center space-x-0.5 ">
-            <img
-              src="./images/Logo-TrashIn.png"
-              className="h-20"
-              alt="TrashIN Logo"
-            />
-
-            <span className=" font-black mt-3">
-              <img src="./images/rashIn.png" alt="" />
-            </span>
+            <img src="./Logo_2.png" className="w-48" alt="TrashIN Logo" />
           </a>
         </div>
 
         <div className="mt-5 mr-20">
           <DownloadButton />
-          <div className="ml-4">
+          <div>
             <p className="text-white text-xl pt-8 font-thin font-montserrat">
-              © 2023 Pahlawan Kebersihan. All Rights Reserved.
+              © 2023 Ascent team. All Rights Reserved.
             </p>
           </div>
         </div>

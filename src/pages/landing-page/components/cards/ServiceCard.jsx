@@ -15,7 +15,7 @@ const ServiceCard = () => {
         </div>
         <div className="bg-white w-96 h-72  flex flex-col justify-between gap-3 p-6 rounded-tl-3xl rounded-lg shadow-xl hover:scale-110 ease-in-out duration-500">
           <img
-            className="w-32"
+            className="w-36"
             src="./picture/Project_planning.png"
             alt="volunteer icon"
           />
@@ -26,7 +26,7 @@ const ServiceCard = () => {
         </div>
         <div className="bg-white w-96  h-72 flex flex-col justify-between gap-3 p-6 rounded-tl-3xl rounded-lg shadow-xl hover:scale-110 ease-in-out duration-500">
           <img
-            className="w-28 "
+            className="w-24 "
             src="./picture/Share_location.png"
             alt="volunteer icon"
           />
