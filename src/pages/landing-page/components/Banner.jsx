@@ -16,14 +16,7 @@ const Banner = () => {
           data-aos="fade-right"
           className="h-full flex flex-col justify-center px-24 drop-shadow-2xl"
         >
-          <h1
-            style={{
-              WebkitTextStroke: "1px #0092A4",
-            }}
-            className="  text-white text-7xl font-extrabold "
-          >
-            Ascent
-          </h1>
+          <h1 className="  text-white text-7xl font-extrabold ">Ascent</h1>
 
           <div className="w-[700px]">
             <p className="text-white text-2xl pt-2 font-medium ">

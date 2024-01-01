@@ -4,7 +4,7 @@ import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet";
 
-const Map = ({ height, weight, zoom, show, onMarkerClick, shadow }) => {
+const Map = ({ height, weight, zoom, onMarkerClick, shadow }) => {
   const mapData = [
     {
       latitude: -1.14996,
