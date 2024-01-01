@@ -26,6 +26,11 @@ const Map = ({ height, weight, zoom, show, onMarkerClick, shadow }) => {
     },
   ];
 
+  const customIcon = new Icon({
+    iconUrl: "./icons/pin.png",
+    iconSize: [30, 30],
+  });
+
   return (
     <>
       <MapContainer
@@ -43,6 +48,7 @@ const Map = ({ height, weight, zoom, show, onMarkerClick, shadow }) => {
           <Marker
             position={[data.latitude.toFixed(6), data.longitude.toFixed(6)]}
             key={i}
+            icon={customIcon}
             eventHandlers={{
               click: () => {
                 onMarkerClick(data);
