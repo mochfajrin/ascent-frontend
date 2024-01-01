@@ -12,7 +12,7 @@ const Navbar = () => {
         className=" z-20 top-0 start-0 max-w-screen flex flex-wrap items-center justify-between mr-16 ml-16 p-4 "
       >
         <a href="" className="flex items-center space-x-0.5 ">
-          <img src="./Logo_2.png" className="h-20" alt="TrashIN Logo" />
+          <img src="./Logo_3.png" className="h-20" alt="TrashIN Logo" />
 
           <span className=" whitespace-nowrap  font-black mt-3">
             <img src="./images/rashIn.png" alt="" />
@@ -38,7 +38,7 @@ const Navbar = () => {
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 "
           id="navbar-sticky"
         >
-          <ul className="flex flex-col p-2  mt-4 font-bold text-2xl opacity-100 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  ">
+          <ul className="flex flex-col p-2  mt-4 font-bold text-xl opacity-100 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  ">
             <li>
               <a
                 href="#aboutUs"

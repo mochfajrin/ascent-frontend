@@ -7,7 +7,7 @@ const Footer = () => {
       <footer className=" max-w-screen flex flex-wrap justify-between w-full pl-20 pr-20 bg-[#004E64] p-10 ">
         <div>
           <a href="" className="flex items-center space-x-0.5 ">
-            <img src="./Logo_2.png" className="w-48" alt="TrashIN Logo" />
+            <img src="./Logo_3.png" className="w-40" alt="TrashIN Logo" />
           </a>
         </div>
 
