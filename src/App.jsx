@@ -10,13 +10,15 @@ import store from "./redux/store";
 import AddCoursePage from "./pages/course-management-page/add-course-page/AddCoursePage";
 import ChapterCoursePage from "./pages/chapter-course-page/ChapterCoursePage";
 import UpdateCoursePage from "./pages/course-management-page/update-course-page/UpdateCourse";
+import LandingPage from "./pages/landing-page/LandingPage";
 
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard/login" element={<LoginPage />} />
           <Route path="/dashboard" element={<MainLayout />}>
             <Route index={true} element={<Home />} />
             <Route path="course-management">
