@@ -56,7 +56,7 @@ const Map = ({ height, weight, zoom, onMarkerClick, shadow }) => {
             }}
           >
             <Popup>
-              <p>Alamat : {data.address}</p>
+              <p>{data.address}</p>
             </Popup>
           </Marker>
         ))}
