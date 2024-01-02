@@ -309,14 +309,14 @@ const ChapterCoursePage = () => {
                                   />
                                 </div>
                                 <div className="flex flex-row  mt-4 items-center justify-between">
-                                  <div className="flex flex-row space-x-3 items-center">
+                                  <div className="flex flex-row space-x-2 w-[400px] items-center">
                                     <h1 className="text-xl font-semibold ">
                                       {data.contentTitle}
                                     </h1>
-                                    <h1 className="text-md font-normal">
-                                      {data.duration} menit
-                                    </h1>
                                   </div>
+                                  <h1 className="text-md font-normal">
+                                    {data.duration} menit
+                                  </h1>
                                   <div className="space-x-2 flex flex-row">
                                     <div>
                                       <Link

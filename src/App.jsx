@@ -13,6 +13,7 @@ import UpdateCoursePage from "./pages/course-management-page/update-course-page/
 import LandingPage from "./pages/landing-page/LandingPage";
 import Protected from "./components/Protected";
 import Unauthorized from "./pages/unauthorized-page/Unauthorized";
+import ProtectedDeleteToken from "./components/ProtectedDeleteToken";
 
 const App = () => {
   return (
