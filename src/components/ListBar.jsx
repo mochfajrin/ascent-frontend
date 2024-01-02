@@ -40,7 +40,7 @@ const ListBar = ({ closeDropDown }) => {
   };
 
   const linkClass = `block py-2 max-md:rounded px-3 lg:px-4 hover:bg-[#0092A4] ${
-    isActive(location.pathname) ? "bg-[#0092A4]" : ""
+    isActive(location.pathname) ? "bg-[#0092A4] text-white" : ""
   } w-full`;
 
   return (
@@ -51,7 +51,7 @@ const ListBar = ({ closeDropDown }) => {
             onClick={closeDropDown}
             to={"/dashboard"}
             className={`block py-2  max-md:rounded px-3 lg:px-4  hover:bg-[#0092A4] active: ${
-              location.pathname == "/dashboard" && "bg-[#0092A4]"
+              location.pathname == "/dashboard" && "bg-[#0092A4] text-white"
             }
            w-full  `}
           >
