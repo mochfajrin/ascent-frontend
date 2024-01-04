@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="flex items-center space-x-3 mt-4">
             <img className="w-6" src="./icons/telephone.png" alt="" />
             <div>
-              <p>+62 821 5066 7710</p>
+              <p>+62 822 6695 1933</p>
             </div>
           </div>
           <div className="flex items-center space-x-3 mt-3">
@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="flex items-center space-x-3 mt-3">
             <img className="w-6" src="./icons/email.png" alt="" />
             <div>
-              <p>raise.production23@gmail.com</p>
+              <p>ascentproduction8@gmail.com</p>
             </div>
           </div>
         </div>
