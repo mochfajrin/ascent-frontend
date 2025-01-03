@@ -9,10 +9,10 @@ const DownloadButton = () => {
         <div className="flex flex-row space-x-3">
           <img className="w-12" src="./icons/google-play.png" alt="" />
 
-          <div className=" ">
+          <a href="https://drive.google.com/file/d/1nZtwwQLOXW3YNZjhRmEQr9d-KwnfKI8W/view?pli=1">
             <p className="text-sm text-left"> Unduh pada</p>
             <p className="font-bold">Google Play</p>
-          </div>
+          </a>
         </div>
       </button>
     </>

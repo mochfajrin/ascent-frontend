@@ -1,4 +1,5 @@
 import DownloadButton from "./DownloadButton";
+import DocButton from "./DocButton";
 import "aos/dist/aos.css";
 
 const Banner = () => {
@@ -27,6 +28,7 @@ const Banner = () => {
 
           <div className="mt-6">
             <DownloadButton />
+            <DocButton />
           </div>
         </div>
       </div>
