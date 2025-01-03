@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="flex items-center space-x-3 mt-4">
             <img className="w-6" src="./icons/telephone.png" alt="" />
             <div>
-              <p>+62 822 6695 1933</p>
+              <p>+628816018033</p>
             </div>
           </div>
           <div className="flex items-center space-x-3 mt-3">
