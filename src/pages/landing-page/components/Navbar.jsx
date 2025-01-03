@@ -2,7 +2,7 @@ import "aos/dist/aos.css";
 
 const Navbar = () => {
   const handleClick = () => {
-    const whatsappLink = "http://wa.me/+6282266951933?text=Halo mimin ascent ";
+    const whatsappLink = "http://wa.me/+628816018033?text=Halo mimin ascent ";
     window.location.href = whatsappLink;
   };
   return (
