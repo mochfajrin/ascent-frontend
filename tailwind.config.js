@@ -11,5 +11,5 @@ export default {
       montserrat: ["Montserrat"],
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [import("flowbite/plugin")],
 };
