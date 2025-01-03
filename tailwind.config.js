@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import flowbitPlugin from "flowbite/plugin";
 export default {
   content: [
     "./index.html",
@@ -11,5 +12,5 @@ export default {
       montserrat: ["Montserrat"],
     },
   },
-  plugins: [import("flowbite/plugin")],
+  plugins: [flowbitPlugin],
 };
